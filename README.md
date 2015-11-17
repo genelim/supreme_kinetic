@@ -19,7 +19,9 @@ then
 ```sh
 $ node server.js
 ```
-go to 'localhost:8080'
+go to your browser and type
+
+`localhost:8080`
 
 
 *-Dennis Lee-*
