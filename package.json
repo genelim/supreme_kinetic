@@ -1,0 +1,22 @@
+{
+  "name": "empress",
+  "version": "1.0.0",
+  "description": "empress travel",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/genelim/empress.git"
+  },
+  "keywords": [
+    "travel"
+  ],
+  "author": "Gene Lim",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.3",
+    "nodemon": "^1.8.1"
+  }
+}

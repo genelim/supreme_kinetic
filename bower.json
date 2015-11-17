@@ -1,0 +1,15 @@
+{
+  "name": "empress",
+  "version": "0.0.0",
+  "homepage": "https://github.com/genelim/empress",
+  "authors": [
+    "Gene Lim <wernminlim@gmail.com>"
+  ],
+  "keywords": [
+    "travel"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "angular": "~1.4.7"
+  }
+}
