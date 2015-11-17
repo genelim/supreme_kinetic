@@ -1,6 +1,6 @@
 <h1>Supreme Kinetic</h1>
 
-**Below I will put the steps to install
+#Below I will put the steps to install
 
 1. Have nodejs installed: `https://nodejs.org/en/download/`
 
