@@ -1,25 +1,25 @@
 <h1>Supreme Kinetic</h1>
 
-<p>Below I will put the steps to install</p>
+**Below I will put the steps to install
 
-First, have nodejs installed: `https://nodejs.org/en/download/`
+1. Have nodejs installed: `https://nodejs.org/en/download/`
 
-Clone this repository to your local harddrive: `git clone https://github.com/username/projectname.git` or by downloading the ZIP file
+2. Clone this repository to your local harddrive: `git clone https://github.com/username/projectname.git` or by downloading the ZIP file
 
-Then open your Terminal or CLI
+3. Then open your Terminal or CLI
 
-Go to the cloned directory and type 
+4. Go to the cloned directory and type 
 
 ```sh
 $ npm install 
 ```
 
-then 
+5. then 
 
 ```sh
 $ node server.js
 ```
-go to your browser and type
+6. Go to your browser and type
 
 `localhost:8080`
 
