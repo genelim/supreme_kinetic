@@ -2,17 +2,24 @@
 
 <p>Below I will put the steps to install</p>
 
-First, have nodejs installed.
+First, have nodejs installed: `https://nodejs.org/en/download/`
 
-then Clone this project by downloading the ZIP or https://github.com/genelim/supreme_kinetic.git
+Clone this repository to your local harddrive: `git clone https://github.com/username/projectname.git` or by downloading the ZIP file
 
 Then open your Terminal or CLI
 
-Go to the cloned directory and type npm install
+Go to the cloned directory and type 
 
-then r type node server.js
+```sh
+$ npm install 
+```
 
-go to localhost:8080
+then 
+
+```sh
+$ node server.js
+```
+go to 'localhost:8080'
 
 
--Dennis Lee-
+*-Dennis Lee-*
