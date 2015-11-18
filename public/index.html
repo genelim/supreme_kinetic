@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
 	<script src="libs/angular/angular.min.js"></script>
+	<script src="libs/angular-route/angular-route.min.js"></script>
 	<script src="app/app.module.js"></script>
-    <title>Empress Travel</title>
+	<script src="app/app.config.js"></script>
+	<script src="app/home/HomeController.js"></script>
+    <title>Supreme Kinetic</title>
 
 </head>
 <body ng-app="app">
-    <div ng-controller="MainController">
-    	{{title}}
-    </div>
-
+    <div ng-view></div>
 </body>
 </html>
