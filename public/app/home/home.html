@@ -1,60 +1,7 @@
-<md-content class="md-padding">
-
-<div layout="row" layout-align="center center">
-  <div><md-card>
- <img src="assets/images/2.jpg" class="md-card-image" alt="image caption">
- <md-card-content>
-   <h2>Card headline</h2>
-   <p>Card content</p>
- </md-card-content>
- <md-card-actions layout="row" layout-align="end center">
-   <md-button>Action 1</md-button>
-   <md-button>Action 2</md-button>
- </md-card-actions>
-</md-card></div>
-  <div><md-card>
- <img src="assets/images/2.jpg" class="md-card-image" alt="image caption">
- <md-card-content>
-   <h2>Card headline</h2>
-   <p>Card content</p>
- </md-card-content>
- <md-card-actions layout="row" layout-align="end center">
-   <md-button>Action 1</md-button>
-   <md-button>Action 2</md-button>
- </md-card-actions>
-</md-card></div>
-  <div><md-card>
- <img src="assets/images/2.jpg" class="md-card-image" alt="image caption">
- <md-card-content>
-   <h2>Card headline</h2>
-   <p>Card content</p>
- </md-card-content>
- <md-card-actions layout="row" layout-align="end center">
-   <md-button>Action 1</md-button>
-   <md-button>Action 2</md-button>
- </md-card-actions>
-</md-card></div>
-  <div><md-card>
- <img src="assets/images/2.jpg" class="md-card-image" alt="image caption">
- <md-card-content>
-   <h2>Card headline</h2>
-   <p>Card content</p>
- </md-card-content>
- <md-card-actions layout="row" layout-align="end center">
-   <md-button>Action 1</md-button>
-   <md-button>Action 2</md-button>
- </md-card-actions>
-</md-card></div>
-  <div><md-card>
- <img src="assets/images/2.jpg" class="md-card-image" alt="image caption">
- <md-card-content>
-   <h2>Card headline</h2>
-   <p>Card content</p>
- </md-card-content>
- <md-card-actions layout="row" layout-align="end center">
-   <md-button>Action 1</md-button>
-   <md-button>Action 2</md-button>
- </md-card-actions>
-</md-card></div>
-</div>
-</md-content>
+<ul class="tabs">
+    <li class="tab col s3 {{tab.disabled}}" ng-repeat="tab in vm.tab_menu"><a class="{{tab.active}}" href="#{{tab.id}}"><i class="material-icons tab_icon">{{tab.icon}}</i><div class="tab_text">{{tab.name}}</div></a></li>
+</ul>
+<div id="chair" class="col s12">Test 1</div>
+<div id="electric_kettle" class="col s12">Test 2</div>
+<div id="cutleries" class="col s12">Test 3</div>
+<div id="reward" class="col s12">Test 4</div>

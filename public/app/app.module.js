@@ -1,1 +1,1 @@
-angular.module('app',['ngRoute','ngMaterial']);
+angular.module('app',['ngRoute']);

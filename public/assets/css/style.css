@@ -1,0 +1,61 @@
+@font-face {
+	font-family: 'Material Icons';
+	font-style: normal;
+	font-weight: 400;
+	src:  local('Material Icons'), url('../../libs/materialize/dist/font/material-design-icons/Material-Icons.woff2') format('woff2');
+}
+
+.material-icons {
+	font-family: 'Material Icons';
+	font-weight: normal;
+	font-style: normal;
+	font-size: 24px;
+	line-height: 1;
+	letter-spacing: normal;
+	text-transform: none;
+	display: inline-block;
+	white-space: nowrap;
+	word-wrap: normal;
+	direction: ltr;
+	-webkit-font-feature-settings: 'liga';
+	-webkit-font-smoothing: antialiased;
+}
+
+.nav-logo{
+ 	padding: 5px 0px !important;
+    height: 64px;
+    display: block;
+}
+
+.tab_icon{
+	display: none;
+	font-size: 3rem;
+}
+.hover_none:hover{
+	background-color: transparent;
+}
+
+.login_btn{
+	border-radius: 1.5em;
+}
+
+@media screen and (max-width: 600px) {
+    .nav-logo{
+	    height: 55px;
+	}
+}
+
+@media screen and (max-width: 992px) {
+	.tab_icon{
+		display: block;
+	}
+	.tab_text{
+		display: none;
+	}
+}
+
+
+.logo{
+	height: 100%;
+}
+
