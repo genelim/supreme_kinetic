@@ -21,17 +21,18 @@
 	-webkit-font-smoothing: antialiased;
 }
 
+
+/****
+*****	Home Navigation Bar
+****/
+
 .nav-logo{
  	padding: 5px 0px !important;
     height: 64px;
     display: block;
 }
 
-.tab_icon{
-	display: none;
-	font-size: 3rem;
-}
-.hover_none:hover{
+li.hover_none:hover{
 	background-color: transparent;
 }
 
@@ -39,9 +40,34 @@
 	border-radius: 1.5em;
 }
 
+.responsive-search{
+	margin-top: 0em;
+}
+
+.responsive-search-li{
+	padding: 0 !important;
+}
+
+.logo{
+	height: 100%;
+}
+
+
+/****
+*****	Home Tab
+****/
+
+.tab_icon{
+	display: none;
+	font-size: 3rem;
+}
+
 @media screen and (max-width: 600px) {
     .nav-logo{
 	    height: 55px;
+	}
+	.responsive-search{
+		margin-top: 0.5em;
 	}
 }
 
@@ -54,8 +80,4 @@
 	}
 }
 
-
-.logo{
-	height: 100%;
-}
 
