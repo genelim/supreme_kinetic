@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="libs/materialize/dist/css/materialize.min.css"></link>
-<!--     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"> -->
+    <link rel="stylesheet" href="libs/components-font-awesome/css/font-awesome.min.css"></link>
     <link rel="stylesheet" href="assets/css/style.css">
     <title>Supreme Kinetic</title>
 </head>
@@ -27,7 +27,7 @@
                         </div>
                     </li>
                     <li>
-                        <a>Sign Up</a>
+                        <a ng-click="vm.register()">Sign Up</a>
                     </li>
                     <li class="hover_none">
                         <button class="btn login_btn blue" ng-click="vm.login()">Login</button>
@@ -42,15 +42,20 @@
                         </div>
                     </li>
                     <li class="hover_none">
-                        <button class="btn blue">Login</button>
+                        <button class="btn blue" ng-click="vm.login()">Login</button>
                     </li>
                     <li>
-                        <a>Sign Up</a>
+                        <a ng-click="vm.register()">Sign Up</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
+
+    <div id="user_open" class="modal">
+        <div ng-include src="'app/login/login.html'"></div>
+    </div>
+
     <div class="slider">
         <ul class="slides">
             <li>
