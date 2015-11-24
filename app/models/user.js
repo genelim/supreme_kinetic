@@ -1,6 +1,7 @@
 module.exports = function (connection) {
   	var mongoose = require('mongoose');
-  	var Schema = mongoose.Schema;
+        Role = require('./role.js'),
+      	Schema = mongoose.Schema;
 
     var role = new Schema({
         type: String,
