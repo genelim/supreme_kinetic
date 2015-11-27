@@ -7,21 +7,21 @@
         <div class="row">
             <div class="">
                 <div class="input-field">
-                    <input id="email" type="text">
+                    <input id="email" type="text" ng-model="vm.local_login.email"/>
                     <label for="email">E-mail:</label>
                 </div>
                 <div class="input-field">
-                    <input id="password" type="password">                                                  
+                    <input id="password" type="password" ng-model="vm.local_login.password"/>                                                  
                     <label for="password">Password:</label>
                 </div>
                 <div class="col l6 m6 s6">
                     <div class="input-field" style="margin-top: 0">
-                        <input type="checkbox" id="rememberme" />
+                        <input type="checkbox" id="rememberme" ng-model="vm.local_login.checkbox"/>
                         <label for="rememberme">Remember Me</label>
                     </div>
                 </div>
                 <div class="col l6 m6 s6">
-                    <button class="btn waves-effect waves-light right">Login</button>
+                    <button class="btn waves-effect waves-light right" ng-click="vm.login_press(vm.local_login)">Login</button>
                 </div>
             </div>
         </div>
@@ -37,30 +37,30 @@
         <div class="row">
             <div class="input-field col s6 l6">
                 <label for="first_name">First Name:</label>
-                <input id="first_name" type="text">    
+                <input id="first_name" type="text" ng-model="vm.registering.first_name">    
             </div>
             <div class="input-field col s6 l6">
                 <label for="last_name">Last Name:</label>
-                <input id="last_name" type="text">
+                <input id="last_name" type="text" ng-model="vm.registering.last_name">
             </div>
             <div class="col s12 l12 input-field">
                 <label for="email">E-Mail:</label>
-                <input id="email" type="text">                                                 
+                <input id="email" type="text" ng-model="vm.registering.email">                                                 
             </div>
             <div class="col s12 l6 input-field">
                 <label for="password">Password:</label>
-                <input id="password" type="password">                                                  
+                <input id="password" type="password" ng-model="vm.registering.password">                                                  
             </div>
             <div class="col s12 l6 input-field">
                 <label for="confirm_password">Confirm Password:</label>
-                <input id="confirm_password" type="password">                                                  
+                <input id="confirm_password" type="password" ng-model="vm.registering.confirm_password">                                                  
             </div>
             <div class="col l12 m12 s12">
                 <label>By clicking on register, you agree to <b>terms</b> and <b>privacy policy</b></label>
             </div>
             <div class="col l12 m12 s12">
-                <button class="btn waves-effect waves-light right">Register</button>
+                <button class="btn waves-effect waves-light right" ng-click="vm.register_press(vm.registering)">Register</button>
             </div>
         </div>
     </div>
-</div>
+</div>  

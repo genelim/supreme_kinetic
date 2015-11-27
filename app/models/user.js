@@ -1,12 +1,7 @@
 module.exports = function (connection) {
   	var mongoose = require('mongoose');
-        Role = require('./role.js'),
-      	Schema = mongoose.Schema;
-
-    var role = new Schema({
-        type: String,
-        level: Number,
-    });
+      	Schema = mongoose.Schema,
+        bcrypt = require('bcrypt-nodejs');
     
   	var user = new mongoose.Schema({
 		first_name: String,
@@ -14,11 +9,22 @@ module.exports = function (connection) {
         email: String,
         password: String,
         profile_image: String,
-		company_name: String,
+        company_name: String,
+		type: [{ type : String }],
+        email_validate: { type : Boolean, default: false },
 		created_at: { type : Date, default: Date.now },
         created_by: { type: Schema.Types.ObjectId, ref: 'User' },
-        role: [role]
+        role: [mongoose.model('Role').schema]
 	});
+
+    user.methods.generateHash = function(password) {
+        return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
+    };
+
+    // checking if password is valid
+    user.methods.validPassword = function(password) {
+        return bcrypt.compareSync(password, this.password);
+    };
 
   	return connection.model('User', user);
 }

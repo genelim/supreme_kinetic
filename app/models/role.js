@@ -7,5 +7,12 @@ module.exports = function (connection) {
         level: Number,
   	});
 
+  	role.pre("save",function(next) {
+  		this.type = 'member';
+  		this.level = 0;
+  		
+  		next();
+	});
+
   	return connection.model('Role', role);
 }

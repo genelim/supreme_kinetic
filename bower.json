@@ -12,6 +12,7 @@
   "dependencies": {
     "angular": "~1.4.7",
     "materialize": "~0.97.3",
-    "components-font-awesome": "~4.4.0"
+    "components-font-awesome": "~4.4.0",
+    "angular-resource": "~1.4.8"
   }
 }
