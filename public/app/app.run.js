@@ -5,5 +5,6 @@ angular
 runBlock.$inject = ['$rootScope'];
 
 function runBlock($rootScope) {
-	
+	$rootScope.home_default = true;
+	$rootScope.user_menu = [];
 }

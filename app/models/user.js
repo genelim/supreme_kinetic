@@ -1,6 +1,7 @@
 module.exports = function (connection) {
   	var mongoose = require('mongoose');
       	Schema = mongoose.Schema,
+        Role = mongoose.model('Role').schema,
         bcrypt = require('bcrypt-nodejs');
     
   	var user = new mongoose.Schema({
@@ -14,14 +15,13 @@ module.exports = function (connection) {
         email_validate: { type : Boolean, default: false },
 		created_at: { type : Date, default: Date.now },
         created_by: { type: Schema.Types.ObjectId, ref: 'User' },
-        role: [mongoose.model('Role').schema]
+        role: [Role]
 	});
 
     user.methods.generateHash = function(password) {
         return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
     };
 
-    // checking if password is valid
     user.methods.validPassword = function(password) {
         return bcrypt.compareSync(password, this.password);
     };

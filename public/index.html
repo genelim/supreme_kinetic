@@ -8,7 +8,17 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <title>Supreme Kinetic</title>
 </head>
-<body ng-app="app" ng-controller="LoginController as vm">
+<body ng-cloak ng-app="app" ng-controller="LoginController as vm">
+    <ul id="profile_dropdown" class="dropdown-content">
+        <li ng-repeat="menu in user_menu"><a href="#/{{menu.path}}">{{menu.name}}</a></li>
+        <li class="divider"></li>
+        <li><a ng-click="vm.logout()">Logout</a></li>
+    </ul>
+    <ul id="profile_dropdown_mobile" class="dropdown-content">
+        <li ng-repeat="menu in user_menu"><a>{{menu.name}}</a></li>
+        <li class="divider"></li>
+        <li><a ng-click="vm.logout()">Logout</a></li>
+    </ul>
     <nav>
         <div class="nav-wrapper row">
             <div class="col l12">
@@ -26,11 +36,20 @@
                             <i class="material-icons">close</i>
                         </div>
                     </li>
-                    <li>
-                        <a ng-click="vm.register()">Sign Up</a>
+                    <li  ng-show=(!vm.username)>
+                        <a ng-click="vm.user_modal('register')">Sign Up</a>
                     </li>
-                    <li class="hover_none">
-                        <button class="btn login_btn blue" ng-click="vm.login()">Login</button>
+                    <li class="hover_none" ng-show=(!vm.username)>
+                        <button class="btn login_btn blue" ng-click="vm.user_modal('login')">Login</button>
+                    </li>
+                    <li ng-show=(vm.username)>
+                        <img class="responsive-image circle" src="/assets/images/default_user.png" style="height:42px; margin-top:10px; padding:0 10px;"/>  
+                    </li>
+                    <li ng-show=(vm.username)>
+                        <a class="dropdown-button" data-activates="profile_dropdown" >
+                            {{vm.username}}
+                            <i class="material-icons right">arrow_drop_down</i>
+                        </a>
                     </li>
                 </ul>
                 <ul class="side-nav" id="mobile-demo" style="text-align:center;">
@@ -41,11 +60,17 @@
                             <i class="material-icons responsive-search">close</i>
                         </div>
                     </li>
-                    <li class="hover_none">
-                        <button class="btn blue" ng-click="vm.login()">Login</button>
+                    <li class="hover_none" ng-show=(!vm.username)>
+                        <button class="btn blue" ng-click="vm.user_modal('login')">Login</button>
                     </li>
-                    <li>
-                        <a ng-click="vm.register()">Sign Up</a>
+                    <li ng-show=(!vm.username)>
+                        <a ng-click="vm.user_modal('register')">Sign Up</a>
+                    </li>
+                    <li ng-show=(vm.username)>
+                        <a class="dropdown-button" data-beloworigin="true" data-activates="profile_dropdown_mobile" >
+                            {{vm.username}}
+                            <i class="material-icons right mobile_profile_icon">arrow_drop_down</i>
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -56,13 +81,13 @@
         <div ng-include src="'app/login/login.html'"></div>
     </div>
 
-    <div class="slider">
+    <div class="slider" ng-show="home_default">
         <ul class="slides">
             <li>
                 <img src="/assets/images/2.jpg"> <!-- random image -->
                 <div class="caption left-align">
-                    <h3>Left Aligned Caption</h3>
-                    <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+                    <h3>Supreme Kinetic</h3>
+                    <h5 class="light grey-text text-lighten-3">Eye catching home supplies like never before</h5>
                 </div>
             </li>
             <li>
@@ -78,12 +103,15 @@
     <script src="libs/angular-resource/angular-resource.min.js"></script>
     <script src="libs/jquery/dist/jquery.min.js"></script>
     <script src="libs/materialize/dist/js/materialize.min.js"></script>
+    <script src="libs/ngstorage/ngStorage.min.js"></script>
 	<script src="app/app.module.js"></script>
     <script src="app/app.config.js"></script>
 	<script src="app/app.run.js"></script>
     <script src="app/home/home.js"></script>
     <script src="app/login/login.js"></script>
     <script src="app/login/login.service.js"></script>
+    <script src="app/common/logger.js"></script>
+    <script src="app/admin/admin.js"></script>
     <script src="assets/js/script.js"></script>
 	<script src="assets/js/search.js"></script>
 </body>

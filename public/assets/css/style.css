@@ -21,7 +21,9 @@
 	-webkit-font-smoothing: antialiased;
 }
 
-
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}
 /****
 *****	Home Navigation Bar
 ****/
@@ -68,6 +70,10 @@ li.hover_none:hover{
 	}
 	.responsive-search{
 		margin-top: 0.5em;
+	}
+	.mobile_profile_icon{
+		height: 64px;
+    	line-height: 64px;
 	}
 }
 

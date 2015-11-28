@@ -4,9 +4,12 @@ angular
     .module('app')
     .controller('HomeController', HomeController);
 
-function HomeController() { 
+HomeController.$inject = ['$rootScope'];
+
+function HomeController($rootScope) { 
 	var vm = this;
     vm.title = "Supreme Kinetic";
+    $rootScope.home_default = true;
     vm.tab_menu = 	[
 					    {name:'Chair',disabled:'',active:'',id:'chair', icon:'event_seat'},
 					    {name:'Electric Kettle',disabled:'',active:'active',id:'electric_kettle',icon:'opacity'},

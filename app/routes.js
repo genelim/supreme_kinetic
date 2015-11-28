@@ -6,15 +6,15 @@ var mongoose = require('mongoose'),
 module.exports = function(app) {
 
     app.route('/api/user')
-        .get(function(req, res, next) {
-            User.find(function(err, user){
-                 if(err)
-                    res.json(err);
-                res.json(user);
-            });
-        })
+        // .get(function(req, res, next) {
+        //     User.find(function(err, user){
+        //          if(err)
+        //             res.json(err);
+        //         res.json(user);
+        //     });
+        // })
         .post(function(req, res, next) {
-            var error_return = [{response:'User Existed'},{response:'Invalid Username or Password'}];
+            var error_return = [{response:'User Existed'},{response:'Invalid Username or Password'},{response:'Server Error'}];
 
             if(req.body.type === "local"){
                 var newUser = new User();
@@ -23,17 +23,18 @@ module.exports = function(app) {
                 newUser.email = req.body.email;
                 newUser.password = newUser.generateHash(req.body.password);
                 newUser.type = req.body.type;
+                newUser.role = req.body.role;
                 
                 User.findOne({email: req.body.email}, function (err, user) {
                     if (err) {
-                        res.json(err); 
+                        res.json(error_return[2]); 
                         return;
                     }
                     if (!user){
                         newUser.save(function(error, result){
                             if(error)
-                                res.json(error);
-                            res.json(result);
+                                res.json(error_return[2]);
+                            res.json({response:result});
                         });
                         return;
                     }
@@ -42,7 +43,7 @@ module.exports = function(app) {
             }else if(req.body.type === "login"){
                 User.findOne({email: req.body.email}, function (err, user) {
                     if (err) {
-                        res.json(err); 
+                        res.json(error_return[2]); 
                         return;
                     }
                     if (!user){
@@ -53,7 +54,7 @@ module.exports = function(app) {
                         res.json(error_return[1]);
                         return;
                     }
-                    res.json(user);
+                    res.json({response:user});
                 });
             }
             

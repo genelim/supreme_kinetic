@@ -3,16 +3,9 @@ module.exports = function (connection) {
   	   	Schema = mongoose.Schema;
 
   	var role = new Schema({
-  		type: String,
-        level: Number,
+  		type: {type: String, require: true},
+        level: {type: Number, require: true}
   	});
-
-  	role.pre("save",function(next) {
-  		this.type = 'member';
-  		this.level = 0;
-  		
-  		next();
-	});
 
   	return connection.model('Role', role);
 }
