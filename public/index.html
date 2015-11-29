@@ -15,7 +15,7 @@
         <li><a ng-click="vm.logout()">Logout</a></li>
     </ul>
     <ul id="profile_dropdown_mobile" class="dropdown-content">
-        <li ng-repeat="menu in user_menu"><a>{{menu.name}}</a></li>
+        <li ng-repeat="menu in user_menu"><a href="#/{{menu.path}}">{{menu.name}}</a></li>
         <li class="divider"></li>
         <li><a ng-click="vm.logout()">Logout</a></li>
     </ul>

@@ -2,16 +2,15 @@ angular
     .module('app')
     .controller('LoginController', LoginController);
 
-LoginController.$inject = ['User','Logger','$localStorage','$scope','$rootScope'];
+LoginController.$inject = ['User','Logger','$localStorage','$scope','$rootScope','$location'];
 
-function LoginController(User,Logger,$localStorage,$scope,$rootScope) { 
+function LoginController(User,Logger,$localStorage,$scope,$rootScope,$location) { 
     var vm = this;
     vm.user_modal = user_modal;
     vm.user_modal_press = user_modal_press;
     vm.logout = logout;
 
     $scope.$on('$routeChangeSuccess', function(n,c){
-        console.log(n,c)
         if(Logger.is_logged){
             vm.username = Logger.user_details.first_name + ' ' + Logger.user_details.last_name;
             check_admin();
@@ -83,5 +82,6 @@ function LoginController(User,Logger,$localStorage,$scope,$rootScope) {
         Logger.is_logged = false;
         $localStorage.$reset();
         vm.username = null;
+        $location.url('/');
     }
 }
