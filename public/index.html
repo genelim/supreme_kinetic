@@ -7,15 +7,16 @@
     <link rel="stylesheet" href="libs/components-font-awesome/css/font-awesome.min.css"></link>
     <link rel="stylesheet" href="assets/css/style.css">
     <title>Supreme Kinetic</title>
+    <base href="/">
 </head>
 <body ng-cloak ng-app="app" ng-controller="LoginController as vm">
     <ul id="profile_dropdown" class="dropdown-content">
-        <li ng-repeat="menu in user_menu"><a href="#/{{menu.path}}">{{menu.name}}</a></li>
+        <li ng-repeat="menu in user_menu"><a href="{{menu.path}}">{{menu.name}}</a></li>
         <li class="divider"></li>
         <li><a ng-click="vm.logout()">Logout</a></li>
     </ul>
     <ul id="profile_dropdown_mobile" class="dropdown-content">
-        <li ng-repeat="menu in user_menu"><a href="#/{{menu.path}}">{{menu.name}}</a></li>
+        <li ng-repeat="menu in user_menu"><a href="{{menu.path}}">{{menu.name}}</a></li>
         <li class="divider"></li>
         <li><a ng-click="vm.logout()">Logout</a></li>
     </ul>
