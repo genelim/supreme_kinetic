@@ -1,1 +1,1 @@
-angular.module('app',['ngRoute','ngResource','ngStorage']); 
+angular.module('app',['ngResource','ngStorage','ui.router']); 

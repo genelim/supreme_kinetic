@@ -10,17 +10,16 @@ function LoginController(User,Logger,$localStorage,$scope,$rootScope,$location) 
     vm.user_modal_press = user_modal_press;
     vm.logout = logout;
 
-    $scope.$on('$routeChangeSuccess', function(n,c){
+    $scope.$on('$stateChangeStart', function(n,c){
         if(Logger.is_logged){
             vm.username = Logger.user_details.first_name + ' ' + Logger.user_details.last_name;
             check_admin();
         }
-    })
-    
+    })    
 
     function check_admin(){
         if(Logger.user_details.role[0].type === "admin" && typeof Logger.user_details.role[0].type !== 'undefined'){
-            $rootScope.user_menu = [{name:'Profile',path:'profile'},{name:'Setting',path:'setting'},{name:'Admin',path:'admin'}];
+            $rootScope.user_menu = [{name:'Profile',path:'profile'},{name:'Setting',path:'setting'},{name:'Admin',path:'admin/dashboard'}];
         }else{
             $rootScope.user_menu =  [{name:'Profile',path:'profile'},{name:'Setting',path:'setting'}];
         }
@@ -52,10 +51,12 @@ function LoginController(User,Logger,$localStorage,$scope,$rootScope,$location) 
         value.type = type;
         value.role = {type:"member",level:0};
         User.save(value, function(res){
+            console.log(res);
             if(res.response !== 'User Existed' && res.response !== 'Invalid Username or Password' && res.response !== 'Server Error'){
                 Logger.is_logged = true;
                 Logger.user_details = res.response;
                 $localStorage.user_details = res.response;
+                console.log()
                 vm.username = res.response.first_name + ' ' + res.response.last_name;
                 check_admin();
                 if(type === "login"){

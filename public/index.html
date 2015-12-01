@@ -1,14 +1,14 @@
 <!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="libs/materialize/dist/css/materialize.min.css"></link>
-    <link rel="stylesheet" href="libs/components-font-awesome/css/font-awesome.min.css"></link>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <title>Supreme Kinetic</title>
-    <base href="/">
-</head>
+    <head>
+        <meta  http-equiv="content-type" content="text/html;" charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <link rel="stylesheet" href="/libs/materialize/dist/css/materialize.min.css"></link>
+        <link rel="stylesheet" href="/libs/components-font-awesome/css/font-awesome.min.css"></link>
+        <link rel="stylesheet" href="/assets/css/style.css">
+        <title>Supreme Kinetic</title>
+        <base href="/">
+    </head>
 <body ng-cloak ng-app="app" ng-controller="LoginController as vm">
     <ul id="profile_dropdown" class="dropdown-content">
         <li ng-repeat="menu in user_menu"><a href="{{menu.path}}">{{menu.name}}</a></li>
@@ -20,10 +20,10 @@
         <li class="divider"></li>
         <li><a ng-click="vm.logout()">Logout</a></li>
     </ul>
-    <nav>
-        <div class="nav-wrapper row">
-            <div class="col l12">
-                <a href="#!" class="brand-logo nav-logo">
+    <div class="navbar-fixed row navigation">
+        <nav class="col l12">
+            <div class="nav-wrapper">
+                <a href="/" class="brand-logo nav-logo">
                     <img class="circle logo" src="assets/images/logo.png">
                 </a>
                 <a href="#" data-activates="mobile-demo" class="button-collapse">
@@ -53,7 +53,7 @@
                         </a>
                     </li>
                 </ul>
-                <ul class="side-nav" id="mobile-demo" style="text-align:center;">
+                <ul class="side-nav" id="mobile-demo">
                     <li class="responsive-search-li">
                         <div class="input-field red lighten-2">
                             <input id="search_mobile" type="search" required>
@@ -75,8 +75,8 @@
                     </li>
                 </ul>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </div>
 
     <div id="user_open" class="modal">
         <div ng-include src="'app/login/login.html'"></div>
@@ -85,7 +85,7 @@
     <div class="slider" ng-show="home_default">
         <ul class="slides">
             <li>
-                <img src="/assets/images/2.jpg"> <!-- random image -->
+                <img src="/assets/images/2.jpg">
                 <div class="caption left-align">
                     <h3>Supreme Kinetic</h3>
                     <h5 class="light grey-text text-lighten-3">Eye catching home supplies like never before</h5>
@@ -97,10 +97,10 @@
         </ul>
     </div>
 
-    <div ng-view></div>
+    <div ui-view></div>
 
     <script src="libs/angular/angular.min.js"></script>
-    <script src="libs/angular-route/angular-route.min.js"></script>
+    <script src="libs/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="libs/angular-resource/angular-resource.min.js"></script>
     <script src="libs/jquery/dist/jquery.min.js"></script>
     <script src="libs/materialize/dist/js/materialize.min.js"></script>
@@ -112,7 +112,8 @@
     <script src="app/login/login.js"></script>
     <script src="app/login/login.service.js"></script>
     <script src="app/common/logger.js"></script>
-    <script src="app/admin/admin.js"></script>
+    <script src="app/admin/dashboard.js"></script>
+    <script src="app/admin/product.js"></script>
     <script src="assets/js/script.js"></script>
 	<script src="assets/js/search.js"></script>
 </body>

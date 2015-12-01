@@ -24,6 +24,7 @@
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
 }
+
 /****
 *****	Home Navigation Bar
 ****/
@@ -32,6 +33,10 @@
  	padding: 5px 0px !important;
     height: 64px;
     display: block;
+}
+
+.navigation{
+	margin-bottom: 0;
 }
 
 li.hover_none:hover{
@@ -64,6 +69,38 @@ li.hover_none:hover{
 	font-size: 3rem;
 }
 
+/****
+*****	Admin Dashboard
+****/
+
+.admin {
+  	padding-left: 240px;
+}
+
+.admin_side_nav{
+	margin-top:64px;
+}
+
+.btn-group{
+	display: inline-block;
+    vertical-align: bottom;
+}
+
+.card .title{
+	width: 100%;
+    padding: 10px 20px;
+    border-radius: 2px 2px 0 0;
+    display: inline-block;
+    border-bottom: 1px solid #d0d0d0;
+}
+.card .title h5{
+	float: left;
+    font-size: 1.2rem;
+    line-height: 2rem;
+    margin: 0;
+    color: rgba(0,0,0,.65);
+}
+
 @media screen and (max-width: 600px) {
     .nav-logo{
 	    height: 55px;
@@ -84,6 +121,7 @@ li.hover_none:hover{
 	.tab_text{
 		display: none;
 	}
+	.admin {
+	  	padding-left: 0;
+	}
 }
-
-
