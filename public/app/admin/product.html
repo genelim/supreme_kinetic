@@ -14,7 +14,7 @@
                         <div class="title">
                             <h5>Products</h5>
                             <div class="btn-group right">
-                                <a class="btn btn-small green lighten-1 z-depth-0"><i class="mdi mdi-content-add"></i></a>
+                                <a class="btn btn-small green lighten-1 z-depth-0" ng-click="vm.add_product()"><i class="mdi mdi-content-add"></i></a>
                                 <a class="btn btn-small red lighten-1 z-depth-0"><i class="mdi mdi-action-delete"></i></a>
                             </div>
                         </div>
@@ -65,3 +65,56 @@
     </div>
     <div id="test2" class="col s12">Test 2</div>
 </div>
+
+<div id="add_product" class="modal modal modal-fixed-footer">
+    <div class="modal-content">
+        <div class="row">
+		    <div class="input-field col s12 m12 l12">
+			    <input id="productname" type="text" class="validate">
+		    	<label for="productname">Product Name</label>
+		    </div>
+		    <div class="input-field col s4 m4 l4">
+		        <input id="model" type="text" class="validate">
+		        <label for="model">Model</label>
+	        </div>				    	
+	        <div class="input-field col s4 m4 l4">
+		        <input id="sku" type="text" class="validate">
+		        <label for="sku">SKU</label>
+	        </div>
+	        <div class="input-field col s4 m4 l4">
+		        <input id="productid"	 type="text" class="validate">
+		        <label for="productid">Product ID</label>
+	        </div>				    	
+	        <div class="input-field col s4 m4 l4">
+		        <input id="brand" type="text" class="validate">
+		        <label for="brand">Brand</label>
+	        </div>
+	        <div class="input-field col s4 m4 l4">
+		        <input id="price"	 type="text" class="validate">
+		        <label for="price">Price</label>
+	        </div>
+	        <div class="input-field col s4 m4 l4">
+		        <input id="category" type="text" class="validate">
+		        <label for="category">Category</label>
+	        </div>
+	        <div class="file-field input-field col s12 m12 	l12">
+			    <div class="btn">
+			        <span>Image</span>
+			        <input type="file">
+			    </div>
+			    <div class="file-path-wrapper">
+			        <input class="file-path validate" type="text">
+			    </div>
+			</div>
+	        <div class="input-field col s12 m12 l12">
+		        <label for="description">Product Description</label><br/><br/>
+	    	</div>
+	    	<div>
+				<textarea style="height:150px"></textarea>
+	    	</div>
+		</div>
+    </div>
+    <div class="modal-footer">
+      	<a class=" modal-action modal-close waves-effect waves-green btn-flat" ng-click="add_product_confirm()">Add</a>
+    </div>
+  </div>

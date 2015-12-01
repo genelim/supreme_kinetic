@@ -56,7 +56,6 @@ function LoginController(User,Logger,$localStorage,$scope,$rootScope,$location) 
                 Logger.is_logged = true;
                 Logger.user_details = res.response;
                 $localStorage.user_details = res.response;
-                console.log()
                 vm.username = res.response.first_name + ' ' + res.response.last_name;
                 check_admin();
                 if(type === "login"){
@@ -76,7 +75,9 @@ function LoginController(User,Logger,$localStorage,$scope,$rootScope,$location) 
             }else{
                 alert(res.response);
             }
-        })
+        }, function(error) {
+            alert(errorstatusText);
+        });
     }
 
     function logout(){
