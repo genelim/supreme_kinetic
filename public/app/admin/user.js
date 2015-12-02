@@ -33,12 +33,10 @@ function AdminUserController($rootScope,User,$scope) {
     	vm.type = new_type;
     	vm.current_page = 1;
     	User.get({page : 1, size:vm.size, type:vm.type},function(res){
-    		console.log(res)
 			vm.users = (res.response);
 		});
 		User.get({type:vm.type},function(res){
 			vm.number = ( Math.ceil(res.response/vm.size));
-			console.log(vm.number)
 		});
     }
 

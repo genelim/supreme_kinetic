@@ -76,7 +76,7 @@ function LoginController(User,Logger,$localStorage,$scope,$rootScope,$location) 
                 alert(res.response);
             }
         }, function(error) {
-            alert(errorstatusText);
+            alert(error.statusText);
         });
     }
 
