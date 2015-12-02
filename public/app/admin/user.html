@@ -1,1 +1,109 @@
-users
+<ul class="tabs">
+	<li class="tab col s3" ng-click="vm.user_load('member');"><a href="#member">Member</a></li>
+	<li class="tab col s3" ng-click="vm.user_load('admin');"><a href="#admin">Admin</a></li>
+</ul>
+<div id="member" class="col s12">
+    <div class="row"> 
+	    <div class="col s12 m12 l12">
+	        <div class="row">
+	            <div class="card">
+	                <div class="title">
+	                    <h5>User</h5>
+	                    <div class="btn-group right">
+	                        <a class="btn btn-small green lighten-1 z-depth-0"><i class="mdi mdi-content-add"></i></a>
+	                        <a class="btn btn-small red lighten-1 z-depth-0"><i class="mdi mdi-action-delete"></i></a>
+	                    </div>
+	                </div>
+	                <div class="content">
+	                    <table class="highlight">
+	                        <thead>
+	                            <tr>
+	                                <th data-field="">Select</th>
+	                                <th data-field="profile_image"></th>
+	                                <th data-field="name">Name</th>
+	                                <th data-field="email">Email</th>
+	                                <th data-field="validated">Validated</th>
+	                                <th data-field="">Action</th>
+	                            </tr>
+	                        </thead>
+	                        <tbody>
+	                            <tr ng-repeat="user in vm.users">
+	                                <th><input type="checkbox" id="user_checkbox" /><label for="user_checkbox"></label></th>
+	                                <th><img src="assets/images/default_user.png" style="height:50px; width:auto;" class="responsive-img circle"></th>
+	                                <th>{{user.first_name}} {{user.last_name}}</th>
+	                                <td>{{user.email}}</td>
+	                                <td>{{user.email_validate}}</td>
+	                                <td><a class="btn z-depth-0 blue"><i class="mdi mdi-editor-mode-edit"></i></a></td>
+	                            </tr> 
+	                                                  
+	                        </tbody>
+	                    </table>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</div>
+<div id="admin" class="col s12">
+	<div class="row"> 
+	    <div class="col s12 m12 l12">
+	        <div class="row">
+	            <div class="card">
+	                <div class="title">
+	                    <h5>User</h5>
+	                    <div class="btn-group right">
+	                        <a class="btn btn-small green lighten-1 z-depth-0"><i class="mdi mdi-content-add"></i></a>
+	                        <a class="btn btn-small red lighten-1 z-depth-0"><i class="mdi mdi-action-delete"></i></a>
+	                    </div>
+	                </div>
+	                <div class="content">
+	                    <table class="highlight">
+	                        <thead>
+	                            <tr>
+	                                <th data-field="">Select</th>
+	                                <th data-field="profile_image"></th>
+	                                <th data-field="name">Name</th>
+	                                <th data-field="email">Email</th>
+	                                <th data-field="validated">Validated</th>
+	                                <th data-field="level">Level</th>
+	                                <th data-field="">Action</th>
+	                            </tr>
+	                        </thead>
+	                        <tbody>
+	                            <tr ng-repeat="user in vm.users">
+	                                <th><input type="checkbox" id="user_checkbox" /><label for="user_checkbox"></label></th>
+	                                <th><img src="assets/images/default_user.png" style="height:50px; width:auto;" class="responsive-img circle"></th>
+	                                <th>{{user.first_name}} {{user.last_name}}</th>
+	                                <td>{{user.email}}</td>
+	                                <td>{{user.email_validate}}</td>
+	                                <td>{{user.role[0].level}}</td>
+	                                <td><a class="btn z-depth-0 blue"><i class="mdi mdi-editor-mode-edit"></i></a></td>
+	                            </tr> 
+	                                                  
+	                        </tbody>
+	                    </table>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</div>
+
+
+<ul class="pagination center">
+	<li ng-class="{'disabled': vm.current_page == 1,'waves-effect': vm.current_page != 1}" ng-click="vm.static_user_page(0)">
+    	<a>First</a>
+    </li>
+    <li ng-class="{'disabled': vm.current_page == 1,'waves-effect': vm.current_page != 1}" ng-click="vm.previous_user_page()">
+    	<a><i class="material-icons">chevron_left</i></a>
+    </li>
+    <li ng-if="$index <= vm.current_page +2 && $index >= vm.current_page-4" ng-repeat="i in vm.pagination_number(vm.number) track by $index" class="waves-effect" ng-class="{active: $index+1 == vm.current_page}" ng-click="vm.display_user($index+1)">
+    	<a>{{$index+1}}</a>
+    </li>
+    <li ng-class="{disabled: vm.current_page == vm.number,'waves-effect': vm.current_page != vm.number}" ng-click="vm.next_user_page()">
+    	<a><i class="material-icons">chevron_right</i></a>
+    </li>
+    <li ng-class="{disabled: vm.current_page == vm.number,'waves-effect': vm.current_page != vm.number}" ng-click="vm.static_user_page(1)">
+    	<a>Last</a>
+    </li>
+</ul>

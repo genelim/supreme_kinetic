@@ -5,5 +5,5 @@ angular
 User.$inject = ['$resource'];
 
 function User($resource) {
-	return $resource('/api/user/:id');
+	return $resource('/api/user/:id/:page/:size/:type');
 }

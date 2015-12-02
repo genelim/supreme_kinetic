@@ -34,13 +34,15 @@ function config($urlRouterProvider,$stateProvider,$locationProvider) {
         controllerAs: 'vm'
     })
     .state('admin.user', {
-        url: '/product',
-        templateUrl: 'app/admin/user.html'
+        url: '/user',
+        templateUrl: 'app/admin/user.html',
+        controller: 'AdminUserController',
+        controllerAs: 'vm'
     })
     .state('admin.setting', {
-        url: '/product',
+        url: '/setting',
         templateUrl: 'app/admin/setting.html'
-    })
+    });
 
     $locationProvider.html5Mode({
         enabled: true
@@ -51,14 +53,11 @@ var check_logged = function(Logger,$q,$location){
 	var deferred = $q.defer();
     if(Logger.user_details){
         if(Logger.user_details.role[0].type === 'admin'){
-            console.log(Logger);
-            deferred.resolve();
-        
+            deferred.resolve();        
         }else{
             $location.url('/');
         }
     }else{
         $location.url('/');
-    }
-	
+    }	
 }

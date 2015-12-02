@@ -3,8 +3,9 @@ var mongoose = require('mongoose'),
     Role = require('./models/role.js')(db);
     User = require('./models/user.js')(db);
 
+var error_return = [{response:'User Existed'},{response:'Invalid Username or Password'},{response:'Server Error'}];
+
 exports.post = function (req, res) {
-    var error_return = [{response:'User Existed'},{response:'Invalid Username or Password'},{response:'Server Error'}];
     if(req.body.type === "local"){
         var newUser = new User();
         newUser.first_name = req.body.first_name;
@@ -46,6 +47,30 @@ exports.post = function (req, res) {
             res.json({response:user});
         });
     }
+};
+
+exports.get = function (req, res) {
+    var page = parseInt(req.params.page),
+        size = parseInt(req.params.size),
+        type = req.params.type,
+        skip = page > 0 ? ((page - 1) * size) : 0;
+    User.find({'role.type':type}, null, {
+        skip: skip,
+        limit: size
+    }, function (err, user) {
+        if(err) {
+            res.json(error_return[2]);
+        } else {
+            res.json({response:user});
+        }
+    });
+};
+
+exports.count = function (req, res) {
+    var type = req.params.type;
+    User.count({'role.type':type},function( err, count){
+        res.json({response:count});
+    })
 };
 
 

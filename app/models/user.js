@@ -5,15 +5,15 @@ module.exports = function (connection) {
         bcrypt = require('bcrypt-nodejs');
     
   	var user = new mongoose.Schema({
-		first_name: String,
-		last_name: String,
+		    first_name: String,
+		    last_name: String,
         email: String,
         password: String,
         profile_image: String,
         company_name: String,
-		type: [{ type : String }],
+		    type: [{ type : String }],
         email_validate: { type : Boolean, default: false },
-		created_at: { type : Date, default: Date.now },
+		    created_at: { type : Date, default: Date.now },
         created_by: { type: Schema.Types.ObjectId, ref: 'User' },
         role: [Role]
 	});
