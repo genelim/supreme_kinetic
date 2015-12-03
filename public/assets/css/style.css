@@ -125,3 +125,8 @@ li.hover_none:hover{
 	  	padding-left: 0;
 	}
 }
+
+.center-custom{
+	margin: 0 auto;
+    display: block;
+}

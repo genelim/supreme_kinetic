@@ -11,7 +11,7 @@ function AdminUserController($rootScope,User,$scope) {
 	vm.number = 0;
 	vm.users = [];
 	vm.current_page = 1;
-	vm.size = 2;
+	vm.size = 1;
 	vm.type = 'member';
 	vm.user_load = user_load;
 	vm.next_user_page = next_user_page;

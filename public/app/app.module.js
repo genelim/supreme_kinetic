@@ -1,1 +1,1 @@
-angular.module('app',['ngResource','ngStorage','ui.router']); 
+angular.module('app',['ngResource','ngStorage','ui.router','colorpicker.module']); 
