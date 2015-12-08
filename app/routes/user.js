@@ -1,7 +1,7 @@
 var mongoose = require('mongoose'),
     db = mongoose.createConnection('mongodb://127.0.0.1/supreme_kinetic'),
-    Role = require('./models/role.js')(db);
-    User = require('./models/user.js')(db);
+    User_Role = require('../models/user_role.js')(db),
+    User = require('../models/user.js')(db);
 
 var error_return = [{response:'User Existed'},{response:'Invalid Username or Password'},{response:'Server Error'}];
 
@@ -73,6 +73,12 @@ exports.count = function (req, res) {
     })
 };
 
+exports.discount = function (req, res) {
+    if(req.params.discount === "discount")
+    User.find(function( err, user){
+        res.json({response:user});
+    })
+};
 
 // module.exports = function(app) {
 

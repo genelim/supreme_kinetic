@@ -31,7 +31,8 @@ function config($urlRouterProvider,$stateProvider,$locationProvider) {
         url: '/product',
         templateUrl: 'app/admin/product.html',
         controller: 'AdminProductController',
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+        resolve: {users: get_discount_user}
     })
     .state('admin.user', {
         url: '/user',
@@ -60,4 +61,14 @@ var check_logged = function(Logger,$q,$location){
     }else{
         $location.url('/');
     }	
+}
+
+var get_discount_user = function(User,$q){
+    var deferred = $q.defer();
+    User.get({discount:'discount'},function(successData) {
+        deferred.resolve(successData); 
+    }, function(errorData) {
+        deferred.reject(); 
+    });
+    return deferred.promise;
 }
