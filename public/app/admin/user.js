@@ -34,7 +34,6 @@ function AdminUserController($rootScope,User,$scope,cfpLoadingBar) {
     	vm.current_page = 1;
         cfpLoadingBar.start();
     	User.get({page : 1, size:vm.size, type:vm.type},function(res){
-    		console.log(res)
 			vm.users = (res.response.user);
 			vm.number = ( Math.ceil(res.response.count/vm.size));
         	cfpLoadingBar.complete();
