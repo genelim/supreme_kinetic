@@ -2,9 +2,9 @@ angular
     .module('app')
     .config(config);
 
-config.$inject = ['$urlRouterProvider','$stateProvider','$locationProvider'];
+config.$inject = ['$urlRouterProvider','$stateProvider','$locationProvider','cfpLoadingBarProvider'];
 
-function config($urlRouterProvider,$stateProvider,$locationProvider) {
+function config($urlRouterProvider,$stateProvider,$locationProvider,cfpLoadingBarProvider) {
     $urlRouterProvider.otherwise('/');
     $urlRouterProvider.when('/admin', '/admin/dashboard');
     $urlRouterProvider.when('/admin/', '/admin/dashboard');
@@ -48,6 +48,8 @@ function config($urlRouterProvider,$stateProvider,$locationProvider) {
     $locationProvider.html5Mode({
         enabled: true
     });
+
+    cfpLoadingBarProvider.includeSpinner = false;
 }
 
 var check_logged = function(Logger,$q,$location){

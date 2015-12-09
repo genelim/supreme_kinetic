@@ -2,16 +2,16 @@ angular
 	.module('app')
 	.controller('AdminUserController', AdminUserController);
 
-AdminUserController.$inject = ['$rootScope','User','$scope'];
+AdminUserController.$inject = ['$rootScope','User','$scope','cfpLoadingBar'];
 
-function AdminUserController($rootScope,User,$scope) {
+function AdminUserController($rootScope,User,$scope,cfpLoadingBar) {
 	var vm = this;
 	vm.pagination_number = pagination_number;
 	vm.display_user = display_user;
 	vm.number = 0;
 	vm.users = [];
 	vm.current_page = 1;
-	vm.size = 1;
+	vm.size = 5;
 	vm.type = 'member';
 	vm.user_load = user_load;
 	vm.next_user_page = next_user_page;
@@ -32,11 +32,12 @@ function AdminUserController($rootScope,User,$scope) {
     function user_load(new_type){
     	vm.type = new_type;
     	vm.current_page = 1;
+        cfpLoadingBar.start();
     	User.get({page : 1, size:vm.size, type:vm.type},function(res){
-			vm.users = (res.response);
-		});
-		User.get({type:vm.type},function(res){
-			vm.number = ( Math.ceil(res.response/vm.size));
+    		console.log(res)
+			vm.users = (res.response.user);
+			vm.number = ( Math.ceil(res.response.count/vm.size));
+        	cfpLoadingBar.complete();
 		});
     }
 
@@ -46,17 +47,21 @@ function AdminUserController($rootScope,User,$scope) {
 
     function display_user(page){
     	vm.current_page = page;
+        cfpLoadingBar.start();
     	User.get({page : page, size:vm.size, type:vm.type},function(res){
-			vm.users = (res.response);
+			vm.users = (res.response.user);
+        	cfpLoadingBar.complete();
 		});   
     }
 
     function next_user_page(){
     	if(vm.current_page < vm.number){
+        	cfpLoadingBar.start();
     		var page = vm.current_page + 1;
 	    	User.get({page : page, size:vm.size, type:vm.type},function(res){
-				vm.users = (res.response);
+				vm.users = (res.response.user);
 				vm.current_page = page;
+        		cfpLoadingBar.complete();
 			});
     	}
     	
@@ -64,10 +69,12 @@ function AdminUserController($rootScope,User,$scope) {
 
     function previous_user_page(){
     	if(vm.current_page > 1){
+        	cfpLoadingBar.start();
 	    	var page = vm.current_page - 1;
 	    	User.get({page : page, size:vm.size, type:vm.type},function(res){
-				vm.users = (res.response);
+				vm.users = (res.response.user);
 				vm.current_page = page
+        		cfpLoadingBar.complete();
 			});
 	    }
     }
@@ -78,9 +85,11 @@ function AdminUserController($rootScope,User,$scope) {
     	}else if (static === 1){
     		var page = vm.number;
     	}
+        cfpLoadingBar.start();
     	User.get({page : page, size:vm.size, type:vm.type},function(res){
-			vm.users = (res.response);
+			vm.users = (res.response.user);
 			vm.current_page = page
+        	cfpLoadingBar.complete();
 		});
     }
 }

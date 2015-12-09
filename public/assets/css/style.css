@@ -130,3 +130,7 @@ li.hover_none:hover{
 	margin: 0 auto;
     display: block;
 }
+
+li.ng-scope.ui-sortable-helper{
+	background-color: rgba(236, 236, 236, 0.50);
+}

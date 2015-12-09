@@ -97,15 +97,6 @@
 		        <input id="category" type="text" ng-model="product.category">
 		        <label for="category">Category</label>
 	        </div>
-	        <div class="file-field input-field col s12 m12 	l12">
-			    <div class="btn">
-			        <span>Image</span>
-			        <input type="file" ng-model="product.name">
-			    </div>
-			    <div class="file-path-wrapper">
-			        <input class="file-path validate" type="text">
-			    </div>
-			</div>
 	        <div class="col s12 m12 l12">
 		        <p class="grey-text">Product Description</p>
 	    	</div>
@@ -158,9 +149,40 @@
                 </ul>
             </div>
             <div class="col s12 m12 l12">
+                <p class="grey-text">Image</p>
+                <ul class="collection col l12">
+                    <li ng-repeat="image in vm.images" class="collection-item" style="background: #FAFAFA;">
+                        <ul  ui-sortable="{ 'ui-floating': true }" ng-model="image.children">
+                            <li ng-repeat="image_select in image.children" style="padding-bottom:1em">
+                                <div class="row" style="margin-bottom:0px;">
+                                    <span class="col l10 m10 s10">
+                                    <div class="file-field input-field col s8 m8  l8">
+                                        <div class="btn">
+                                            <span>Image</span>
+                                            <input file-model="product.images" onchange="angular.element(this).scope().upload(this,angular.element(this).scope().$index)" type="file" />
+                                        </div>
+                                        <div class="file-path-wrapper">
+                                            <input class="file-path" type="text">
+                                        </div>
+                                    </div>
+                                    <img class="col l4 right" style="height:70px;width:auto" ng-src="{{image_select.image_path}}" />
+                                    </span>
+                                    <span class="right  l2 m2 s2" ng-hide="image_select.length == 1">
+                                        <a href ng-click="image.children.splice($index, 1)"><i class="fa fa-times fa-2x"></i></a>
+                                    </span>
+                                </div>
+                            </li>
+                            <li class="center">
+                                <a href ng-click="vm.new_image(image, $event)"><i class="fa fa-plus fa-2x"></i></a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="col s12 m12 l12">
                 <p class="grey-text">Discount</p>
                 <ul class="collection col l12" style="overflow:visible;">
-                    <li ng-repeat="discount in vm.discounts" class="collection-item" style="padding-left: 0; padding-right: 0;">
+                    <li ng-repeat="discount in vm.discounts" class="collection-item" style="padding-left: 0; padding-right: 0;background: #FAFAFA;">
                         <ul>
                             <li ng-repeat="discount_select in discount.children" style=" padding:2em 1em; background:#F7F7F7; margin-bottom:0.5em;"> 
                                 <div class="row" style="margin-bottom:0px;">

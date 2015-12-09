@@ -17,6 +17,9 @@
     "ngstorage": "~0.3.10",
     "angular-ui-router": "~0.2.15",
     "angular-bootstrap": "~0.14.3",
-    "angular-bootstrap-colorpicker": "~3.0.22"
+    "angular-bootstrap-colorpicker": "~3.0.22",
+    "angular-file-upload": "~2.2.0",
+    "angular-loading-bar": "~0.8.0",
+    "angular-ui-sortable": "~0.13.4"
   }
 }

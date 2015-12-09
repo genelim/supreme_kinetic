@@ -50,34 +50,37 @@ exports.post = function (req, res) {
 };
 
 exports.get = function (req, res) {
-    var page = parseInt(req.params.page),
-        size = parseInt(req.params.size),
-        type = req.params.type,
-        skip = page > 0 ? ((page - 1) * size) : 0;
-    User.find({'role.type':type}, null, {
-        skip: skip,
-        limit: size
-    }, function (err, user) {
-        if(err) {
-            res.json(error_return[2]);
-        } else {
+    if(req.params.discount && req.params.discount === "discount"){
+        User.find(function( err, user){
             res.json({response:user});
-        }
-    });
-};
-
-exports.count = function (req, res) {
-    var type = req.params.type;
-    User.count({'role.type':type},function( err, count){
-        res.json({response:count});
-    })
+        })
+    }else{
+        var page = parseInt(req.params.page),
+            size = parseInt(req.params.size),
+            type = req.params.type,
+            skip = page > 0 ? ((page - 1) * size) : 0;
+        User.find({'role.type':type}, null, {
+            skip: skip,
+            limit: size
+        }, function (err, user) {
+            if(err) {
+                res.json(error_return[2]);
+            } else {
+                User.count({'role.type':type},function( err, count){
+                    res.json({response:{count:count,user:user}});
+                })
+            }
+        });
+    }
+    
 };
 
 exports.discount = function (req, res) {
-    if(req.params.discount === "discount")
-    User.find(function( err, user){
-        res.json({response:user});
-    })
+    if(req.params.discount === "discount"){
+        User.find(function( err, user){
+            res.json({response:user});
+        })
+    }
 };
 
 // module.exports = function(app) {

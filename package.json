@@ -19,7 +19,11 @@
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.14.1",
     "express": "^4.13.3",
+    "formidable": "^1.0.17",
+    "fs": "0.0.2",
     "mongoose": "^4.2.7",
-    "nodemon": "^1.8.1"
+    "multer": "^1.1.0",
+    "nodemon": "^1.8.1",
+    "path": "^0.12.7"
   }
 }
