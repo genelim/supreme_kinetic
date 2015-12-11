@@ -16,6 +16,7 @@ module.exports = function (connection) {
         brand: String,
         price: Number,
         category: String,
+        sub_category: String,
         image: [String],
         description: String,
         size: [String],

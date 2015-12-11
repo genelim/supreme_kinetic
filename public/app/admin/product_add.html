@@ -1,0 +1,165 @@
+<div id="add_product" class="modal modal modal-fixed-footer">
+    <div class="modal-content">
+        <div class="row">
+		    <div class="input-field col s12 m12 l12">
+			    <input id="productname" type="text" ng-model="product.name">
+		    	<label for="productname">Product Name</label>
+		    </div>
+		    <div class="input-field col s4 m4 l4">
+		        <input id="model" type="text" ng-model="product.model">
+		        <label for="model">Model</label>
+	        </div>				    	
+	        <div class="input-field col s4 m4 l4">
+		        <input id="sku" type="text" ng-model="product.sku">
+		        <label for="sku">SKU</label>
+	        </div>
+	        <div class="input-field col s4 m4 l4">
+		        <input id="productid" type="text" ng-model="product.product_id">
+		        <label for="productid">Product ID</label>
+	        </div>				    	
+	        <div class="input-field col s4 m4 l4">
+		        <input id="brand" type="text" ng-model="product.brand">
+		        <label for="brand">Brand</label>
+	        </div>
+	        <div class="input-field col s4 m4 l4">
+		        <input id="price" type="text" ng-model="product.price">
+		        <label for="price">Price</label>
+	        </div>
+	        <div class="input-field col s4 m4 l4">
+		        <input id="category" type="text" ng-model="product.category">
+		        <label for="category">Category</label>
+	        </div>
+	        <div class="col s12 m12 l12">
+		        <p class="grey-text">Product Description</p>
+	    	</div>
+	    	<div>
+				<textarea style="height:150px" ng-model="product.description"></textarea>
+	    	</div>
+            <div class="col s12 m6 l6">
+                <p class="grey-text">Color</p>
+                <ul class="collection col l12">
+                    <li ng-repeat="color in vm.colors" class="collection-item" style="background: #FAFAFA;">
+                        <ul>
+                            <li ng-repeat="color_select in color.children" style="padding-bottom:1em">
+                                <div class="row" style="margin-bottom:0px;">
+                                    <span class="col l10 m10 s10">
+                                        <button colorpicker type="button" colorpicker-position="top" ng-model="color_select.name" ng-style="{background: color_select.name}" class="btn col l12 m12 s12"></button>
+
+                                    </span>
+                                    <span class="right  l2 m2 s2" ng-hide="color_select.length == 1">
+                                        <a href ng-click="color.children.splice($index, 1)"><i class="fa fa-times fa-2x"></i></a>
+                                    </span>
+                                </div>
+                            </li>
+                            <li class="center">
+                                <a href ng-click="vm.new_color(color, $event)"><i class="fa fa-plus fa-2x"></i></a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="col s12 m6 l6">
+                <p class="grey-text">Size</p>
+                <ul class="collection col l12">
+                    <li ng-repeat="size in vm.sizes" class="collection-item" style="background: #FAFAFA;">
+                        <ul>
+                            <li ng-repeat="size_select in size.children" style="padding-bottom:1em">
+                                <div class="row" style="margin-bottom:0px;">
+                                    <span class="col l10 m10 s10">
+                                        <input type="text" ng-model="size_select.name" style="margin:0; height: 35px; text-align: center;"/>
+                                    </span>
+                                    <span class="right  l2 m2 s2" ng-hide="size_select.length == 1">
+                                        <a href ng-click="size.children.splice($index, 1)"><i class="fa fa-times fa-2x"></i></a>
+                                    </span>
+                                </div>
+                            </li>
+                            <li class="center">
+                                <a href ng-click="vm.new_size(size, $event)"><i class="fa fa-plus fa-2x"></i></a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="col s12 m12 l12">
+                <p class="grey-text">Image</p>
+                <ul class="collection col l12">
+                    <li ng-repeat="image in vm.images" class="collection-item" style="background: #FAFAFA;">
+                        <ul  ng-model="image.children">
+                            <li ng-repeat="image_select in image.children" style="padding-bottom:1em">
+                                <div class="row" style="margin-bottom:0px;">
+                                    <span class="col l10 m10 s10">
+                                    <div class="file-field input-field col s8 m8  l8">
+                                        <div class="btn">
+                                            <span>Image</span>
+                                            <input onchange="angular.element(this).scope().upload(this,angular.element(this).scope().$index)" type="file" />
+                                        </div>
+                                        <div class="file-path-wrapper">
+                                            <input class="file-path" type="text">
+                                        </div>
+                                    </div>
+                                    <img class="col l4 right" style="height:70px;width:auto" src="{{image_select.image_path}}" />
+                                    </span>
+                                    <span class="right  l2 m2 s2" ng-hide="image_select.length == 1">
+                                        <a href ng-click="image.children.splice($index, 1)"><i class="fa fa-times fa-2x"></i></a>
+                                    </span>
+                                </div>
+                            </li>
+                            <li class="center">
+                                <a href ng-click="vm.new_image(image, $event)"><i class="fa fa-plus fa-2x"></i></a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="col s12 m12 l12">
+                <p class="grey-text">Discount</p>
+                <ul class="collection col l12" style="overflow:visible;">
+                    <li ng-repeat="discount in vm.discounts" class="collection-item" style="padding-left: 0; padding-right: 0;background: #FAFAFA;">
+                        <ul>
+                            <li ng-repeat="discount_select in discount.children" style=" padding:2em 1em; background:#F7F7F7; margin-bottom:0.5em;"> 
+                                <div class="row" style="margin-bottom:0px;">
+                                    <span class="col l10 m10 s10 grey-text">
+                                        <span class="col l6 m12 s12">
+                                            Date<input type="date" ng-model="discount_select.date" class="black-text">
+                                        </span>
+                                        <span class="col l6 m12 s12">
+                                            Percentage <input type="text" ng-model="discount_select.percentage" class="center black-text">
+                                        </span>
+                                        <span class="col l9 m9 s9">
+                                            Duration
+                                            <input type="text" ng-model="discount_select.days" class="center black-text">
+                                        </span>
+                                        <span class="col l3 m3 s3">
+                                            &nbsp;
+                                            <select ng-model="discount_select.duration_type" class="browser-default black-text">
+                                                <option value="" disabled>Select</option>
+                                                <option  selected>Day(s)</option>
+                                                <option>Week(s)</option>
+                                            </select>
+                                        </span>
+                                        <span class="col l12 m12 s12">
+                                            Specifying User <label>(Leave it empty to specify all users)</label> 
+                                            <select ng-model="discount_select.selected_user" class="browser-default black-text">
+                                                <option value="" disabled selected>Select</option>
+                                                <option class="black-text" ng-repeat="user in vm.users.response" ng-if="user.first_name !== ''" ng-selected="discount_select.selected_user == user">{{user.first_name}} {{user.last_name}}</option>
+                                            </select>
+                                        </span>
+                                    </span>
+                                    <span class="right  l2 m2 s2" ng-hide="discount_select.length == 1">
+                                        <a href ng-click="discount.children.splice($index, 1)"><i class="fa fa-times fa-2x"></i></a>
+                                    </span>
+                                </div>
+                            </li>
+                            <li class="center">
+                                <a href ng-click="vm.new_discount(discount, $event)"><i class="fa fa-plus fa-2x"></i></a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+		</div>
+    </div>
+    <div class="modal-footer">
+      	<a class=" modal-action modal-close waves-effect waves-green btn-flat" ng-click="vm.add_product_confirm(product)">Add</a>
+    </div>
+  </div>
