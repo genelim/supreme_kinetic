@@ -1,1 +1,1 @@
-angular.module('app',['ngResource','ngStorage','ui.router','colorpicker.module','angular-loading-bar','ui.sortable']); 
+angular.module('app',['ngResource','ngStorage','ui.router','colorpicker.module','angular-loading-bar']); 

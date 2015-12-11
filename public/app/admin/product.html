@@ -152,7 +152,7 @@
                 <p class="grey-text">Image</p>
                 <ul class="collection col l12">
                     <li ng-repeat="image in vm.images" class="collection-item" style="background: #FAFAFA;">
-                        <ul  ui-sortable="{ 'ui-floating': true }" ng-model="image.children">
+                        <ul  ng-model="image.children">
                             <li ng-repeat="image_select in image.children" style="padding-bottom:1em">
                                 <div class="row" style="margin-bottom:0px;">
                                     <span class="col l10 m10 s10">
@@ -165,7 +165,7 @@
                                             <input class="file-path" type="text">
                                         </div>
                                     </div>
-                                    <img class="col l4 right" style="height:70px;width:auto" ng-src="{{image_select.image_path}}" />
+                                    <img class="col l4 right" style="height:70px;width:auto" src="{{image_select.image_path}}" />
                                     </span>
                                     <span class="right  l2 m2 s2" ng-hide="image_select.length == 1">
                                         <a href ng-click="image.children.splice($index, 1)"><i class="fa fa-times fa-2x"></i></a>

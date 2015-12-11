@@ -25,7 +25,9 @@ function AdminProductController($rootScope,users,$scope,File_Upload,$q) {
 	$rootScope.home_default = false;
 
     $scope.upload = function(element,a) {
-        vm.images[0].children[a].image_path = URL.createObjectURL(element.files[0])
+        $scope.$apply(function () {
+            vm.images[0].children[a].image_path = URL.createObjectURL(element.files[0])   
+        });
         vm.images_selected.push(element.files[0]);
     };
 
