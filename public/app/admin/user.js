@@ -18,9 +18,6 @@ function AdminUserController($rootScope,User,$scope,cfpLoadingBar) {
 	vm.static_user_page = static_user_page;
 	vm.previous_user_page = previous_user_page;
 
-	$rootScope.user_menu = [{name:'Profile',path:'profile'},{name:'Setting',path:'setting'},{name:'Home',path:''}];
-	$rootScope.home_default = false;
-
 	angular.element(document).ready(function () {
         $('ul.tabs').tabs();
     });

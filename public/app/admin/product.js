@@ -21,9 +21,6 @@ function AdminProductController($rootScope,users,$scope,File_Upload,$q) {
     vm.sizes = [{name: 'Size', children: []}];
 	vm.discounts = [{name: 'Discount', children: []}];
 
-	$rootScope.user_menu = [{name:'Profile',path:'profile'},{name:'Setting',path:'setting'},{name:'Home',path:''}];
-	$rootScope.home_default = false;
-
     $scope.upload = function(element,a) {
         $scope.$apply(function () {
             vm.images[0].children[a].image_path = URL.createObjectURL(element.files[0])   

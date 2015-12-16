@@ -1,1 +1,73 @@
-settings
+<ul class="tabs">
+	<li class="tab" ng-click="vm.change_category('main');"><a href="#main_category">Main Category</a></li>
+	<li class="tab" ng-click="vm.change_category('sub');"><a href="#sub_category">Sub Category</a></li>
+</ul>
+
+<div id="main_category">
+    <div class="row"> 
+	    <div class="col s12 m12 l12">
+            <div class="card">
+			    <div class="title">
+			        <h5>Name</h5>
+			        <div class="btn-group right">
+			            <a class="btn btn-small green lighten-1 z-depth-0"><i class="mdi mdi-content-add"></i></a>
+			            <a class="btn btn-small red lighten-1 z-depth-0"><i class="mdi mdi-action-delete"></i></a>
+			        </div>
+			    </div>
+			    <div class="content">
+			        <table class="highlight">
+			            <tbody>
+			                <tr>
+			                    <td class="left">Outdoor</td>
+			                    <td class="right"><a class="btn z-depth-0 blue"><i class="mdi mdi-editor-mode-edit"></i></a></td>
+			                </tr>  
+			                <tr>
+			                    <td class="left">Indoor</td>
+			                    <td class="right"><a class="btn z-depth-0 blue"><i class="mdi mdi-editor-mode-edit"></i></a></td>
+			                </tr>                        
+			            </tbody>
+			        </table>
+			    </div>
+			</div>
+	    </div>
+	</div>
+</div>
+
+
+<div id="sub_category">
+    <div class="row"> 
+	    <div class="col s12 m12 l12">
+            <div class="card">
+			    <div class="title">
+			        <h5>Name</h5>
+			        <div class="btn-group right">
+			            <a class="btn btn-small green lighten-1 z-depth-0" ng-click="vm.new_category('sub')"><i class="mdi mdi-content-add"></i></a>
+			        </div>
+			    </div>
+			    <div class="content">
+			        <table class="highlight">
+			            <tbody>
+			                <tr ng-repeat="category in vm.categories">
+			                    <td class="left">{{category.sub_category}}</td>
+			                    <td class="right"><a class="btn btn-small red lighten-1 z-depth-0" ng-click="vm.delete_category(category)"><i class="mdi mdi-action-delete"></i></a></td>
+			                </tr>                         
+			            </tbody>
+			        </table>
+			    </div>
+			</div>
+	    </div>
+	</div>
+</div>
+
+
+<div id="category" class="modal bottom-sheet">
+	<div class="modal-content">
+		<h4>New Category</h4>
+		<div class="input-field">
+          	<input type="text" ng-model="vm.category.name">
+        </div>
+	</div>
+	<div class="modal-footer">
+		<a class="modal-action waves-effect waves-green btn-flat" ng-click="vm.add_category(vm.category)">Add</a>
+	</div>
+</div>
