@@ -11,7 +11,7 @@ module.exports = function (connection) {
         password: String,
         profile_image: String,
         company_name: String,
-		type: [{ type : String }],
+		type: [{name: { type : String }, id: { type: String }}],
         email_validate: { type : Boolean, default: false },
 		created_at: { type : Date, default: Date.now },
         created_by: { type: Schema.Types.ObjectId, ref: 'User' },
@@ -28,3 +28,5 @@ module.exports = function (connection) {
 
   	return connection.model('User', user);
 }
+
+//facebook email_validate = true

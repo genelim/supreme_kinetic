@@ -2,10 +2,11 @@ angular
     .module('app')
     .controller('LoginController', LoginController);
 
-LoginController.$inject = ['User','Logger','$localStorage','$scope','$rootScope','$location'];
+LoginController.$inject = ['User','Logger','$localStorage','$scope','$rootScope','$location','Facebook'];
 
-function LoginController(User,Logger,$localStorage,$scope,$rootScope,$location) { 
+function LoginController(User,Logger,$localStorage,$scope,$rootScope,$location,Facebook) { 
     var vm = this;
+    vm.fb_login = fb_login;
     vm.user_modal = user_modal;
     vm.user_modal_press = user_modal_press;
     vm.logout = logout;
@@ -85,5 +86,13 @@ function LoginController(User,Logger,$localStorage,$scope,$rootScope,$location) 
         $localStorage.$reset();
         vm.username = null;
         $location.url('/');
+    }
+
+    function fb_login(){
+        Facebook.login() 
+            .then(function(response) {
+                console.log(response)
+            }
+        );
     }
 }

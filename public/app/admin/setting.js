@@ -45,7 +45,9 @@ function AdminSettingController(Product_Category,cfpLoadingBar) {
 			if(res.response.ok === 1){
 				category_load(vm.category_type)
 			}
-		});
+		},function(err){
+        	alert('Server Error, Contact Developer')
+    	});
     }
 
     function add_category(value){

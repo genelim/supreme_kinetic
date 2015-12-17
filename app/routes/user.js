@@ -12,7 +12,7 @@ exports.post = function (req, res) {
         newUser.last_name = req.body.last_name;
         newUser.email = req.body.email;
         newUser.password = newUser.generateHash(req.body.password);
-        newUser.type = req.body.type;
+        newUser.type = {name: req.body.type, id:''};
         newUser.role = req.body.role;
         
         User.findOne({email: req.body.email}, function (err, user) {
