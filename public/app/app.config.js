@@ -58,8 +58,6 @@ var check_logged = function(Logger,$q,$location,$rootScope){
 	var deferred = $q.defer();
     if(Logger.user_details){
         if(Logger.user_details.role[0].type === 'admin'){
-            $rootScope.user_menu = [{name:'Profile',path:'profile'},{name:'Setting',path:'setting'},{name:'Home',path:''}];
-            $rootScope.home_default = false;
             deferred.resolve();        
         }else{
             $location.url('/');

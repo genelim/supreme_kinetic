@@ -2,9 +2,9 @@ angular
 	.module('app')
 	.controller('AdminProductController', AdminProductController);
 
-AdminProductController.$inject = ['$rootScope','users','$scope','File_Upload','$q'];
+AdminProductController.$inject = ['$rootScope','users','$scope','File_Upload','$q','cfpLoadingBar','Product_Category'];
 
-function AdminProductController($rootScope,users,$scope,File_Upload,$q) {
+function AdminProductController($rootScope,users,$scope,File_Upload,$q,cfpLoadingBar,Product_Category) {
 	var vm = this;
 	vm.add_product = add_product;
     vm.add_product_confirm = add_product_confirm;
@@ -14,6 +14,7 @@ function AdminProductController($rootScope,users,$scope,File_Upload,$q) {
     vm.new_discount = new_discount;
 	vm.product_save = product_save;
     vm.users = users;
+    vm.categories = [];
     vm.images_selected = [];
     vm.images_selected_uploaded = [];
     vm.colors = [{name: 'Color', children: []}];
@@ -30,7 +31,20 @@ function AdminProductController($rootScope,users,$scope,File_Upload,$q) {
 
 	angular.element(document).ready(function () {
         $('ul.tabs').tabs();
+        category_load('sub');
+        $rootScope.user_menu = [{name:'Profile',path:'profile'},{name:'Setting',path:'setting'},{name:'Home',path:''}];
+        $rootScope.home_default = false;
     });
+
+    function category_load(type){
+        vm.category_type = type;
+        cfpLoadingBar.start();
+        Product_Category.get({type : vm.category_type}, function(res){
+            vm.categories = res.response;
+            console.log(res.response);
+            cfpLoadingBar.complete();
+        });
+    }
 
     function add_product(){
     	$('#add_product').openModal();

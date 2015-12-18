@@ -3,9 +3,9 @@ angular
 	.module('app')
 	.controller('AdminSettingController', AdminSettingController);
 
-AdminSettingController.$inject = ['Product_Category','cfpLoadingBar'];
+AdminSettingController.$inject = ['Product_Category','cfpLoadingBar','$rootScope'];
 
-function AdminSettingController(Product_Category,cfpLoadingBar) {
+function AdminSettingController(Product_Category,cfpLoadingBar,$rootScope) {
 	var vm = this;
 	vm.categories = [];
 	vm.category_type = null;
@@ -17,6 +17,8 @@ function AdminSettingController(Product_Category,cfpLoadingBar) {
 	angular.element(document).ready(function () {
         $('ul.tabs').tabs();
         category_load('sub');
+        $rootScope.user_menu = [{name:'Profile',path:'profile'},{name:'Setting',path:'setting'},{name:'Home',path:''}];
+        $rootScope.home_default = false;
     });
 
     function category_load(type){

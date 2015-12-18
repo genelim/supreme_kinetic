@@ -20,6 +20,8 @@ function AdminUserController($rootScope,User,$scope,cfpLoadingBar) {
 
 	angular.element(document).ready(function () {
         $('ul.tabs').tabs();
+        $rootScope.user_menu = [{name:'Profile',path:'profile'},{name:'Setting',path:'setting'},{name:'Home',path:''}];
+        $rootScope.home_default = false;
     });
 
 	$scope.$on('$viewContentLoaded', function(){

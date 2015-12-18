@@ -31,7 +31,8 @@
 	                        <tbody>
 	                            <tr ng-repeat="user in vm.users">
 	                                <th><input type="checkbox" id="user_checkbox" /><label for="user_checkbox"></label></th>
-	                                <th><img src="assets/images/default_user.png" style="height:50px; width:auto;" class="responsive-img circle"></th>
+	                                <th><img ng-if="user.profile_image" src="{{user.profile_image}}" style="height:50px; width:auto;" class="responsive-img circle">
+	                                <img ng-if="!user.profile_image" src="assets/images/default_user.png" style="height:50px; width:auto;" class="responsive-img circle"></th>
 	                                <th>{{user.first_name}} {{user.last_name}}</th>
 	                                <td>{{user.email}}</td>
 	                                <td>{{user.email_validate}}</td>
@@ -73,7 +74,8 @@
 	                        <tbody>
 	                            <tr ng-repeat="user in vm.users">
 	                                <th><input type="checkbox" id="user_checkbox" /><label for="user_checkbox"></label></th>
-	                                <th><img src="assets/images/default_user.png" style="height:50px; width:auto;" class="responsive-img circle"></th>
+	                                <th><img ng-if="user.profile_image" src="{{user.profile_image}}" style="height:50px; width:auto;" class="responsive-img circle">
+	                                <img ng-if="!user.profile_image" src="assets/images/default_user.png" style="height:50px; width:auto;" class="responsive-img circle"></th>
 	                                <th>{{user.first_name}} {{user.last_name}}</th>
 	                                <td>{{user.email}}</td>
 	                                <td>{{user.email_validate}}</td>

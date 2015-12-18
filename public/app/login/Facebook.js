@@ -17,7 +17,7 @@ function Facebook($q) {
 			}, function(res) {
 			  	login.then(function(res) {
 			  		FB.api('/me', 
-			  			{fields: 'first_name,last_name,email'},
+			  			{fields: 'first_name,last_name,email,picture'},
 						function(response) {
 							if (!response || response.error) {
 					        	deferred.reject('Error Occured!');
@@ -37,7 +37,7 @@ function Facebook($q) {
     function facebook_me() {
 		var deferred = $q.defer();
 		FB.api('/me', 
-			{fields: 'first_name,last_name,email'},
+			{fields: 'first_name,last_name,email,picture'},
 			function(response) {
 				if (!response || response.error) {
 		        	deferred.reject('Error Occured!');

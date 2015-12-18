@@ -14,6 +14,11 @@ function LoginController(User,Logger,$localStorage,$scope,$rootScope,$location,F
     $scope.$on('$stateChangeStart', function(n,c){
         if(Logger.is_logged){
             vm.username = Logger.user_details.first_name + ' ' + Logger.user_details.last_name;
+            if(Logger.user_details.profile_image){
+                vm.profile_image = Logger.user_details.profile_image;
+            }else{
+                vm.profile_image = '/assets/images/default_user.png';
+            }
             check_admin();
         }
     })    
@@ -58,6 +63,11 @@ function LoginController(User,Logger,$localStorage,$scope,$rootScope,$location,F
                 Logger.user_details = res.response;
                 $localStorage.user_details = res.response;
                 vm.username = res.response.first_name + ' ' + res.response.last_name;
+                if(res.response.profile_image){
+                    vm.profile_image = res.response.profile_image;
+                }else{
+                    vm.profile_image = '/assets/images/default_user.png';
+                }
                 check_admin();
                 if(type === "login"){
                     vm.local_login.email = null;
@@ -85,13 +95,32 @@ function LoginController(User,Logger,$localStorage,$scope,$rootScope,$location,F
         Logger.is_logged = false;
         $localStorage.$reset();
         vm.username = null;
+        vm.profile_image = null;
         $location.url('/');
     }
 
     function fb_login(){
+        var details = [];
         Facebook.login() 
             .then(function(response) {
-                console.log(response)
+                details = {response: response, type: 'facebook', role: {type:"admin",level:2}};
+                User.save(details, function(res){
+                    console.log(res);
+                    if(res.response !== 'Server Error'){
+                        Logger.is_logged = true;
+                        Logger.user_details = res.response;
+                        $localStorage.user_details = res.response;
+                        vm.username = res.response.first_name + ' ' + res.response.last_name;
+                        vm.profile_image = res.response.profile_image;
+                        check_admin();
+                        details = [];
+                    }else{
+                        alert(res.response);
+                    }
+                    $('#user_open').closeModal();
+                }, function(error) {
+                    alert(error.statusText);
+                });
             }
         );
     }

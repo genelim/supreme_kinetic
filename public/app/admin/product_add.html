@@ -26,8 +26,10 @@
 		        <label for="price">Price</label>
 	        </div>
 	        <div class="input-field col s4 m4 l4">
-		        <input id="category" type="text" ng-model="product.category">
-		        <label for="category">Category</label>
+                <select ng-model="product.category" class="browser-default black-text">
+                    <option value="" disabled selected>Select Category</option>
+                    <option class="black-text" ng-repeat="category in vm.categories" ng-selected="product.category == category">{{category.sub_category}}</option>
+                </select>
 	        </div>
 	        <div class="col s12 m12 l12">
 		        <p class="grey-text">Product Description</p>

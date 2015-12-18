@@ -48,7 +48,7 @@
                             <button class="btn login_btn blue" ng-click="vm.user_modal('login')">Login</button>
                         </li>
                         <li ng-show=(vm.username)>
-                            <img class="responsive-image circle" src="/assets/images/default_user.png" style="height:42px; margin-top:10px; padding:0 10px;"/>  
+                            <img class="responsive-image circle" ng-src="{{vm.profile_image}}" style="height:42px; margin-top:10px; padding:0 10px;"/>  
                         </li>
                         <li ng-show=(vm.username)>
                             <a class="dropdown-button" data-activates="profile_dropdown" >

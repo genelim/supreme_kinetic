@@ -8,12 +8,12 @@ var error_return = [{response:'User Existed'},{response:'Invalid Username or Pas
 exports.post = function (req, res) {
     if(req.body.type === "local"){
         var newUser = new User();
-        newUser.first_name = req.body.first_name;
-        newUser.last_name = req.body.last_name;
-        newUser.email = req.body.email;
-        newUser.password = newUser.generateHash(req.body.password);
-        newUser.type = {name: req.body.type, id:''};
-        newUser.role = req.body.role;
+            newUser.first_name = req.body.first_name;
+            newUser.last_name = req.body.last_name;
+            newUser.email = req.body.email;
+            newUser.password = newUser.generateHash(req.body.password);
+            newUser.type = {name: req.body.type, id:''};
+            newUser.role = req.body.role;
         
         User.findOne({email: req.body.email}, function (err, user) {
             if (err) {
@@ -45,6 +45,39 @@ exports.post = function (req, res) {
                 return;
             }
             res.json({response:user});
+        });
+    }else if(req.body.type === "facebook"){
+        var newUser = new User();
+            newUser.first_name = req.body.response.first_name;
+            newUser.last_name = req.body.response.last_name;
+            newUser.email = req.body.response.email;
+            newUser.type = {name: req.body.type, id:req.body.response.id};
+            newUser.role = req.body.role;
+            newUser.email_validate = true;
+            newUser.profile_image = req.body.response.picture.data.url;
+
+        User.findOne({email: req.body.response.email}, function (err, user) {
+            if (err) {
+                res.json(error_return[2]); 
+                return;
+            }
+            if (!user){
+                newUser.save(function(error, result){
+                    if(error)
+                        res.json(error_return[2]);
+                    res.json({response:result});
+                });
+            }else if(user){
+                User.findOneAndUpdate({email:req.body.response.email}, 
+                    {$set: { profile_image: req.body.response.picture.data.url }}, 
+                    function(err,result){
+                        if(err){
+                            res.json(error_return[2]); 
+                            return;
+                        }
+                        res.json({response:result});
+                    })
+            }
         });
     }
 };
