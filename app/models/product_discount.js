@@ -1,6 +1,6 @@
 module.exports = function (connection) {
   	var mongoose = require('mongoose'),
-        User = mongoose.model('User').schema;
+        User = mongoose.model('User').schema,
   	   	Schema = mongoose.Schema;
 
   	var product_discount = new Schema({
@@ -12,4 +12,4 @@ module.exports = function (connection) {
   	});
 
   	return connection.model('Product_Discount', product_discount);
-}
+};

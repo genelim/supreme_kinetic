@@ -1,11 +1,10 @@
-AdminSettingController
 angular
 	.module('app')
 	.controller('AdminSettingController', AdminSettingController);
 
-AdminSettingController.$inject = ['Product_Category','cfpLoadingBar','$rootScope'];
+AdminSettingController.$inject = ['Product_Category','cfpLoadingBar','$rootScope','Logger'];
 
-function AdminSettingController(Product_Category,cfpLoadingBar,$rootScope) {
+function AdminSettingController(Product_Category,cfpLoadingBar,$rootScope,Logger) {
 	var vm = this;
 	vm.categories = [];
 	vm.category_type = null;
@@ -26,7 +25,6 @@ function AdminSettingController(Product_Category,cfpLoadingBar,$rootScope) {
         cfpLoadingBar.start();
     	Product_Category.get({type : vm.category_type}, function(res){
 			vm.categories = res.response;
-			console.log(res.response);
         	cfpLoadingBar.complete();
 		});
     }
@@ -42,12 +40,11 @@ function AdminSettingController(Product_Category,cfpLoadingBar,$rootScope) {
 
     function delete_category(category){
     	var params = {id: category._id};
-    	console.log(params)
 		Product_Category.delete(params,function(res){
 			if(res.response.ok === 1){
 				category_load(vm.category_type)
 			}
-		},function(err){
+		},function(){
         	alert('Server Error, Contact Developer')
     	});
     }
@@ -56,9 +53,8 @@ function AdminSettingController(Product_Category,cfpLoadingBar,$rootScope) {
     	if(vm.category_type === 'sub'){
     		 if( angular.isUndefined(value) || !value.name){
     		 	alert('category is missing');
-                return;
             }else{
-            	var data = [{category:value,type:vm.category_type}];
+            	var data = [{category:value,type:vm.category_type,user:Logger.user_details._id}];
     			Product_Category.save(data, function(result){
     				if(result.response !== 'Category Existed'){
     					vm.categories.push(result.response);

@@ -6,7 +6,7 @@
 }
 
 .material-icons {
-	font-family: 'Material Icons';
+	font-family: 'Material Icons',Roboto,serif;
 	font-weight: normal;
 	font-style: normal;
 	font-size: 24px;
@@ -30,7 +30,7 @@
 ****/
 
 .nav-logo{
- 	padding: 5px 0px !important;
+ 	padding: 5px 0 !important;
     height: 64px;
     display: block;
 }
@@ -48,7 +48,7 @@ li.hover_none:hover{
 }
 
 .responsive-search{
-	margin-top: 0em;
+	margin-top: 0;
 }
 
 .responsive-search-li{
@@ -133,4 +133,11 @@ li.hover_none:hover{
 
 li.ng-scope.ui-sortable-helper{
 	background-color: rgba(236, 236, 236, 0.50);
+}
+
+.discount_code{
+	color: greenyellow;
+    font-size: 1em;
+    letter-spacing: 4px;
+    font-weight: 800;
 }

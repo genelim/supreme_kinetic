@@ -11,7 +11,7 @@ function LoginController(User,Logger,$localStorage,$scope,$rootScope,$location,F
     vm.user_modal_press = user_modal_press;
     vm.logout = logout;
 
-    $scope.$on('$stateChangeStart', function(n,c){
+    $scope.$on('$stateChangeStart', function(){
         if(Logger.is_logged){
             vm.username = Logger.user_details.first_name + ' ' + Logger.user_details.last_name;
             if(Logger.user_details.profile_image){
@@ -21,7 +21,7 @@ function LoginController(User,Logger,$localStorage,$scope,$rootScope,$location,F
             }
             check_admin();
         }
-    })    
+    });
 
     function check_admin(){
         if(Logger.user_details.role[0].type === "admin" && typeof Logger.user_details.role[0].type !== 'undefined'){
@@ -105,7 +105,6 @@ function LoginController(User,Logger,$localStorage,$scope,$rootScope,$location,F
             .then(function(response) {
                 details = {response: response, type: 'facebook', role: {type:"admin",level:2}};
                 User.save(details, function(res){
-                    console.log(res);
                     if(res.response !== 'Server Error'){
                         Logger.is_logged = true;
                         Logger.user_details = res.response;

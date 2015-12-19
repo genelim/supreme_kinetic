@@ -12,10 +12,6 @@
 	        <div class="input-field col s4 m4 l4">
 		        <input id="sku" type="text" ng-model="product.sku">
 		        <label for="sku">SKU</label>
-	        </div>
-	        <div class="input-field col s4 m4 l4">
-		        <input id="productid" type="text" ng-model="product.product_id">
-		        <label for="productid">Product ID</label>
 	        </div>				    	
 	        <div class="input-field col s4 m4 l4">
 		        <input id="brand" type="text" ng-model="product.brand">
@@ -25,6 +21,10 @@
 		        <input id="price" type="text" ng-model="product.price">
 		        <label for="price">Price</label>
 	        </div>
+            <div class="input-field col s4 m4 l4">
+                <input id="quantity" type="text" ng-model="product.quantity">
+                <label for="quantity">Quantity</label>
+            </div>
 	        <div class="input-field col s4 m4 l4">
                 <select ng-model="product.category" class="browser-default black-text">
                     <option value="" disabled selected>Select Category</option>
@@ -121,6 +121,10 @@
                             <li ng-repeat="discount_select in discount.children" style=" padding:2em 1em; background:#F7F7F7; margin-bottom:0.5em;"> 
                                 <div class="row" style="margin-bottom:0px;">
                                     <span class="col l10 m10 s10 grey-text">
+                                        <span class="col l12 m12 s12">
+                                            Discount Code: 
+                                            <label class="discount_code">{{discount_select.discount_code | uppercase}}</label>
+                                        </span>
                                         <span class="col l6 m12 s12">
                                             Date<input type="date" ng-model="discount_select.date" class="black-text">
                                         </span>

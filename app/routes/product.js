@@ -10,24 +10,24 @@ var mongoose = require('mongoose'),
 
 exports.post = function (req, res) {
     var new_product = new Product();
-    new_product.name = 'name';
-    new_product.model = 'model';
-    new_product.sku = 123;
-    new_product.brand = 'brand';
-    new_product.price = 123;
-    new_product.category = 'category';
+    new_product.name = req.body.product_main.name;
+    new_product.model = req.body.product_main.model;
+    new_product.sku = req.body.product_main.sku;
+    new_product.brand = req.body.product_main.brand;
+    new_product.price = req.body.product_main.price;
+    new_product.category = req.body.product_main.category;
+    new_product.description = req.body.product_main.description;
+    new_product.quantity =  req.body.product_main.quantity;
     new_product.image = '';
-    new_product.description = 'description';
     new_product.size = ['XL','L'];
     new_product.color = ['Blue','#000'];
-    new_product.quantity = 2;
 
-    new_product.save(function(error, product){
-        if(error)
-            res.json(error);
-        res.json(product);
-    });
-}
+    // new_product.save(function(error, product){
+    //     if(error)
+    //         res.json(error);
+    //     res.json(product);
+    // });
+};
 
 exports.get = function (req, res) {
     Product.find(function (err, product) {

@@ -1,67 +1,67 @@
-<div class="row">
-    <div class="col s12">
-        <ul class="tabs">
-            <li class="tab col s3"><a href="#test1">Outdoor</a></li>
-            <li class="tab col s3"><a class="" href="#test2">Indoor</a></li>
-        </ul>
-    </div>
-    <div id="test1" class="col s12">
-        <div class="row">
-                        
-            <div class="col s12 m12 l12">
-                <div class="row">
-                    <div class="card">
-                        <div class="title">
-                            <h5>Products</h5>
-                            <div class="btn-group right">
-                                <a class="btn btn-small green lighten-1 z-depth-0" ng-click="vm.add_product()"><i class="mdi mdi-content-add"></i></a>
-                                <a class="btn btn-small red lighten-1 z-depth-0"><i class="mdi mdi-action-delete"></i></a>
-                            </div>
-                        </div>
-                        <div class="content">
-                            <table class="highlight">
-                                <thead>
-                                    <tr>
-                                        <th data-field="">Select</th>
-                                        <th data-field="sku">SKU</th>
-                                        <th data-field="image">Image</th>
-                                        <th data-field="name">Product Name</th>
-                                        <th data-field="stock">Stock</th>
-                                        <th data-field="price">Price</th>
-                                        <th data-field="status">Status</th>
-                                        <th data-field="">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th><input type="checkbox" id="cbx1" /><label for="cbx1"></label></th>
-                                        <th>3020SK01</th>
-                                        <td><img src="assets/images/logo.png" style="height:50px; width:auto;" class="responsive-img"></td>
-                                        <td><strong class="grey-text text-darken-2">Kinox Electric Kettle</strong><br/>
-                                            <label class="grey-text">
-                                                Capacity: 1.5L, 
-                                                Boil-dry protection,
-                                                Auto switch off,
-                                                Strix controller,
-                                                Material: s/s 304,
-                                                Power : 220-240V, 50/60Hz, 1500-1800W.
-                                            </label>
-                                            
-                                        </td>
-                                        <td>40</td>
-                                        <td>$150.00</td>
-                                        <td class="green-text">Active</td>
-                                        <td><a class="btn z-depth-0 blue"><i class="mdi mdi-editor-mode-edit"></i></a></td>
-                                    </tr> 
-                                                          
-                                </tbody>
-                            </table>
-                        </div>
+<ul class="tabs">
+    <li class="tab col s3"><a href="#product_outdoor">Outdoor</a></li>
+    <li class="tab col s3"><a class="" href="#product_indoor">Indoor</a></li>
+</ul>
+<div id="product_outdoor">
+    <div class="row ">
+        <div class="col s12">
+            <div class="card">
+                <div class="title">
+                    <h5>Products</h5>
+                    <div class="btn-group right">
+                        <a class="btn btn-small green lighten-1 z-depth-0" ng-click="vm.add_product()"><i class="mdi mdi-content-add"></i></a>
+                        <a class="btn btn-small red lighten-1 z-depth-0"><i class="mdi mdi-action-delete"></i></a>
                     </div>
+                </div>
+                <div class="content">
+                    <table class="highlight">
+                        <thead>
+                            <tr>
+                                <th data-field="">Select</th>
+                                <th data-field="sku">SKU</th>
+                                <th data-field="image">Image</th>
+                                <th data-field="name">Product Name</th>
+                                <th data-field="stock">Stock</th>
+                                <th data-field="price">Price</th>
+                                <th data-field="status">Status</th>
+                                <th data-field="">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th><input type="checkbox" id="cbx1" /><label for="cbx1"></label></th>
+                                <th>3020SK01</th>
+                                <td><img src="assets/images/logo.png" style="height:50px; width:auto;" class="responsive-img"></td>
+                                <td><strong class="grey-text text-darken-2">Kinox Electric Kettle</strong><br/>
+                                    <label class="grey-text">
+                                        Capacity: 1.5L, 
+                                        Boil-dry protection,
+                                        Auto switch off,
+                                        Strix controller,
+                                        Material: s/s 304,
+                                        Power : 220-240V, 50/60Hz, 1500-1800W.
+                                    </label>
+                                </td>
+                                <td>40</td>
+                                <td>$150.00</td>
+                                <td class="green-text">Active</td>
+                                <td><a class="btn z-depth-0 blue"><i class="mdi mdi-editor-mode-edit"></i></a></td>
+                            </tr>                         
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
-    <div id="test2" class="col s12">Test 2</div>
 </div>
+<div id="product_indoor">
+    <div class="row ">
+        <div class="col s12">
+            <div class="card">
+                Indoor
+            </div>
+        </div>
+    </div>
+</div>
+
 <div ng-include src="'app/admin/product_add.html'"></div>
