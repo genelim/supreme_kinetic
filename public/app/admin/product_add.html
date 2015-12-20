@@ -102,7 +102,7 @@
                                     <img class="col l4 right" style="height:70px;width:auto" src="{{image_select.image_path}}" />
                                     </span>
                                     <span class="right  l2 m2 s2" ng-hide="image_select.length == 1">
-                                        <a href ng-click="image.children.splice($index, 1)"><i class="fa fa-times fa-2x"></i></a>
+                                        <a href ng-click="vm.image_remove(image,$index)"><i class="fa fa-times fa-2x"></i></a>
                                     </span>
                                 </div>
                             </li>
@@ -147,7 +147,7 @@
                                             Specifying User <label>(Leave it empty to specify all users)</label> 
                                             <select ng-model="discount_select.selected_user" class="browser-default black-text">
                                                 <option value="" disabled selected>Select</option>
-                                                <option class="black-text" ng-repeat="user in vm.users.response" ng-if="user.first_name !== ''" ng-selected="discount_select.selected_user == user">{{user.first_name}} {{user.last_name}}</option>
+                                                <option class="black-text" ng-repeat="user in vm.users.response" value="{{user._id}}" ng-if="user.first_name !== ''" ng-selected="discount_select.selected_user == user._id">{{user.first_name}} {{user.last_name}}</option>
                                             </select>
                                         </span>
                                     </span>
@@ -166,6 +166,6 @@
 		</div>
     </div>
     <div class="modal-footer">
-      	<a class=" modal-action modal-close waves-effect waves-green btn-flat" ng-click="vm.add_product_confirm(product)">Add</a>
+      	<a class=" modal-action waves-effect waves-green btn-flat" ng-click="vm.add_product_confirm(product)">Add</a>
     </div>
   </div>

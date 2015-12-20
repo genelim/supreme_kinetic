@@ -2,9 +2,9 @@ angular
 	.module('app')
 	.controller('AdminProductController', AdminProductController);
 
-AdminProductController.$inject = ['$rootScope','users','$scope','File_Upload','$q','cfpLoadingBar','Product','Product_Category'];
+AdminProductController.$inject = ['$rootScope','users','$scope','File_Upload','$q','cfpLoadingBar','Product','Product_Category','Logger'];
 
-function AdminProductController($rootScope,users,$scope,File_Upload,$q,cfpLoadingBar,Product,Product_Category) {
+function AdminProductController($rootScope,users,$scope,File_Upload,$q,cfpLoadingBar,Product,Product_Category,Logger) {
 	var vm = this;
 	vm.add_product = add_product;
     vm.add_product_confirm = add_product_confirm;
@@ -15,12 +15,15 @@ function AdminProductController($rootScope,users,$scope,File_Upload,$q,cfpLoadin
 	vm.product_save = product_save;
     vm.users = users;
     vm.categories = [];
+    vm.products = [];
     vm.images_selected = [];
     vm.images_selected_uploaded = [];
     vm.colors = [{name: 'Color', children: []}];
 	vm.images = [{name: 'Images', children: []}];
     vm.sizes = [{name: 'Size', children: []}];
 	vm.discounts = [{name: 'Discount', children: []}];
+    vm.category_type = 'outdoor';
+    vm.image_remove = image_remove
 
     $scope.upload = function(element,a) {
         $scope.$apply(function () {
@@ -32,15 +35,26 @@ function AdminProductController($rootScope,users,$scope,File_Upload,$q,cfpLoadin
 	angular.element(document).ready(function () {
         $('ul.tabs').tabs();
         category_load('sub');
+        product_load(vm.category_type);
         $rootScope.user_menu = [{name:'Profile',path:'profile'},{name:'Setting',path:'setting'},{name:'Home',path:''}];
         $rootScope.home_default = false;
     });
 
     function category_load(type){
-        vm.category_type = type;
+        vm.sub_category= type;
         cfpLoadingBar.start();
-        Product_Category.get({type : vm.category_type}, function(res){
+        Product_Category.get({type : vm.sub_category}, function(res){
             vm.categories = res.response;
+            cfpLoadingBar.complete();
+        });
+    }
+
+    function product_load(type){
+        vm.category_type= type;
+        cfpLoadingBar.start();
+        Product.get(function(res){
+            vm.products = res.response;
+            console.log(vm.products);
             cfpLoadingBar.complete();
         });
     }
@@ -51,7 +65,6 @@ function AdminProductController($rootScope,users,$scope,File_Upload,$q,cfpLoadin
 
     function add_product_confirm(product){
         var uploadUrl = "/api/upload";
-        $('#add_product').closeModal();
         var promises = [];
         angular.forEach(vm.images_selected, function(value){
             promises.push(File_Upload.uploadFileToUrl(value, uploadUrl)
@@ -81,9 +94,11 @@ function AdminProductController($rootScope,users,$scope,File_Upload,$q,cfpLoadin
             alert('Quantity must be integer');
             return;
         }
-        var new_product = [{product_main:product_main,product_image:product_image,product_discount:product_discount,product_color:product_color,product_size:product_size}];
+        var new_product = [{product_main:product_main,product_image:product_image,product_discount:product_discount,product_color:product_color,product_size:product_size,user:Logger.user_details._id,category_type:vm.category_type}];
+        console.log(new_product)
         Product.save(new_product,function(res){
-            console.log(res);
+            product_load(vm.category_type);
+            $('#add_product').closeModal();
         })
     }
 
@@ -113,4 +128,9 @@ function AdminProductController($rootScope,users,$scope,File_Upload,$q,cfpLoadin
         image.children.push({ image_path: ''});
         $event.preventDefault();
     }   
+
+    function image_remove(image,$index){
+        image.children.splice($index, 1);
+        vm.images_selected.splice($index,1);
+    }
 }

@@ -5,7 +5,7 @@ module.exports = function (connection) {
 
   	var product_updated = new Schema({
   		date: { type : Date, default: Date.now },
-  		user: [User]
+  		user: [{ type: Schema.Types.ObjectId, ref: 'User' }]
   	});
 
   	return connection.model('Product_Updated', product_updated);

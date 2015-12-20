@@ -5,10 +5,12 @@ module.exports = function (connection) {
 
   	var product_discount = new Schema({
   		date: Date,
+        days: Number,
+        discount_code: String,
+        discount_validate: Boolean,
+        duration_type: String,
   		percentage: Number,
-        days: Date,
-  		discount_validate: Boolean,
-  		selected_user: [User]
+  		selected_user: [{ type: Schema.Types.ObjectId, ref: 'User' }]
   	});
 
   	return connection.model('Product_Discount', product_discount);
