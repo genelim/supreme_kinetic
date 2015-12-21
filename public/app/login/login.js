@@ -103,7 +103,7 @@ function LoginController(User,Logger,$localStorage,$scope,$rootScope,$location,F
         var details = [];
         Facebook.login() 
             .then(function(response) {
-                details = {response: response, type: 'facebook', role: {type:"admin",level:2}};
+                details = {response: response, type: 'facebook', role: {type:"member",level:0}};
                 User.save(details, function(res){
                     if(res.response !== 'Server Error'){
                         Logger.is_logged = true;
