@@ -1,6 +1,6 @@
 <ul class="tabs">
-    <li class="tab col s3"><a href="#product_outdoor">Outdoor</a></li>
-    <li class="tab col s3"><a class="" href="#product_indoor">Indoor</a></li>
+    <li class="tab col s3"><a href="#product_outdoor" ng-click="vm.product_load('outdoor')">Outdoor</a></li>
+    <li class="tab col s3"><a class="" href="#product_indoor" ng-click="vm.product_load('indoor')">Indoor</a></li>
 </ul>
 <div id="product_outdoor">
     <div class="row ">
@@ -29,7 +29,7 @@
                         </thead>
                         <tbody>
                             <tr ng-repeat="product in vm.products">
-                                <th><input type="checkbox" id="cbx1" /><label for="cbx1"></label></th>
+                                <th><input type="checkbox" id="{{product._id}}" /><label for="{{product._id}}"></label></th>
                                 <th>{{product.sku}}</th>
                                 <td><img ng-src="{{product.image[0]}}" style="height:50px; width:auto;" class="responsive-img"></td>
                                 <td><strong class="grey-text text-darken-2">{{product.name}}</strong><br/>
@@ -53,10 +53,66 @@
     <div class="row ">
         <div class="col s12">
             <div class="card">
-                Indoor
+                <div class="title">
+                    <h5>Products</h5>
+                    <div class="btn-group right">
+                        <a class="btn btn-small green lighten-1 z-depth-0" ng-click="vm.add_product()"><i class="mdi mdi-content-add"></i></a>
+                        <a class="btn btn-small red lighten-1 z-depth-0"><i class="mdi mdi-action-delete"></i></a>
+                    </div>
+                </div>
+                <div class="content">
+                    <table class="highlight">
+                        <thead>
+                            <tr>
+                                <th data-field="">Select</th>
+                                <th data-field="sku">SKU</th>
+                                <th data-field="image">Image</th>
+                                <th data-field="name">Product Name</th>
+                                <th data-field="stock">Stock</th>
+                                <th data-field="price">Price</th>
+                                <th data-field="status">Status</th>
+                                <th data-field="">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="product in vm.products">
+                                <th><input type="checkbox" id="{{product._id}}" /><label for="{{product._id}}"></label></th>
+                                <th>{{product.sku}}</th>
+                                <td><img ng-src="{{product.image[0]}}" style="height:50px; width:auto;" class="responsive-img"></td>
+                                <td><strong class="grey-text text-darken-2">{{product.name}}</strong><br/>
+                                    <label class="grey-text">
+                                        {{product.description}}
+                                    </label>
+                                </td>
+                                <td>{{product.quantity}}</td>
+                                <td>${{product.price}}</td>
+                                <td class="green-text">Active</td>
+                                <td><a class="btn z-depth-0 blue"><i class="mdi mdi-editor-mode-edit"></i></a></td>
+                            </tr>                         
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 <div ng-include src="'app/admin/product_add.html'"></div>
+
+<ul class="pagination center">
+    <li ng-class="{'disabled': vm.current_page == 1,'waves-effect': vm.current_page != 1}" ng-click="vm.static_user_page(0)">
+        <a>First</a>
+    </li>
+    <li ng-class="{'disabled': vm.current_page == 1,'waves-effect': vm.current_page != 1}" ng-click="vm.previous_user_page()">
+        <a><i class="material-icons">chevron_left</i></a>
+    </li>
+    <li ng-if="$index <= vm.current_page +2 && $index >= vm.current_page-4" ng-repeat="i in vm.pagination_number(vm.number) track by $index" class="waves-effect" ng-class="{active: $index+1 == vm.current_page}" ng-click="vm.display_product($index+1)">
+        <a>{{$index+1}}</a>
+    </li>
+    <li ng-class="{disabled: vm.current_page == vm.number,'waves-effect': vm.current_page != vm.number}" ng-click="vm.next_user_page()">
+        <a><i class="material-icons">chevron_right</i></a>
+    </li>
+    <li ng-class="{disabled: vm.current_page == vm.number,'waves-effect': vm.current_page != vm.number}" ng-click="vm.static_user_page(1)">
+        <a>Last</a>
+    </li>
+</ul>

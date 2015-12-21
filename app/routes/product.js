@@ -42,11 +42,20 @@ exports.post = function (req, res) {
 };
 
 exports.get = function (req, res) {
-    Product.find(function (err, product) {
+    var page = parseInt(req.params.page),
+        size = parseInt(req.params.size),
+        type = req.params.type,
+        skip = page > 0 ? ((page - 1) * size) : 0;
+    Product.find({main_category:type}, null, {
+        skip: skip,
+        limit: size
+    }, function (err, product) {
         if(err) {
             res.json({response:err});
         } else {
-            res.json({response:product});
+            Product.count({main_category:type},function( err, count){
+                res.json({response:{count:count,product:product}});
+            })
         }
     });
 };

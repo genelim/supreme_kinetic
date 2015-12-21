@@ -105,7 +105,6 @@ exports.get = function (req, res) {
             }
         });
     }
-    
 };
 
 exports.discount = function (req, res) {

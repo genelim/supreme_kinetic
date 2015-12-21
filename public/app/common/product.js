@@ -5,5 +5,5 @@ angular
 Product.$inject = ['$resource'];
 
 function Product($resource) {
-	return $resource('/api/product');
+	return $resource('/api/product/:page/:size/:type');
 }

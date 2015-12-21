@@ -22,6 +22,7 @@ module.exports = function (connection) {
         size: [String],
         color: [String],
         quantity: Number,
+        status: { type : Boolean, default: false },
         discount: [Product_Discount],
         rating: [Product_Rating],
         favorite: [{ type: Schema.Types.ObjectId, ref: 'User' }],

@@ -17,7 +17,7 @@ app.post('/api/user', user.post);
 app.get('/api/user/:discount', user.discount);
 app.get('/api/user/:page/:size/:type', user.get);
 
-app.get('/api/product', product.get);
+app.get('/api/product/:page/:size/:type', product.get);
 app.post('/api/product', product.post);
 
 app.post('/api/upload', upload.image);

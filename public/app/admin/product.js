@@ -12,6 +12,7 @@ function AdminProductController($rootScope,users,$scope,File_Upload,$q,cfpLoadin
     vm.new_size = new_size;
     vm.new_image = new_image;
     vm.new_discount = new_discount;
+    // vm.selected_type = selected_type;
 	vm.product_save = product_save;
     vm.users = users;
     vm.categories = [];
@@ -23,7 +24,17 @@ function AdminProductController($rootScope,users,$scope,File_Upload,$q,cfpLoadin
     vm.sizes = [{name: 'Size', children: []}];
 	vm.discounts = [{name: 'Discount', children: []}];
     vm.category_type = 'outdoor';
-    vm.image_remove = image_remove
+    vm.image_remove = image_remove;
+    vm.pagination_number = pagination_number;
+    vm.next_user_page = next_user_page;
+    vm.previous_user_page = previous_user_page;
+    vm.static_user_page = static_user_page;
+    vm.display_product = display_product;
+    vm.product_load = product_load;
+
+    vm.number = 0;
+    vm.current_page = 1;
+    vm.size = 5;
 
     $scope.upload = function(element,a) {
         $scope.$apply(function () {
@@ -50,13 +61,67 @@ function AdminProductController($rootScope,users,$scope,File_Upload,$q,cfpLoadin
     }
 
     function product_load(type){
-        vm.category_type= type;
+        vm.category_type = type;
+        vm.current_page = 1;
         cfpLoadingBar.start();
-        Product.get(function(res){
-            vm.products = res.response;
-            console.log(vm.products);
+        Product.get({page : 1, size:vm.size, type : type}, function(res){
+            console.log(res)
+            vm.products = res.response.product;
+            vm.number = ( Math.ceil(res.response.count/vm.size));
             cfpLoadingBar.complete();
         });
+    }
+
+    function pagination_number(number){
+        return new Array(number);
+    }
+
+    function next_user_page(){
+        if(vm.current_page < vm.number){
+            cfpLoadingBar.start();
+            var page = vm.current_page + 1;
+            Product.get({page : page, size:vm.size, type:vm.category_type},function(res){
+                vm.products = (res.response.product);
+                vm.current_page = page;
+                cfpLoadingBar.complete();
+            });
+        }
+        
+    }
+
+    function previous_user_page(){
+        if(vm.current_page > 1){
+            cfpLoadingBar.start();
+            var page = vm.current_page - 1;
+            Product.get({page : page, size:vm.size, type:vm.category_type},function(res){
+                vm.products = (res.response.product);
+                vm.current_page = page;
+                cfpLoadingBar.complete();
+            });
+        }
+    }
+
+    function static_user_page(static){
+        if(static === 0){
+            var page = 1;
+        }else if (static === 1){
+            var page = vm.number;
+        }
+        cfpLoadingBar.start();
+        Product.get({page : page, size:vm.size, type:vm.category_type},function(res){
+            vm.products = (res.response.product);
+            vm.current_page = page
+            cfpLoadingBar.complete();
+        });
+    }
+
+    function display_product(page){
+        vm.current_page = page;
+        cfpLoadingBar.start();
+        Product.get({page : page, size:vm.size, type:vm.category_type},function(res){
+            vm.products = (res.response.product);
+            cfpLoadingBar.complete();
+        });   
     }
 
     function add_product(){

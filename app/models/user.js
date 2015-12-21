@@ -28,5 +28,3 @@ module.exports = function (connection) {
 
   	return connection.model('User', user);
 }
-
-//facebook email_validate = true

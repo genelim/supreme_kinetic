@@ -3,7 +3,6 @@ var path = require('path');
 var fs = require('fs');
 
 exports.image = function (req, res) {
-    console.log('in')
     var form = new formidable.IncomingForm();
     form.parse(req, function (err, fields, files) {
         var file = files.file;
