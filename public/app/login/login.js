@@ -42,15 +42,15 @@ function LoginController(User,Logger,$localStorage,$scope,$rootScope,$location,F
     function user_modal_press(value,type){
         if(type === 'local'){
             if( angular.isUndefined(value) || !value.first_name || !value.last_name || !value.email || !value.password || !value.confirm_password){
-                alert('something is missing');
+                Materialize.toast('Something is missing', 2000);
                 return;
             }else if(value.password !== value.confirm_password){
-                alert('confirm password is not matched with password');
+                Materialize.toast('Confirm password is not matched with password', 2000);
                 return;
             }
         }else if(type === "login"){
             if( angular.isUndefined(value) || !value.email || !value.password){
-                alert('something is missing');
+                Materialize.toast('Something is missing', 2000);
                 return;
             }
         }
@@ -84,10 +84,10 @@ function LoginController(User,Logger,$localStorage,$scope,$rootScope,$location,F
                 }
                 $('#user_open').closeModal();
             }else{
-                alert(res.response);
+                Materialize.toast(res.response, 2000);
             }
         }, function(error) {
-            alert(error.statusText);
+                Materialize.toast(error.statusText, 2000);
         });
     }
 
@@ -114,11 +114,11 @@ function LoginController(User,Logger,$localStorage,$scope,$rootScope,$location,F
                         check_admin();
                         details = [];
                     }else{
-                        alert(res.response);
+                        Materialize.toast(res.response, 2000);
                     }
                     $('#user_open').closeModal();
                 }, function(error) {
-                    alert(error.statusText);
+                    Materialize.toast(error.statusText, 2000);
                 });
             }
         );

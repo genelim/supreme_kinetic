@@ -144,18 +144,18 @@ function AdminProductController($rootScope,users,$scope,File_Upload,$q,cfpLoadin
 
     function product_save(product_main,product_image,product_discount,product_color,product_size){
         if( angular.isUndefined(product_main) || !product_main.name || !product_main.model || !product_main.sku || !product_main.brand || !product_main.price || !product_main.category || !product_main.quantity){
-            alert('something is missing');
+            Materialize.toast('Something is missing', 2000);
             return;
         }
         if(!product_main.description){
             product_main.description = '';
         }
         if(isNaN(product_main.price)){
-            alert('Price must be integer');
+            Materialize.toast('Price must be integer', 2000);
             return;
         }
         if(isNaN(product_main.quantity)){
-            alert('Quantity must be integer');
+            Materialize.toast('Quantity must be integer', 2000);
             return;
         }
         var new_product = [{product_main:product_main,product_image:product_image,product_discount:product_discount,product_color:product_color,product_size:product_size,user:Logger.user_details._id,category_type:vm.category_type}];
@@ -167,9 +167,9 @@ function AdminProductController($rootScope,users,$scope,File_Upload,$q,cfpLoadin
             vm.images = [{name: 'Images', children: []}];
             vm.sizes = [{name: 'Size', children: []}];
             vm.discounts = [{name: 'Discount', children: []}];
-            console.log(vm.product)
             vm.product = null;
             $('#add_product').closeModal();
+            Materialize.toast('New Product Added', 2000);
         })
     }
 
