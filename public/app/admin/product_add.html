@@ -2,40 +2,40 @@
     <div class="modal-content">
         <div class="row">
 		    <div class="input-field col s12 m12 l12">
-			    <input id="productname" type="text" ng-model="product.name">
+			    <input id="productname" type="text" ng-model="vm.product.name">
 		    	<label for="productname">Product Name</label>
 		    </div>
 		    <div class="input-field col s4 m4 l4">
-		        <input id="model" type="text" ng-model="product.model">
+		        <input id="model" type="text" ng-model="vm.product.model">
 		        <label for="model">Model</label>
 	        </div>				    	
 	        <div class="input-field col s4 m4 l4">
-		        <input id="sku" type="text" ng-model="product.sku">
+		        <input id="sku" type="text" ng-model="vm.product.sku">
 		        <label for="sku">SKU</label>
 	        </div>				    	
 	        <div class="input-field col s4 m4 l4">
-		        <input id="brand" type="text" ng-model="product.brand">
+		        <input id="brand" type="text" ng-model="vm.product.brand">
 		        <label for="brand">Brand</label>
 	        </div>
 	        <div class="input-field col s4 m4 l4">
-		        <input id="price" type="text" ng-model="product.price">
+		        <input id="price" type="text" ng-model="vm.product.price">
 		        <label for="price">Price</label>
 	        </div>
             <div class="input-field col s4 m4 l4">
-                <input id="quantity" type="text" ng-model="product.quantity">
+                <input id="quantity" type="text" ng-model="vm.product.quantity">
                 <label for="quantity">Quantity</label>
             </div>
 	        <div class="input-field col s4 m4 l4">
-                <select ng-model="product.category" class="browser-default black-text">
+                <select ng-model="vm.product.category" class="browser-default black-text">
                     <option value="" disabled selected>Select Category</option>
-                    <option class="black-text" ng-repeat="category in vm.categories" ng-selected="product.category == category">{{category.sub_category}}</option>
+                    <option class="black-text" ng-repeat="category in vm.categories" ng-selected="vm.product.category == category">{{category.sub_category}}</option>
                 </select>
 	        </div>
 	        <div class="col s12 m12 l12">
 		        <p class="grey-text">Product Description</p>
 	    	</div>
 	    	<div>
-				<textarea style="height:150px" ng-model="product.description"></textarea>
+				<textarea style="height:150px" ng-model="vm.product.description"></textarea>
 	    	</div>
             <div class="col s12 m6 l6">
                 <p class="grey-text">Color</p>
@@ -166,6 +166,6 @@
 		</div>
     </div>
     <div class="modal-footer">
-      	<a class=" modal-action waves-effect waves-green btn-flat" ng-click="vm.add_product_confirm(product)">Add</a>
+      	<a class=" modal-action waves-effect waves-green btn-flat" ng-click="vm.add_product_confirm(vm.product)">Add</a>
     </div>
   </div>

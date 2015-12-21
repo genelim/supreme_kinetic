@@ -12,11 +12,11 @@ function AdminProductController($rootScope,users,$scope,File_Upload,$q,cfpLoadin
     vm.new_size = new_size;
     vm.new_image = new_image;
     vm.new_discount = new_discount;
-    // vm.selected_type = selected_type;
 	vm.product_save = product_save;
     vm.users = users;
     vm.categories = [];
     vm.products = [];
+    // vm.product = [];
     vm.images_selected = [];
     vm.images_selected_uploaded = [];
     vm.colors = [{name: 'Color', children: []}];
@@ -65,7 +65,6 @@ function AdminProductController($rootScope,users,$scope,File_Upload,$q,cfpLoadin
         vm.current_page = 1;
         cfpLoadingBar.start();
         Product.get({page : 1, size:vm.size, type : type}, function(res){
-            console.log(res)
             vm.products = res.response.product;
             vm.number = ( Math.ceil(res.response.count/vm.size));
             cfpLoadingBar.complete();
@@ -160,9 +159,16 @@ function AdminProductController($rootScope,users,$scope,File_Upload,$q,cfpLoadin
             return;
         }
         var new_product = [{product_main:product_main,product_image:product_image,product_discount:product_discount,product_color:product_color,product_size:product_size,user:Logger.user_details._id,category_type:vm.category_type}];
-        console.log(new_product)
         Product.save(new_product,function(res){
             product_load(vm.category_type);
+            vm.images_selected = [];
+            vm.images_selected_uploaded = [];
+            vm.colors = [{name: 'Color', children: []}];
+            vm.images = [{name: 'Images', children: []}];
+            vm.sizes = [{name: 'Size', children: []}];
+            vm.discounts = [{name: 'Discount', children: []}];
+            console.log(vm.product)
+            vm.product = null;
             $('#add_product').closeModal();
         })
     }
