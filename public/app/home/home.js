@@ -4,20 +4,31 @@ angular
     .module('app')
     .controller('HomeController', HomeController);
 
-HomeController.$inject = ['$rootScope','$scope'];
+HomeController.$inject = ['$rootScope','$scope','Product'];
 
-function HomeController($rootScope,$scope) { 
+function HomeController($rootScope,$scope,Product) { 
 	var vm = this;
-    vm.title = "Supreme Kinetic";
+    vm.category_type='outdoor';
+    vm.products = [];
+    vm.size = 4;
+
     $rootScope.home_default = true;
     vm.tab_menu = 	[
-					    {name:'Fans',disabled:'',active:'',id:'fans', icon:'event_seat'},
-					    {name:'Electric Kettle',disabled:'',active:'active',id:'electric_kettle',icon:'opacity'},
-					    {name:'Cutleries',disabled:'',active:'',id:'cutleries', icon:'card_travel'},
-					    {name:'Reward',disabled:'disabled',active:'',id:'reward', icon:'redeem'}
+					    {name:'Outdoor',disabled:'',active:'',id:'outdoor', icon:'event_seat'},
+					    {name:'Indoor',disabled:'',active:'active',id:'indoor',icon:'opacity'}
 				   	];
                     
     angular.element(document).ready(function () {
         $('ul.tabs').tabs();
+        Product.get({page : 1, size:vm.size, type:vm.category_type, location:'admin'},function(res){
+        vm.products = (res.response.product);
+        console.log(vm.products)
+        // cfpLoadingBar.complete();
     });
+    });
+
+    // Product.get({page : 1, size:vm.size, type:vm.category_type, location:'member'},function(res){
+    //     vm.products = (res.response.product);
+    //     // cfpLoadingBar.complete();
+    // });
 }

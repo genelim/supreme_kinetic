@@ -33,6 +33,10 @@ exports.post = function (req, res) {
     for(var i=0; i < req.body[0].product_discount[0].children.length; i++){
         new_product.discount.push(req.body[0].product_discount[0].children[i])
     }
+    
+    if(req.body[0].user.role[0].type === 'admin' && req.body[0].user.role[0].level === 2){
+        new_product.status = true;
+    }
 
     new_product.save(function(error, product){
         if(error)
@@ -42,20 +46,24 @@ exports.post = function (req, res) {
 };
 
 exports.get = function (req, res) {
-    var page = parseInt(req.params.page),
-        size = parseInt(req.params.size),
-        type = req.params.type,
-        skip = page > 0 ? ((page - 1) * size) : 0;
-    Product.find({main_category:type}, null, {
-        skip: skip,
-        limit: size
-    }, function (err, product) {
-        if(err) {
-            res.json({response:err});
-        } else {
-            Product.count({main_category:type},function( err, count){
-                res.json({response:{count:count,product:product}});
-            })
-        }
-    });
+    if(req.params.location === 'admin'){
+        var page = parseInt(req.params.page),
+            size = parseInt(req.params.size),
+            type = req.params.type,
+            skip = page > 0 ? ((page - 1) * size) : 0;
+        Product.find({main_category:type}, null, {
+            skip: skip,
+            limit: size
+        }, function (err, product) {
+            if(err) {
+                res.json({response:err});
+            } else {
+                Product.count({main_category:type},function( err, count){
+                    res.json({response:{count:count,product:product}});
+                })
+            }
+        });  
+    }else if(req.params.location === 'member'){
+        console.log('member');
+    }
 };

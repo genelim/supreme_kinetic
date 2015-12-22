@@ -64,7 +64,7 @@ function AdminProductController($rootScope,users,$scope,File_Upload,$q,cfpLoadin
         vm.category_type = type;
         vm.current_page = 1;
         cfpLoadingBar.start();
-        Product.get({page : 1, size:vm.size, type : type}, function(res){
+        Product.get({page : 1, size:vm.size, type : type, location:'admin'}, function(res){
             vm.products = res.response.product;
             vm.number = ( Math.ceil(res.response.count/vm.size));
             cfpLoadingBar.complete();
@@ -79,7 +79,7 @@ function AdminProductController($rootScope,users,$scope,File_Upload,$q,cfpLoadin
         if(vm.current_page < vm.number){
             cfpLoadingBar.start();
             var page = vm.current_page + 1;
-            Product.get({page : page, size:vm.size, type:vm.category_type},function(res){
+            Product.get({page : page, size:vm.size, type:vm.category_type, location:'admin'},function(res){
                 vm.products = (res.response.product);
                 vm.current_page = page;
                 cfpLoadingBar.complete();
@@ -92,7 +92,7 @@ function AdminProductController($rootScope,users,$scope,File_Upload,$q,cfpLoadin
         if(vm.current_page > 1){
             cfpLoadingBar.start();
             var page = vm.current_page - 1;
-            Product.get({page : page, size:vm.size, type:vm.category_type},function(res){
+            Product.get({page : page, size:vm.size, type:vm.category_type, location:'admin'},function(res){
                 vm.products = (res.response.product);
                 vm.current_page = page;
                 cfpLoadingBar.complete();
@@ -107,7 +107,7 @@ function AdminProductController($rootScope,users,$scope,File_Upload,$q,cfpLoadin
             var page = vm.number;
         }
         cfpLoadingBar.start();
-        Product.get({page : page, size:vm.size, type:vm.category_type},function(res){
+        Product.get({page : page, size:vm.size, type:vm.category_type, location:'admin'},function(res){
             vm.products = (res.response.product);
             vm.current_page = page
             cfpLoadingBar.complete();
@@ -117,7 +117,7 @@ function AdminProductController($rootScope,users,$scope,File_Upload,$q,cfpLoadin
     function display_product(page){
         vm.current_page = page;
         cfpLoadingBar.start();
-        Product.get({page : page, size:vm.size, type:vm.category_type},function(res){
+        Product.get({page : page, size:vm.size, type:vm.category_type, location:'admin'},function(res){
             vm.products = (res.response.product);
             cfpLoadingBar.complete();
         });   
@@ -158,7 +158,7 @@ function AdminProductController($rootScope,users,$scope,File_Upload,$q,cfpLoadin
             Materialize.toast('Quantity must be integer', 2000);
             return;
         }
-        var new_product = [{product_main:product_main,product_image:product_image,product_discount:product_discount,product_color:product_color,product_size:product_size,user:Logger.user_details._id,category_type:vm.category_type}];
+        var new_product = [{product_main:product_main,product_image:product_image,product_discount:product_discount,product_color:product_color,product_size:product_size,user:Logger.user_details,category_type:vm.category_type}];
         Product.save(new_product,function(res){
             product_load(vm.category_type);
             vm.images_selected = [];

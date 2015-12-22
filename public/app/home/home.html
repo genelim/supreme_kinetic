@@ -3,8 +3,14 @@
 </ul>
 <div ng-repeat="tab in vm.tab_menu" id="{{tab.id}}">
 	<div class="row">
-		<div class="card col l3">
-			{{tab.name}}
+		<div class="card col l3" ng-repeat="product in vm.products">
+			<div class="card-image">
+              	<img ng-src="{{product.image[0]}}" style="height:200px; width:auto;">
+              	<span class="card-title">{{product.name}}</span>
+            </div>
+            <div class="card-content">
+              	<p>{{product.description}}</p>
+            </div>
 		</div>
 	</div>
 </div>
