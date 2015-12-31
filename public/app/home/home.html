@@ -1,16 +1,69 @@
 <ul class="tabs">
-    <li class="tab col s3 {{tab.disabled}}" ng-repeat="tab in vm.tab_menu"><a class="{{tab.active}}" href="#{{tab.id}}"><i class="material-icons tab_icon">{{tab.icon}}</i><div class="tab_text">{{tab.name}}</div></a></li>
+    <li class="tab col s3 {{tab.disabled}}" ng-repeat="tab in vm.tab_menu" ><a class="{{tab.active}}" href="#{{tab.id}}"><i class="material-icons tab_icon">{{tab.icon}}</i><div class="tab_text" ng-click="vm.select_category(tab.name)">{{tab.name}}</div></a></li>
 </ul>
 <div ng-repeat="tab in vm.tab_menu" id="{{tab.id}}">
 	<div class="row">
-		<div class="card col l3" ng-repeat="product in vm.products">
-			<div class="card-image">
-              	<img ng-src="{{product.image[0]}}" style="height:200px; width:auto;">
-              	<span class="card-title">{{product.name}}</span>
+		<div class="card modal-trigger col l3 m6 s12 z-depth-1" ng-repeat="product in vm.products" ng-click="vm.view_details(product)">
+            <div class="card-image waves-effect waves-block waves-light">
+                <img ng-src="{{product.image[0]}}" style="height:200px;width:auto; margin:0 auto" class="responsive-img">
+                <div class="col l7">
+                    <p>
+                        {{product.name}}
+                    </p>
+                </div>
+                <div class="col l5">
+                    <p style="font-size:105%;font-weight:bold" class="right">$ {{product.price}}</p>
+                </div>
             </div>
-            <div class="card-content">
-              	<p>{{product.description}}</p>
-            </div>
-		</div>
+        </div>
 	</div>
+    <div class="right">
+        <a class="btn"><i class="fa fa-plus-square left"></i>Browse More Indoor Product</a>
+    </div>
+</div>
+
+<div id="view_details" class="modal" style="height:auto">
+    <div class="modal-content">
+        <div class="row" style="margin-bottom:0">
+            <div class="col s12 m8 l5">
+                <img src="{{vm.product_details.image[0]}}" class="responsive-img center" style="height:auto: width:100%;margin:0 auto">
+            </div>
+            <div class="col s12 m4 l2">
+                <ul class="center">
+                    <li class="col s12 m12 l12" ng-repeat="image in vm.product_details.image"><img ng-src="{{image}}" style="height:auto; width:100%"></li>
+                </ul>
+            </div>  
+            <div class="col s12 m12 l5">
+                <p><b>Name:</b> {{vm.product_details.name}}</p>
+                <p><b>SKU:</b> {{vm.product_details.sku}}</p>
+                <p><b>Price:</b> {{vm.product_details.price}}</p>
+                <p><b>Description:</b> {{vm.product_details.description}}</p>
+                <div class="divider"></div>
+                <div class="col s12 m6 l12">
+                    <div class="col l6">
+                        Avaliable color
+                        <p ng-repeat="size in vm.product_details.size">
+                            <input name="size" type="radio" id="{{size}}"/>
+                            <label for="{{size}}">{{size}}</label>
+                        </p>
+                    </div>
+                    <div class="col l6">
+                        <div class="col l12">
+                        Quantity: 
+                            <input  type="text" class="right" length="3" min="0" size="3" maxlength="3" value="1">
+                        </div>
+                        <div class="col l12 ">
+                            <button class="right waves-effect waves-light orange lighten-2 btn-floating " type="submit" name="action"><i class="fa fa-star fa-2x center"></i></button>
+                            <button class="right btn-floating waves-effect waves-light pink" type="submit" name="action"><i class="fa fa-heart fa-2x center"></i></button>
+                        </div>
+                    </div>
+                  
+                    
+                </div>
+                <div class="row">
+                    <button class="btn waves-effect waves-light green lighten-1 right"><i class="fa fa-cart-plus left"></i>Add to Cart</button>        
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

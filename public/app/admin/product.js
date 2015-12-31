@@ -16,7 +16,6 @@ function AdminProductController($rootScope,users,$scope,File_Upload,$q,cfpLoadin
     vm.users = users;
     vm.categories = [];
     vm.products = [];
-    // vm.product = [];
     vm.images_selected = [];
     vm.images_selected_uploaded = [];
     vm.colors = [{name: 'Color', children: []}];
