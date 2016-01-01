@@ -30,6 +30,9 @@ function AdminProductController($rootScope,users,$scope,File_Upload,$q,cfpLoadin
     vm.static_user_page = static_user_page;
     vm.display_product = display_product;
     vm.product_load = product_load;
+    vm.view_product = view_product;
+    vm.edit_product_confirm = edit_product_confirm;
+    vm.temp_product = [];
 
     vm.number = 0;
     vm.current_page = 1;
@@ -203,4 +206,17 @@ function AdminProductController($rootScope,users,$scope,File_Upload,$q,cfpLoadin
         image.children.splice($index, 1);
         vm.images_selected.splice($index,1);
     }
+
+    function view_product(product){
+        console.log(product);
+        vm.product_details = angular.copy(product);
+        $('#edit_product').openModal();
+        
+    }
+
+    function edit_product_confirm(product){
+        console.log(product)
+    }
 }
+
+//angular copy WOW!

@@ -57,7 +57,7 @@ exports.get = function (req, res) {
     Product.find({main_category:type}, null, {
         skip: skip,
         limit: size
-    }, function (err, product) {
+    }).populate('discount.selected_user').exec(function (err, product) {
         if(err) {
             res.json({response:err});
         } else {
