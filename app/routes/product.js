@@ -31,6 +31,10 @@ exports.post = function (req, res) {
         new_product.size.push(req.body[0].product_size[0].children[i].name)
     }
     for(var i=0; i < req.body[0].product_discount[0].children.length; i++){
+        console.log((req.body[0].product_discount[0].children[i]));
+        if(req.body[0].product_discount[0].children[i].selected_user === '' || !req.body[0].product_discount[0].children[i]){
+            req.body[0].product_discount[0].children[i].selected_user = null;
+        }
         new_product.discount.push(req.body[0].product_discount[0].children[i])
     }
     

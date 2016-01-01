@@ -18,8 +18,8 @@ function HomeController($rootScope,$scope,Product,cfpLoadingBar) {
 
     $rootScope.home_default = true;
     vm.tab_menu = 	[
-					    {name:'Outdoor',disabled:'',active:'',id:'outdoor', icon:'event_seat'},
-					    {name:'Indoor',disabled:'',active:'active',id:'indoor',icon:'opacity'}
+					    {name:'Outdoor',disabled:'',active:'active',id:'outdoor', icon:'event_seat'},
+					    {name:'Indoor',disabled:'',active:'',id:'indoor',icon:'opacity'}
 				   	];
                     
     angular.element(document).ready(function () {
@@ -31,6 +31,7 @@ function HomeController($rootScope,$scope,Product,cfpLoadingBar) {
         cfpLoadingBar.start();
         Product.get({page : 1, size:vm.size, type:vm.category_type, location:'admin'},function(res){
             vm.products = (res.response.product);
+            vm.done = true;
             cfpLoadingBar.complete();
         });
     }

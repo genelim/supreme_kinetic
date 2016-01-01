@@ -1,6 +1,6 @@
 <ul class="tabs">
-    <li class="tab col s3"><a href="#product_outdoor" ng-click="vm.product_load('outdoor')">Outdoor</a></li>
-    <li class="tab col s3"><a class="" href="#product_indoor" ng-click="vm.product_load('indoor')">Indoor</a></li>
+    <li class="tab col s3"><a ng-click="vm.product_load('outdoor')">Outdoor</a></li>
+    <li class="tab col s3"><a class="" ng-click="vm.product_load('indoor')">Indoor</a></li>
 </ul>
 <div id="product_outdoor">
     <div class="row ">
@@ -16,7 +16,7 @@
                 <div class="content">
                     <table class="highlight">
                         <thead>
-                            <tr>
+                            <tr ng-if="vm.products[0]._id">
                                 <th data-field="">Select</th>
                                 <th data-field="sku">SKU</th>
                                 <th data-field="image">Image</th>
@@ -25,6 +25,9 @@
                                 <th data-field="price">Price</th>
                                 <th data-field="status">Status</th>
                                 <th data-field="">Action</th>
+                            </tr>
+                            <tr ng-if="!vm.products[0]._id">
+                                <td data-field=""><b>No Product Available.</b> <i>Click on the green plus sign button to add a new product</i></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -41,54 +44,7 @@
                                 <td>${{product.price}}</td>
                                 <td class="green-text">{{product.status}}</td>
                                 <td><a class="btn z-depth-0 blue"><i class="mdi mdi-editor-mode-edit"></i></a></td>
-                            </tr>                         
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div id="product_indoor">
-    <div class="row ">
-        <div class="col s12">
-            <div class="card">
-                <div class="title">
-                    <h5>Products</h5>
-                    <div class="btn-group right">
-                        <a class="btn btn-small green lighten-1 z-depth-0" ng-click="vm.add_product()"><i class="mdi mdi-content-add"></i></a>
-                        <a class="btn btn-small red lighten-1 z-depth-0"><i class="mdi mdi-action-delete"></i></a>
-                    </div>
-                </div>
-                <div class="content">
-                    <table class="highlight">
-                        <thead>
-                            <tr>
-                                <th data-field="">Select</th>
-                                <th data-field="sku">SKU</th>
-                                <th data-field="image">Image</th>
-                                <th data-field="name">Product Name</th>
-                                <th data-field="stock">Stock</th>
-                                <th data-field="price">Price</th>
-                                <th data-field="status">Status</th>
-                                <th data-field="">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="product in vm.products">
-                                <th><input type="checkbox" id="{{product._id}}" /><label for="{{product._id}}"></label></th>
-                                <th>{{product.sku}}</th>
-                                <td><img ng-src="{{product.image[0]}}" style="height:50px; width:auto;" class="responsive-img"></td>
-                                <td><strong class="grey-text text-darken-2">{{product.name}}</strong><br/>
-                                    <label class="grey-text">
-                                        {{product.description}}
-                                    </label>
-                                </td>
-                                <td>{{product.quantity}}</td>
-                                <td>${{product.price}}</td>
-                                <td class="green-text">Active</td>
-                                <td><a class="btn z-depth-0 blue"><i class="mdi mdi-editor-mode-edit"></i></a></td>
-                            </tr>                         
+                            </tr>                     
                         </tbody>
                     </table>
                 </div>
