@@ -42,7 +42,7 @@
                 <ul class="collection col l12">
                     <li class="collection-item" style="background: #FAFAFA;">
                         <ul>
-                            <li ng-repeat="color_select in vm.product_details.color" style="padding-bottom:1em">
+                            <li ng-repeat="color_select in vm.product_details.color track by $index" style="padding-bottom:1em">
                                 <div class="row" style="margin-bottom:0px;">
                                     <span class="col l10 m10 s10">
                                         <button colorpicker type="button" colorpicker-position="top" ng-model="color_select" ng-style="{background: color_select}" class="btn col l12 m12 s12"></button>
@@ -54,7 +54,7 @@
                                 </div>
                             </li>
                             <li class="center">
-                                <a href ng-click="vm.new_color(color, $event)"><i class="fa fa-plus fa-2x"></i></a>
+                                <a href ng-click="vm.edit_add_color(vm.product_details.color, $event)"><i class="fa fa-plus fa-2x"></i></a>
                             </li>
                         </ul>
                     </li>
@@ -65,7 +65,7 @@
                 <ul class="collection col l12">
                     <li class="collection-item" style="background: #FAFAFA;">
                         <ul>
-                            <li ng-repeat="size_select in vm.product_details.size" style="padding-bottom:1em">
+                            <li ng-repeat="size_select in vm.product_details.size track by $index" style="padding-bottom:1em">
                                 <div class="row" style="margin-bottom:0px;">
                                     <span class="col l10 m10 s10">
                                         <input type="text" ng-model="size_select" style="margin:0; height: 35px; text-align: center;"/>
@@ -76,7 +76,7 @@
                                 </div>
                             </li>
                             <li class="center">
-                                <a href ng-click="vm.new_size(size, $event)"><i class="fa fa-plus fa-2x"></i></a>
+                                <a href ng-click="vm.edit_add_size(vm.product_details.size, $event)"><i class="fa fa-plus fa-2x"></i></a>
                             </li>
                         </ul>
                     </li>
@@ -87,7 +87,7 @@
                 <ul class="collection col l12">
                     <li class="collection-item" style="background: #FAFAFA;">
                         <ul  ng-model="image.children">
-                            <li ng-repeat="image_select in vm.product_details.image" style="padding-bottom:1em">
+                            <li ng-repeat="image_select in vm.product_details.image track by $index" style="padding-bottom:1em">
                                 <div class="row" style="margin-bottom:0px;">
                                     <span class="col l10 m10 s10">
                                     <div class="file-field input-field col s8 m8  l8">
@@ -107,7 +107,7 @@
                                 </div>
                             </li>
                             <li class="center">
-                                <a href ng-click="vm.new_image(image, $event)"><i class="fa fa-plus fa-2x"></i></a>
+                                <a href ng-click="vm.edit_add_image(vm.product_details.image, $event)"><i class="fa fa-plus fa-2x"></i></a>
                             </li>
                         </ul>
                     </li>
@@ -118,7 +118,7 @@
                 <ul class="collection col l12" style="overflow:visible;">
                     <li class="collection-item" style="padding-left: 0; padding-right: 0;background: #FAFAFA;">
                         <ul>
-                            <li ng-repeat="discount_select in vm.product_details.discount" style=" padding:2em 1em; background:#F7F7F7; margin-bottom:0.5em;"> 
+                            <li ng-repeat="discount_select in vm.product_details.discount track by $index" style=" padding:2em 1em; background:#F7F7F7; margin-bottom:0.5em;"> 
                                 <div class="row" style="margin-bottom:0px;">
                                     <span class="col l10 m10 s10 grey-text">
                                         <span class="col l12 m12 s12">
@@ -126,8 +126,7 @@
                                             <label class="discount_code">{{discount_select.discount_code | uppercase}}</label>
                                         </span>
                                         <span class="col l6 m12 s12">
-                                            Date<input type="date" ng-model="discount_select.date 
-                                            | date:'yyyy-MM-dd'" class="black-text">
+                                            Date<input type="text" disabled ng-model="discount_select.date | date:'yyyy-MM-dd'" class="black-text">
                                         </span>
                                         <span class="col l6 m12 s12">
                                             Percentage <input type="text" ng-model="discount_select.percentage" class="center black-text">
@@ -147,7 +146,7 @@
                                         <span class="col l12 m12 s12">
                                             Specifying User <label>(Leave it empty to specify all users)</label>
                                             <select ng-model="discount_select.selected_user[0]._id" class="browser-default black-text">
-                                                <option value="" disabled selected>Select</option>
+                                                <option value="" selected>Select</option>
                                                 <option class="black-text" ng-repeat="user in vm.users.response" value="{{user._id}}" ng-if="user.first_name !== ''" ng-selected="discount_select.selected_user[0]._id == user._id">{{user.first_name}} {{user.last_name}}</option>
                                             </select>
                                         </span>
@@ -158,7 +157,7 @@
                                 </div>
                             </li>
                             <li class="center">
-                                <a href ng-click="vm.new_discount(discount, $event)"><i class="fa fa-plus fa-2x"></i></a>
+                                <a href ng-click="vm.edit_add_discount(vm.product_details.discount, $event)"><i class="fa fa-plus fa-2x"></i></a>
                             </li>
                         </ul>
                     </li>
@@ -169,4 +168,4 @@
     <div class="modal-footer">
       	<a class=" modal-action waves-effect waves-green btn-flat" ng-click="vm.edit_product_confirm(vm.product_details)">Update</a>
     </div>
-  </div>
+</div>

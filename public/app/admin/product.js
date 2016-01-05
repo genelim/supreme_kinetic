@@ -33,6 +33,10 @@ function AdminProductController($rootScope,users,$scope,File_Upload,$q,cfpLoadin
     vm.view_product = view_product;
     vm.edit_product_confirm = edit_product_confirm;
     vm.temp_product = [];
+    vm.edit_add_color = edit_add_color;
+    vm.edit_add_size = edit_add_size;
+    vm.edit_add_image = edit_add_image;
+    vm.edit_add_discount = edit_add_discount;
 
     vm.number = 0;
     vm.current_page = 1;
@@ -217,6 +221,27 @@ function AdminProductController($rootScope,users,$scope,File_Upload,$q,cfpLoadin
     function edit_product_confirm(product){
         console.log(product)
     }
+
+    function edit_add_color(color, $event) {
+        console.log(color)
+        color.push('#26a69a');
+        $event.preventDefault();
+    } 
+
+    function edit_add_size(size, $event) {
+        size.push('');
+        $event.preventDefault();
+    }   
+
+    function edit_add_image(image, $event) {
+        image.push('');
+        $event.preventDefault();
+    } 
+
+    function edit_add_discount(discount, $event) {
+        discount.push({date:new Date(),percentage:0,days:0,duration_type:'Day(s)',selected_user:'',discount_validate:false,discount_code:discount_code()});
+        $event.preventDefault();
+    }   
 }
 
 //angular copy WOW!
