@@ -31,7 +31,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="product in vm.products" ng-click="vm.view_product(product)">
+                            <tr ng-repeat="product in vm.products">
                                 <th><input type="checkbox" id="{{product._id}}" /><label for="{{product._id}}"></label></th>
                                 <th>{{product.sku}}</th>
                                 <td><img ng-src="{{product.image[0]}}" style="height:50px; width:auto;" class="responsive-img"></td>
@@ -43,7 +43,7 @@
                                 <td>{{product.quantity}}</td>
                                 <td>${{product.price}}</td>
                                 <td class="green-text">{{product.status}}</td>
-                                <td class="btn-group"><a class="btn btn-small z-depth-0 blue lighten-1"><i class="mdi mdi-editor-mode-edit"></i></a>
+                                <td class="btn-group"><a ng-click="vm.view_product(product)" class="btn btn-small z-depth-0 blue lighten-1"><i class="mdi mdi-editor-mode-edit"></i></a>
                                 <a class="btn btn-small z-depth-0 grey lighten-1"><i class="fa fa-info"></i></a></td>
                             </tr>                     
                         </tbody>

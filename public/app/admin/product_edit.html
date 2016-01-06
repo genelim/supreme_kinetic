@@ -1,10 +1,16 @@
 <div id="edit_product" class="modal modal-fixed-footer">
     <div class="modal-content">
         <div class="row">
-		    <div class="input-field col s12 m12 l12">
+        <div class="row">
+		    <div class="input-field col s6 m8 l9">
 			    <input id="productname" type="text" ng-model="vm.product_details.name">
 		    	<label for="productname" class="active">Product Name</label>
 		    </div>
+            <p class="right">
+                <input type="checkbox" class="filled-in" id="recommended" checked="checked" />
+                <label for="recommended">Recommended</label>
+            </p>
+            </div>
 		    <div class="input-field col s4 m4 l4">
 		        <input id="model" type="text" ng-model="vm.product_details.model">
 		        <label for="model" class="active">Model</label>
@@ -45,7 +51,7 @@
                             <li ng-repeat="color_select in vm.product_details.color track by $index" style="padding-bottom:1em">
                                 <div class="row" style="margin-bottom:0px;">
                                     <span class="col l10 m10 s10">
-                                        <button colorpicker type="button" colorpicker-position="top" ng-model="color_select" ng-style="{background: color_select}" class="btn col l12 m12 s12"></button>
+                                        <button colorpicker type="button" colorpicker-position="top" ng-model="vm.product_details.color[$index]" ng-style="{background: vm.product_details.color[$index]}" class="btn col l12 m12 s12"></button>
 
                                     </span>
                                     <span class="right  l2 m2 s2" ng-hide="color_select.length == 1">
@@ -68,7 +74,7 @@
                             <li ng-repeat="size_select in vm.product_details.size track by $index" style="padding-bottom:1em">
                                 <div class="row" style="margin-bottom:0px;">
                                     <span class="col l10 m10 s10">
-                                        <input type="text" ng-model="size_select" style="margin:0; height: 35px; text-align: center;"/>
+                                        <input type="text" ng-model="vm.product_details.size[$index]" style="margin:0; height: 35px; text-align: center;"/>
                                     </span>
                                     <span class="right  l2 m2 s2" ng-hide="size_select.length == 1">
                                         <a href ng-click="vm.product_details.size.splice($index, 1)"><i class="fa fa-times fa-2x"></i></a>
@@ -93,7 +99,7 @@
                                     <div class="file-field input-field col s8 m8  l8">
                                         <div class="btn">
                                             <span>Image</span>
-                                            <input onchange="angular.element(this).scope().upload(this,angular.element(this).scope().$index)" type="file" />
+                                            <input onchange="angular.element(this).scope().edit_upload(this,angular.element(this).scope().$index)" type="file" />
                                         </div>
                                         <div class="file-path-wrapper">
                                             <input class="file-path" type="text">
@@ -123,6 +129,7 @@
                                     <span class="col l10 m10 s10 grey-text">
                                         <span class="col l12 m12 s12">
                                             Discount Code: 
+                                            
                                             <label class="discount_code">{{discount_select.discount_code | uppercase}}</label>
                                         </span>
                                         <span class="col l6 m12 s12">

@@ -37,6 +37,7 @@ function AdminProductController($rootScope,users,$scope,File_Upload,$q,cfpLoadin
     vm.edit_add_size = edit_add_size;
     vm.edit_add_image = edit_add_image;
     vm.edit_add_discount = edit_add_discount;
+    vm.edit_images_selected = [];
 
     vm.number = 0;
     vm.current_page = 1;
@@ -212,18 +213,44 @@ function AdminProductController($rootScope,users,$scope,File_Upload,$q,cfpLoadin
     }
 
     function view_product(product){
-        console.log(product);
+        console.log(angular.copy(product));
+
         vm.product_details = angular.copy(product);
+        vm.product_details_image_copy = angular.copy(product.image);
+        console.log(vm.product_details);
         $('#edit_product').openModal();
         
     }
 
     function edit_product_confirm(product){
-        console.log(product)
+        var uploadUrl = "/api/upload";
+        var promises = [];
+        angular.forEach(vm.edit_images_selected, function(value){
+            promises.push(File_Upload.uploadFileToUrl(value, uploadUrl)
+                .success(function(result){
+                    vm.images_selected_uploaded.push(result);
+                })
+            );
+        });
+        $q.all(promises).then(function () {
+            var count = 0;
+            for(var i = 0; i < vm.product_details.image.length; i++){
+                if (typeof vm.product_details_image_copy[i] === 'undefined' || vm.product_details_image_copy[i] === null ||  vm.product_details_image_copy[i] === undefined && typeof vm.product_details_image_copy[i].indexOf("/assets/images/upload/")) {
+                    vm.product_details_image_copy[i] = vm.images_selected_uploaded[count].path;
+                    count++;
+                }else if (vm.product_details.image[i].indexOf("/assets/images/upload/") > -1 ){
+                }else if(vm.edit_images_selected[i] !== vm.product_details_image_copy[i]){
+                    vm.product_details_image_copy[i] = vm.images_selected_uploaded[count].path;
+                    count++;
+                }
+            }
+            vm.product_details.image = vm.product_details_image_copy
+            console.log(vm.product_details)
+            console.log()
+        });
     }
 
     function edit_add_color(color, $event) {
-        console.log(color)
         color.push('#26a69a');
         $event.preventDefault();
     } 
@@ -242,6 +269,16 @@ function AdminProductController($rootScope,users,$scope,File_Upload,$q,cfpLoadin
         discount.push({date:new Date(),percentage:0,days:0,duration_type:'Day(s)',selected_user:'',discount_validate:false,discount_code:discount_code()});
         $event.preventDefault();
     }   
+
+    $scope.edit_upload = function(element,a) {
+        $scope.$apply(function () {
+            vm.product_details.image[a] = URL.createObjectURL(element.files[0])   
+        });
+        vm.edit_images_selected.push(element.files[0]);
+    };
 }
 
 //angular copy WOW!
+
+
+
