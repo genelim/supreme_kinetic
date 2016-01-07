@@ -19,6 +19,7 @@ app.get('/api/user/:page/:size/:type', user.get);
 
 app.get('/api/product/:page/:size/:type/:location', product.get);
 app.post('/api/product', product.post);
+app.put('/api/product', product.put);
 
 app.post('/api/upload', upload.image);
 

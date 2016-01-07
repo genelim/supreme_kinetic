@@ -67,3 +67,12 @@ exports.get = function (req, res) {
         }
     });  
 };
+
+exports.put = function (req, res) {
+    var id = req.body._id;
+    delete req.body._id;
+    var data = req.body;
+    Product.update({_id: id}, { $set: data}).exec(function(err,product){
+        res.json({response:product})
+    })
+};

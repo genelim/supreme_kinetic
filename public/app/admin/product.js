@@ -235,18 +235,28 @@ function AdminProductController($rootScope,users,$scope,File_Upload,$q,cfpLoadin
         $q.all(promises).then(function () {
             var count = 0;
             for(var i = 0; i < vm.product_details.image.length; i++){
-                if (typeof vm.product_details_image_copy[i] === 'undefined' || vm.product_details_image_copy[i] === null ||  vm.product_details_image_copy[i] === undefined && typeof vm.product_details_image_copy[i].indexOf("/assets/images/upload/")) {
+                if(vm.images_selected_uploaded.length < 1){
+                }else if (vm.product_details.image[i].indexOf("/assets/images/upload/") > -1 ){
+                }else if (typeof vm.product_details_image_copy[i] === 'undefined' || vm.product_details_image_copy[i] === null ||  vm.product_details_image_copy[i] === undefined || typeof vm.product_details_image_copy[i].indexOf("/assets/images/upload/")) {
                     vm.product_details_image_copy[i] = vm.images_selected_uploaded[count].path;
                     count++;
-                }else if (vm.product_details.image[i].indexOf("/assets/images/upload/") > -1 ){
                 }else if(vm.edit_images_selected[i] !== vm.product_details_image_copy[i]){
                     vm.product_details_image_copy[i] = vm.images_selected_uploaded[count].path;
                     count++;
                 }
             }
-            vm.product_details.image = vm.product_details_image_copy
-            console.log(vm.product_details)
-            console.log()
+            vm.product_details.image = vm.product_details_image_copy;
+            vm.product_details.updated = {date:new Date(), user:Logger.user_details._id};
+            Product.update({_id:vm.product_details._id},vm.product_details, function(res) {
+                if(res.response.nModified === 1){
+                    vm.product_details = [];
+                    vm.edit_images_selected = [];
+                    vm.product_details_image_copy = [];
+                    vm.images_selected_uploaded = [];
+                    display_product(vm.current_page);
+                    $('#edit_product').closeModal();
+                }
+            });
         });
     }
 
