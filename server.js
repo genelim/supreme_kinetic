@@ -18,6 +18,7 @@ app.get('/api/user/:discount', user.discount);
 app.get('/api/user/:page/:size/:type', user.get);
 
 app.get('/api/product/:page/:size/:type/:location', product.get);
+app.get('/api/product_recommended', product.get_recommended);
 app.post('/api/product', product.post);
 app.put('/api/product', product.put);
 

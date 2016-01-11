@@ -76,3 +76,9 @@ exports.put = function (req, res) {
         res.json({response:product})
     })
 };
+
+exports.get_recommended = function (req, res) {
+    Product.find({recommended:true}).exec(function (err, product){
+        res.json({response:product})
+    })
+};

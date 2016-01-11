@@ -1,0 +1,20 @@
+
+<div class="row">
+	<h5>Recommended</h5>
+	<div class="col s12 l12">
+		<div class="card col l4 z-depth-0" href="#" ng-repeat="recommended in vm.product_recommended">
+			<div class="card-image waves-effect waves-block waves-light">
+				<img ng-src="{{recommended.image[0]}}" style="height:375px;width:auto" class="responsive-img">
+				<div class="col l7">
+					<p>{{recommended.name}}</p>
+				</div>
+				<div class="col l5">
+					<p style="font-size:105%;font-weight:bold;text-align:right">RM {{recommended.price}}</p>
+				</div>
+				<div class="col l12">
+					To look for more silimar product<a href="outdoorproduct.html" class="btn-floating btn waves-effect waves-light red right"><i class="fa fa-plus"></i></a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
