@@ -6,7 +6,7 @@
             </div>
             <div class="col s12 m4 l2">
                 <ul class="center">
-                    <li class="col s12 m12 l12" ng-repeat="image in vm.product_details.image"><img ng-src="{{image}}" style="height:auto; width:100%"></li>
+                    <li class="col s12 m12 l12" ng-repeat="image in vm.product_details.image track by $index"><img ng-src="{{image}}" style="height:auto; width:100%"></li>
                 </ul>
             </div>  
             <div class="col s12 m12 l5">

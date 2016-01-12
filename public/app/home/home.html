@@ -13,13 +13,13 @@
     </ul>
 </div>
 <ul class="tabs">
-    <li class="tab col s3 {{tab.disabled}}" ng-repeat="tab in vm.tab_menu" ><a class="{{tab.active}}" href="#{{tab.id}}"><i class="material-icons tab_icon">{{tab.icon}}</i><div class="tab_text" ng-click="vm.select_category(tab.name)">{{tab.name}}</div></a></li>
+    <li class="tab col s3 {{tab.disabled}}" ng-repeat="tab in vm.tab_menu track by $index" ><a class="{{tab.active}}" href="#{{tab.id}}"><i class="material-icons tab_icon">{{tab.icon}}</i><div class="tab_text" ng-click="vm.select_category(tab.name)">{{tab.name}}</div></a></li>
 </ul>
-<div ng-repeat="tab in vm.tab_menu" id="{{tab.id}}" class="row">
+<div ng-repeat="tab in vm.tab_menu track by $index" id="{{tab.id}}" class="row">
 	<div class="container">
 	    <div ng-include src="'app/home/product.html'"></div>
 	    <div class="right" ng-if="vm.done && vm.products[0]._id">
-	        <a class="btn"><i class="fa fa-plus-square left"></i>Browse More</a>
+	        <a class="btn" href="{{tab.name  | lowercase}}_product"><i class="fa fa-plus-square left"></i>Browse More</a>
 	    </div>
     </div>
 </div>
