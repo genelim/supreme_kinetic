@@ -19,7 +19,7 @@
 	<div class="container">
 	    <div ng-include src="'app/home/product.html'"></div>
 	    <div class="right" ng-if="vm.done && vm.products[0]._id">
-	        <a class="btn" href="{{tab.name  | lowercase}}_product"><i class="fa fa-plus-square left"></i>Browse More</a>
+	        <a class="btn" href="browse_more/{{tab.name  | lowercase}}"><i class="fa fa-plus-square left"></i>Browse More</a>
 	    </div>
     </div>
 </div>

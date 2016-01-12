@@ -30,7 +30,6 @@ function HomeController($rootScope,$scope,Product,cfpLoadingBar,$http) {
         vm.product_get();
         vm.product_get_recommended();
         $('.slider').slider({full_width: true,indicators:false});
-
     });
 
     function product_get(){

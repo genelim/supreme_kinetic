@@ -51,6 +51,12 @@ function config($urlRouterProvider,$stateProvider,$locationProvider,cfpLoadingBa
         templateUrl: 'app/admin/setting.html',
         controller: 'AdminSettingController',
         controllerAs: 'vm'
+    })
+    .state('browse_more', {
+        url: '/browse_more/:category',
+        templateUrl: 'app/product_view/browse_more.html',
+        controller: 'BrowseMoreController',
+        controllerAs: 'vm'
     });
 
     $locationProvider.html5Mode({
