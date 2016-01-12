@@ -5,7 +5,7 @@ angular
 config.$inject = ['$urlRouterProvider','$stateProvider','$locationProvider','cfpLoadingBarProvider'];
 
 function config($urlRouterProvider,$stateProvider,$locationProvider,cfpLoadingBarProvider) {
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/404');
     $urlRouterProvider.when('/admin', '/admin/dashboard');
     $urlRouterProvider.when('/admin/', '/admin/dashboard');
 
@@ -14,6 +14,12 @@ function config($urlRouterProvider,$stateProvider,$locationProvider,cfpLoadingBa
         url:'/',
         templateUrl: 'app/home/home.html',
         controller: 'HomeController',
+        controllerAs: 'vm'
+    })
+    .state('404', {
+        url:'/404',
+        templateUrl: 'app/error/404.html',
+        controller: '404Controller',
         controllerAs: 'vm'
     })
     .state('admin', {

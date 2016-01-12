@@ -29,6 +29,8 @@ function HomeController($rootScope,$scope,Product,cfpLoadingBar,$http) {
         $('ul.tabs').tabs();
         vm.product_get();
         vm.product_get_recommended();
+        $('.slider').slider({full_width: true,indicators:false});
+
     });
 
     function product_get(){
