@@ -38,6 +38,8 @@ function AdminProductController($rootScope,users,$scope,File_Upload,$q,cfpLoadin
     vm.edit_add_image = edit_add_image;
     vm.edit_add_discount = edit_add_discount;
     vm.edit_images_selected = [];
+    vm.delete_product = delete_product;
+    vm.selected_product = [];
 
     vm.number = 0;
     vm.current_page = 1;
@@ -286,6 +288,23 @@ function AdminProductController($rootScope,users,$scope,File_Upload,$q,cfpLoadin
         });
         vm.edit_images_selected.push(element.files[0]);
     };
+
+    function delete_product() {
+        vm.selected_product = [];
+        for(var i = 0; i < vm.products.length; i++){
+            if(vm.products[i].selected){
+                vm.selected_product.push(vm.products[i]._id);
+            }
+        }
+        var params = {id: vm.selected_product};
+        Product.delete(params,function(res){
+            if(res.response.ok === 1){
+                product_load(vm.category_type)
+            }
+        },function(){
+            alert('Server Error, Contact Developer')
+        });
+    }   
 }
 
 //angular copy WOW!

@@ -2,21 +2,21 @@ angular
 	.module('app')
 	.controller('BrowseMoreController', BrowseMoreController)
     .filter('unique', function() {
-   return function(collection, keyname) {
-      var output = [], 
-          keys = [];
+       return function(collection, keyname) {
+          var output = [], 
+              keys = [];
 
-      angular.forEach(collection, function(item) {
-          var key = item[keyname];
-          if(keys.indexOf(key) === -1) {
-              keys.push(key);
-              output.push(item);
-          }
-      });
+          angular.forEach(collection, function(item) {
+              var key = item[keyname];
+              if(keys.indexOf(key) === -1) {
+                  keys.push(key);
+                  output.push(item);
+              }
+          });
 
-      return output;
-   };
-});
+          return output;
+       };
+    });
 
 BrowseMoreController.$inject = ['$stateParams','Product','cfpLoadingBar','$http','Product_Brand','Product_Category'];
 
@@ -90,6 +90,10 @@ function BrowseMoreController($stateParams, Product, cfpLoadingBar, $http,Produc
     }
 
     function sort_price(price){
+        if( angular.isUndefined(price) || !price.low || !price.high){
+            Materialize.toast('Something is still missing', 2000);
+            return;
+        }
         vm.price_low =price.low;
         vm.price_high = price.high;
         vm.current_page = 1;
@@ -113,6 +117,7 @@ function BrowseMoreController($stateParams, Product, cfpLoadingBar, $http,Produc
         }
         $http.get('/api/sort_category', { params:{page : vm.current_page, size:vm.size,sub_category:vm.selected_category, category: $stateParams.category}}).success(function(product){
             vm.products = product.response.product;
+            console.log(product.response.product);
             vm.number = ( Math.ceil(product.response.count/vm.size));
             cfpLoadingBar.complete();
             vm.category_check = 'category';

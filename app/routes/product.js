@@ -145,3 +145,14 @@ exports.product_brand = function (req, res) {
         res.json({response:product})
     })
 };
+
+exports.deleted = function (req, res) {
+    var id_arr = req.params.id.split(',')
+    Product.remove({_id: {$in: id_arr}}, function (err, product) {
+        if(err) {
+            res.json({response:err});
+        } else {
+            res.json({response:product});
+        }
+    });
+};

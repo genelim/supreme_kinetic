@@ -10,7 +10,7 @@
                     <h5>Products</h5>
                     <div class="btn-group right">
                         <a class="btn btn-small green lighten-1 z-depth-0" ng-click="vm.add_product()"><i class="mdi mdi-content-add"></i></a>
-                        <a class="btn btn-small red lighten-1 z-depth-0"><i class="mdi mdi-action-delete"></i></a>
+                        <a class="btn btn-small red lighten-1 z-depth-0" ng-click="vm.delete_product()"><i class="mdi mdi-action-delete"></i></a>
                     </div>
                 </div>
                 <div class="content">
@@ -32,7 +32,7 @@
                         </thead>
                         <tbody>
                             <tr ng-repeat="product in vm.products">
-                                <th><input type="checkbox" id="{{product._id}}" /><label for="{{product._id}}"></label></th>
+                                <th><input type="checkbox" ng-model="product.selected" id="{{product._id}}" /><label for="{{product._id}}"></label></th>
                                 <th>{{product.sku}}</th>
                                 <td><img ng-src="{{product.image[0]}}" style="height:50px; width:auto;" class="responsive-img"></td>
                                 <td><strong class="grey-text text-darken-2">{{product.name}}</strong><br/>
