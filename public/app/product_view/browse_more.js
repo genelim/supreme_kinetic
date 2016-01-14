@@ -31,7 +31,7 @@ function BrowseMoreController($stateParams, Product, cfpLoadingBar, $http,Produc
     vm.selected_brand= [];
     vm.number = 0;
     vm.current_page = 1;
-	vm.size = 2;
+	vm.size = 8;
     vm.sort_brand = sort_brand;
     vm.sort_price = sort_price;
 	vm.products = null;
