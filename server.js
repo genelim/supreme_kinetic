@@ -21,12 +21,17 @@ app.get('/api/product/:page/:size/:type/:location', product.get);
 app.get('/api/product_recommended', product.get_recommended);
 app.post('/api/product', product.post);
 app.put('/api/product', product.put);
+app.get('/api/sort_price', product.sort_price);
+app.get('/api/sort_category', product.sort_category);
+app.get('/api/sort_brand', product.sort_brand);
+app.get('/api/product_brand/:type', product.product_brand);
 
 app.post('/api/upload', upload.image);
 
 app.get('/api/product_category/:type', product_category.get);
 app.post('/api/product_category', product_category.post);
 app.delete('/api/product_category/:id', product_category.delete);
+
 
 app.all('/*', function(req, res, next) {
     res.sendFile('/public/index.html', { root: __dirname });

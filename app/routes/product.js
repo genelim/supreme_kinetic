@@ -82,3 +82,66 @@ exports.get_recommended = function (req, res) {
         res.json({response:product})
     })
 };
+
+exports.sort_price = function (req, res) {
+    var page = parseInt(req.query.page),
+        size = parseInt(req.query.size),
+        type = req.query.type,
+        skip = page > 0 ? ((page - 1) * size) : 0;
+    Product.find({price:{$gte:req.query.low,$lte:req.query.high},main_category:req.query.category}, null, {
+        skip: skip,
+        limit: size
+    }).exec(function (err, product) {
+        if(err) {
+            res.json({response:err});
+        } else {
+            Product.count({price:{$gte:req.query.low,$lte:req.query.high},main_category:req.query.category},function( err, count){
+                res.json({response:{count:count,product:product}});
+            })
+        }
+    })
+};
+
+exports.sort_category = function (req, res) {
+    var page = parseInt(req.query.page),
+        size = parseInt(req.query.size),
+        type = req.query.category,
+        skip = page > 0 ? ((page - 1) * size) : 0;
+    Product.find({sub_category:{$in: req.query.sub_category},main_category:req.query.category}, null, {
+        skip: skip,
+        limit: size
+    }).exec(function (err, product) {
+        if(err) {
+            res.json({response:err});
+        } else {
+            Product.count({sub_category:{$in: req.query.sub_category},main_category:req.query.category},function( err, count){
+                res.json({response:{count:count,product:product}});
+            })
+        }
+    })
+};
+
+exports.sort_brand = function (req, res) {
+    var page = parseInt(req.query.page),
+        size = parseInt(req.query.size),
+        type = req.query.category,
+        skip = page > 0 ? ((page - 1) * size) : 0;
+    Product.find({brand:{$in: req.query.brand},main_category:req.query.category}, null, {
+        skip: skip,
+        limit: size
+    }).exec(function (err, product) {
+        if(err) {
+            res.json({response:err});
+        } else {
+            Product.count({brand:{$in: req.query.brand},main_category:req.query.category},function( err, count){
+                res.json({response:{count:count,product:product}});
+            })
+        }
+    })
+};
+
+exports.product_brand = function (req, res) {
+    Product.find({main_category:req.params.type}, 'brand').exec(function (err, product){
+        res.json({response:product})
+    })
+};

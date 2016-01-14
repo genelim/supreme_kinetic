@@ -4,30 +4,28 @@
 			<li>
 				<div class="collapsible-header"><i class="material-icons">credit_card</i>Price<i class="material-icons" style="float:right">view_list</i></div>
 				<div class="collapsible-body">
-
-					<form action="#">
-						<p class="range-field">
-							<input type="range" id="test5" >
-						</p>
-					</form>
+					<div class="row center">
+						<div class="input-field col s6 m6 l6">
+							<input id="lowprice" type="text" ng-model="vm.price.low">
+							<label for="lowprice">From</label>
+						</div>
+						<div class="input-field col s6 m6 l6">
+							<input id="highprice" type="text" ng-model="vm.price.high">
+							<label for="highprice">To</label>
+						</div>
+						<button class="btn center" ng-click="vm.sort_price(vm.price)">Sort</button>
+					</div>
 				</div>
 			</li>
 			<li>
 				<div class="collapsible-header"><i class="material-icons">view_module</i>Brand<i class="material-icons" style="float:right">view_list</i></div>
 				<div class="collapsible-body">
 					<div class="collection">
-					    <a href="#!" class="collection-item">
-					    	<input type="checkbox" id="test1" />
-							<label for="test1">Decko</label>
-						</a>
-					    <a href="#!" class="collection-item">
-					    	<input type="checkbox" id="test2" />
-							<label for="test2">Ikea</label>
-					    </a>
-					    <a href="#!" class="collection-item">
-					    	<input type="checkbox" id="test3" />
-							<label for="test3">Tesco</label>
-					    </a>
+					    <p href="#!" class="collection-item" ng-repeat="brand in vm.brands | unique: 'brand'">
+					    	<input type="checkbox" id="{{brand._id}}" ng-model="brand.selected"/>
+							<label for="{{brand._id}}">{{brand.brand}}</label>
+						</p>
+						<button class="btn" ng-click="vm.sort_brand()">Sort</button>
 				    </div>
 				</div>
 			</li>
@@ -35,18 +33,11 @@
 				<div class="collapsible-header"><i class="material-icons">view_quilt</i>Category<i class="material-icons" style="float:right">view_list</i></div>
 				<div class="collapsible-body">
 					<div class="collection">
-					    <a href="#!" class="collection-item">
-					    	<input type="checkbox" id="test4" />
-							<label for="test4">Outdoor Furniture</label>
-						</a>
-					    <a href="#!" class="collection-item">
-					    	<input type="checkbox" id="test5" />
-							<label for="test5">Barbique Grill</label>
-					    </a>
-					    <a href="#!" class="collection-item">
-					    	<input type="checkbox" id="test6" />
-							<label for="test6">Garden Equipment</label>
-					    </a>
+					    <p href="#!" class="collection-item" ng-repeat="category in vm.categories">
+					    	<input type="checkbox" id="{{category._id}}" ng-model="category.selected"/>
+							<label for="{{category._id}}">{{category.sub_category}}</label>
+						</p>
+						<button class="btn" ng-click="vm.sort_category()">Sort</button>
 				    </div>
 				</div>
 			</li>
@@ -65,7 +56,24 @@
 					</div>
 				</div>
 			</div>
-		</div>				
+		</div>	
+		<ul class="pagination center">
+		    <li ng-class="{'disabled': vm.current_page == 1,'waves-effect': vm.current_page != 1}" ng-click="vm.static_user_page(0)">
+		        <a>First</a>
+		    </li>
+		    <li ng-class="{'disabled': vm.current_page == 1,'waves-effect': vm.current_page != 1}" ng-click="vm.previous_user_page()">
+		        <a><i class="material-icons">chevron_left</i></a>
+		    </li>
+		    <li ng-if="$index <= vm.current_page +2 && $index >= vm.current_page-4" ng-repeat="i in vm.pagination_number(vm.number) track by $index" class="waves-effect" ng-class="{active: $index+1 == vm.current_page}" ng-click="vm.display_product($index+1)">
+		        <a>{{$index+1}}</a>
+		    </li>
+		    <li ng-class="{disabled: vm.current_page == vm.number,'waves-effect': vm.current_page != vm.number}" ng-click="vm.next_user_page()">
+		        <a><i class="material-icons">chevron_right</i></a>
+		    </li>
+		    <li ng-class="{disabled: vm.current_page == vm.number,'waves-effect': vm.current_page != vm.number}" ng-click="vm.static_user_page(1)">
+		        <a>Last</a>
+		    </li>
+		</ul>			
 	</div>
 </div>
 
@@ -114,3 +122,4 @@
         </div>
     </div>
 </div>
+
