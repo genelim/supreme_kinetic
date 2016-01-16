@@ -25,6 +25,7 @@ app.get('/api/sort_price', product.sort_price);
 app.get('/api/sort_category', product.sort_category);
 app.get('/api/sort_brand', product.sort_brand);
 app.get('/api/product_brand/:type', product.product_brand);
+app.get('/api/product_recommended_count', product.product_recommended_count);
 app.delete('/api/product/:id', product.deleted);
 
 app.post('/api/upload', upload.image);

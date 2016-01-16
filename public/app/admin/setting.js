@@ -2,20 +2,22 @@ angular
 	.module('app')
 	.controller('AdminSettingController', AdminSettingController);
 
-AdminSettingController.$inject = ['Product_Category','cfpLoadingBar','$rootScope','Logger'];
+AdminSettingController.$inject = ['$http','Product_Category','Product','cfpLoadingBar','$rootScope','Logger'];
 
-function AdminSettingController(Product_Category,cfpLoadingBar,$rootScope,Logger) {
+function AdminSettingController($http,Product_Category,Product,cfpLoadingBar,$rootScope,Logger) {
 	var vm = this;
 	vm.categories = [];
 	vm.category_type = null;
 	vm.new_category = new_category;
 	vm.add_category = add_category;
 	vm.change_category = change_category;
-	vm.delete_category = delete_category;
+    vm.delete_category = delete_category;
+	vm.release = release;
 
 	angular.element(document).ready(function () {
         $('ul.tabs').tabs();
         category_load('sub');
+        get_recommended();
         $rootScope.user_menu = [{name:'Profile',path:'profile'},{name:'Setting',path:'setting'},{name:'Home',path:''}];
         $rootScope.home_default = false;
     });
@@ -66,5 +68,19 @@ function AdminSettingController(Product_Category,cfpLoadingBar,$rootScope,Logger
     			})
             }
     	}
+    }
+    function get_recommended(){
+        $http.get('/api/product_recommended').success(function(product){
+            vm.product_recommended = product.response;
+        })
+    }
+
+    function release(selected){
+        selected.recommended = false;
+        Product.update({_id:selected._id},selected, function(res) {
+            if(res.response.product.nModified === 1){
+                get_recommended();
+            }
+        });
     }
 }

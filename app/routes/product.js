@@ -73,7 +73,9 @@ exports.put = function (req, res) {
     delete req.body._id;
     var data = req.body;
     Product.update({_id: id}, { $set: data}).exec(function(err,product){
-        res.json({response:product})
+        Product.count({recommended:true},function( err, count){
+            res.json({response:{count:count,product:product}});
+        })
     })
 };
 
@@ -155,4 +157,10 @@ exports.deleted = function (req, res) {
             res.json({response:product});
         }
     });
+};
+
+exports.product_recommended_count = function (req, res) {
+    Product.count({recommended:true},function( err, count){
+        res.json({response:count});
+    })
 };

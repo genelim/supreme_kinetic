@@ -2,9 +2,9 @@ angular
 	.module('app')
 	.controller('AdminProductController', AdminProductController);
 
-AdminProductController.$inject = ['$rootScope','users','$scope','File_Upload','$q','cfpLoadingBar','Product','Product_Category','Logger'];
+AdminProductController.$inject = ['$http','$rootScope','users','$scope','File_Upload','$q','cfpLoadingBar','Product','Product_Category','Logger'];
 
-function AdminProductController($rootScope,users,$scope,File_Upload,$q,cfpLoadingBar,Product,Product_Category,Logger) {
+function AdminProductController($http, $rootScope,users,$scope,File_Upload,$q,cfpLoadingBar,Product,Product_Category,Logger) {
 	var vm = this;
 	vm.add_product = add_product;
     vm.add_product_confirm = add_product_confirm;
@@ -37,6 +37,7 @@ function AdminProductController($rootScope,users,$scope,File_Upload,$q,cfpLoadin
     vm.edit_add_size = edit_add_size;
     vm.edit_add_image = edit_add_image;
     vm.edit_add_discount = edit_add_discount;
+    vm.edit_image_remove = edit_image_remove;
     vm.edit_images_selected = [];
     vm.delete_product = delete_product;
     vm.selected_product = [];
@@ -44,6 +45,7 @@ function AdminProductController($rootScope,users,$scope,File_Upload,$q,cfpLoadin
     vm.number = 0;
     vm.current_page = 1;
     vm.size = 5;
+    vm.count = 0;
 
     $scope.upload = function(element,a) {
         $scope.$apply(function () {
@@ -56,9 +58,16 @@ function AdminProductController($rootScope,users,$scope,File_Upload,$q,cfpLoadin
         $('ul.tabs').tabs();
         category_load('sub');
         product_load(vm.category_type);
+        get_recommended_count();
         $rootScope.user_menu = [{name:'Profile',path:'profile'},{name:'Setting',path:'setting'},{name:'Home',path:''}];
         $rootScope.home_default = false;
     });
+
+    function get_recommended_count(){
+        $http.get('/api/product_recommended_count').success(function(count){
+            vm.count = count.response;
+        });
+    }
 
     function category_load(type){
         vm.sub_category= type;
@@ -225,6 +234,7 @@ function AdminProductController($rootScope,users,$scope,File_Upload,$q,cfpLoadin
     }
 
     function edit_product_confirm(product){
+        console.log(vm.count);
         var uploadUrl = "/api/upload";
         var promises = [];
         angular.forEach(vm.edit_images_selected, function(value){
@@ -249,8 +259,15 @@ function AdminProductController($rootScope,users,$scope,File_Upload,$q,cfpLoadin
             }
             vm.product_details.image = vm.product_details_image_copy;
             vm.product_details.updated = {date:new Date(), user:Logger.user_details._id};
+            if(vm.count > 2){
+                if(vm.product_details.recommended === true){
+                    Materialize.toast('You can only have 3 recommended products', 2000);
+                    return;   
+                }
+            }
             Product.update({_id:vm.product_details._id},vm.product_details, function(res) {
-                if(res.response.nModified === 1){
+                console.log(res.response)
+                if(res.response.product.nModified === 1){
                     vm.product_details = [];
                     vm.edit_images_selected = [];
                     vm.product_details_image_copy = [];
@@ -258,6 +275,8 @@ function AdminProductController($rootScope,users,$scope,File_Upload,$q,cfpLoadin
                     display_product(vm.current_page);
                     $('#edit_product').closeModal();
                 }
+                vm.count = res.response.count;
+                console.log(vm.count)
             });
         });
     }
@@ -305,6 +324,11 @@ function AdminProductController($rootScope,users,$scope,File_Upload,$q,cfpLoadin
             alert('Server Error, Contact Developer')
         });
     }   
+
+    function edit_image_remove(image,index) {
+        vm.product_details.image.splice(index, 1);
+        vm.product_details_image_copy = vm.product_details.image;
+    }  
 }
 
 //angular copy WOW!

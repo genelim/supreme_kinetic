@@ -108,7 +108,7 @@
                                     <img class="col l4 right" style="height:70px;width:auto" ng-src="{{image_select}}" />
                                     </span>
                                     <span class="right  l2 m2 s2" ng-hide="image_select.length == 1">
-                                        <a href ng-click="vm.image_remove(image,$index)"><i class="fa fa-times fa-2x"></i></a>
+                                        <a href ng-click="vm.edit_image_remove(vm.product_details.image,$index)"><i class="fa fa-times fa-2x"></i></a>
                                     </span>
                                 </div>
                             </li>

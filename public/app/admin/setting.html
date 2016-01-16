@@ -1,3 +1,42 @@
+<div class="row"> 
+    <div class="col s12 m12 l12">
+        <div class="card">
+		    <div class="title">
+		        <h5>Recommended</h5>
+		        <div class="btn-group right">
+		        </div>
+		    </div>
+		    <div class="content">
+		        <table class="highlight">
+                    <tr ng-if="vm.product_recommended[0]._id">
+                        <th data-field="sku">SKU</th>
+                        <th data-field="image">Image</th>
+                        <th data-field="name">Product Name</th>
+                        <th data-field="stock">Stock</th>
+                        <th data-field="price">Price</th>
+                        <th data-field="status">Status</th>
+                        <th data-field="">Action</th>
+                    </tr>
+                    <tr ng-if="!vm.product_recommended[0]._id">
+                        <td data-field=""><b>No Product Recommended Available.</b> </td>
+                    </tr>
+		            <tbody>
+		                <tr ng-repeat="recommended in vm.product_recommended">
+		                    <td class="">{{recommended.sku}}</td>
+		                    <td class=""><img ng-src="{{recommended.image[0]}}" style="height:50px; width:auto;" class="responsive-img"></td>
+		                    <td class="">{{recommended.name}}</td>
+		                    <td class="">{{recommended.quantity}}</td>
+		                    <td class="">{{recommended.price}}</td>
+		                    <td class="green-text">{{recommended.status}}</td>
+		                    <td class=""><button class="btn red lighten-2" ng-click="vm.release(recommended);">Release</button></td>
+		                </tr>                        
+		            </tbody>
+		        </table>
+		    </div>
+		</div>
+    </div>
+</div>
+
 <ul class="tabs">
 	<li class="tab" ng-click="vm.change_category('main');"><a href="#main_category">Main Category</a></li>
 	<li class="tab" ng-click="vm.change_category('sub');"><a href="#sub_category">Sub Category</a></li>
