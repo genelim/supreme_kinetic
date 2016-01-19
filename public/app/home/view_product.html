@@ -1,23 +1,23 @@
-<div id="view_details" class="modal" style="height:auto">
+<div id="view_details" class="modal">
     <div class="modal-content">
         <div class="row" style="margin-bottom:0">
             <div class="col s12 m8 l5">
-                <img src="{{vm.product_details.image[0]}}" class="responsive-img center" style="height:auto: width:100%;margin:0 auto">
+                <img src="{{vm.product_details.image[0]}}" class="responsive-img center" style="height:auto;width:100%;margin:0 auto">
             </div>
             <div class="col s12 m4 l2">
                 <ul class="center">
-                    <li class="col s12 m12 l12" ng-repeat="image in vm.product_details.image track by $index"><img ng-src="{{image}}" style="height:auto; width:100%"></li>
+                    <li class="col s12 m12 l12" ng-repeat="image in vm.product_details.image track by $index"><img ng-src="{{image}}" class=" responsive-img" style="height:auto;width:100%"></li>
                 </ul>
-            </div>  
+            </div>
             <div class="col s12 m12 l5">
-                <p><b>Name:</b> {{vm.product_details.name}}</p>
+                <p style="font-size:115%"><b>Name:</b> {{vm.product_details.name}}</p>
                 <p><b>SKU:</b> {{vm.product_details.sku}}</p>
                 <p><b>Price:</b> {{vm.product_details.price}}</p>
                 <p><b>Description:</b> {{vm.product_details.description}}</p>
                 <div class="divider"></div>
                 <div class="col s12 m6 l12">
                     <div class="col l6">
-                        Avaliable size
+                        Available size:
                         <p ng-repeat="size in vm.product_details.size">
                             <input name="size" type="radio" id="{{size}}"/>
                             <label for="{{size}}">{{size}}</label>
@@ -25,7 +25,7 @@
                     </div>
                     <div class="col l6">
                         <div class="col l12">
-                        Quantity: 
+                        Quantity:
                             <input  type="text" class="right" length="3" min="0" size="3" maxlength="3" value="1">
                         </div>
                         <div class="col l12 ">
@@ -33,8 +33,8 @@
                             <button class="right btn-floating waves-effect waves-light pink" type="submit" name="action"><i class="fa fa-heart fa-2x center"></i></button>
                         </div>
                     </div>
-                  
-                    
+
+
                 </div>
                 <div class="row">
                     <button class="btn waves-effect waves-light green lighten-1 right"><i class="fa fa-cart-plus left"></i>Add to Cart</button>        
