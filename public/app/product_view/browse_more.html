@@ -46,7 +46,12 @@
 
 	<div class="col s12 l10" >
 		<div class="row">
-			<div ng-if="!vm.products.length">No Product Found</div>
+			<div ng-if="!vm.products.length" src="'app/error/404.html'">
+				<p style="font-size:140%" class="centerS"><b>Sorry</b></p>
+				<p style="font-size:120%">The item that you are looking for is not available in our store.<br/>
+					You can travel back to the previous page by pressing on the back button on your browser<br/>
+						Or travel back to our <a href="app/home/home.html">Homepage</a>, <a href="outdoorproduct.html">Outdoor product page</a> or <a href="indoorproduct.html">Indoor product page</a>.</p>
+			</div>
 			<div class="card col s6 m6 l3 z-depth-0" ng-repeat="product in vm.products" ng-click="vm.view_details(product)">
 				<div class="modal-trigger" href="#browse_more_view">
 					<div class="card-image waves-effect waves-block waves-light">
@@ -62,7 +67,7 @@
 					<p style="font-weight:bold; font-family:Roboto">Quantity:&nbsp;<input  length="3" min="0" size="3" maxlength="3" class="quantity" name="updates[]" value=""></p>
 				</div>
 				<div class="col s4 m4 l4">
-					<button class="btn waves-effect waves-light green lighten-1" type="submit" name="action"><i class="fa fa-cart-plus"></i></button>
+					<button class="btn waves-effect waves-light green lighten-1"><i class="fa fa-cart-plus"></i></button>
 				</div>
 			</div>
 		</div>
@@ -133,7 +138,11 @@
                     </div>
                 </div>
                 <div class="col s12 m6 l8 right">
+<<<<<<< Updated upstream
                     <button class="btn waves-effect waves-light green lighten-1" ><i class="fa fa-cart-plus"></i>&nbsp;&nbsp;Add to Cart</button>
+=======
+                    <button class="btn waves-effect waves-light green lighten-1"><i class="fa fa-cart-plus"></i>&nbsp;&nbsp;Add to Cart</button>
+>>>>>>> Stashed changes
                 </div>
             </div>
         </div>
