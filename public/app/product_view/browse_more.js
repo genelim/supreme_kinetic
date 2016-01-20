@@ -90,9 +90,15 @@ function BrowseMoreController($stateParams, Product, cfpLoadingBar, $http,Produc
     }
 
     function sort_price(price){
-        if( angular.isUndefined(price) || !price.low || !price.high){
+        if( angular.isUndefined(price)){
             Materialize.toast('Something is still missing', 2000);
             return;
+        }
+        if(!price.low && price.high){
+            price.low = 0;
+        }
+        if(price.low && !price.high){
+            price.high = 999999999;
         }
         vm.price_low =price.low;
         vm.price_high = price.high;

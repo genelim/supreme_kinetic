@@ -57,6 +57,27 @@ function config($urlRouterProvider,$stateProvider,$locationProvider,cfpLoadingBa
         templateUrl: 'app/product_view/browse_more.html',
         controller: 'BrowseMoreController',
         controllerAs: 'vm'
+    })
+    .state('profile', {
+        url: '/profile',
+        templateUrl: 'app/user/profile.html',
+        controller: 'ProfileSettingController',
+        controllerAs: 'vm'
+    }).state('profile.information', {
+        url: '/information',
+        templateUrl: 'app/user/information.html'
+    }).state('profile.password', {
+        url: '/password',
+        templateUrl: 'app/user/password.html'
+    }).state('profile.address', {
+        url: '/address',
+        templateUrl: 'app/user/address.html'
+    }).state('profile.wishlist', {
+        url: '/wishlist',
+        templateUrl: 'app/user/wishlist.html'
+    }).state('profile.order_history', {
+        url: '/order_history',
+        templateUrl: 'app/user/order_history.html'
     });
 
     $locationProvider.html5Mode({

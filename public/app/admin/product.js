@@ -146,6 +146,18 @@ function AdminProductController($http, $rootScope,users,$scope,File_Upload,$q,cf
     }
 
     function add_product_confirm(product){
+        if( angular.isUndefined(product) || !product.name || !product.model || !product.sku || !product.brand || !product.price || !product.quantity || !product.category){
+            Materialize.toast('Something is missing', 2000);
+            return;
+        }
+        if(isNaN(product.price)){
+            Materialize.toast('Price must be integer', 2000);
+            return;
+        }
+        if(isNaN(product.quantity)){
+            Materialize.toast('Quantity must be integer', 2000);
+            return;
+        }
         var uploadUrl = "/api/upload";
         var promises = [];
         angular.forEach(vm.images_selected, function(value){
