@@ -10,35 +10,45 @@
                 </ul>
             </div>
             <div class="col s12 m12 l5">
-                <p style="font-size:115%"><b>Name:</b> {{vm.product_details.name}}</p>
-                <p><b>SKU:</b> {{vm.product_details.sku}}</p>
-                <p><b>Price:</b> {{vm.product_details.price}}</p>
-                <p><b>Description:</b> {{vm.product_details.description}}</p>
-                <div class="divider"></div>
-                <div class="col s12 m6 l12">
-                    <div class="col l6">
-                        Available size:
-                        <p ng-repeat="size in vm.product_details.size">
-                            <input name="size" type="radio" id="{{size}}"/>
-                            <label for="{{size}}">{{size}}</label>
-                        </p>
-                    </div>
-                    <div class="col l6">
-                        <div class="col l12">
-                        Quantity:
-                            <input  type="text" class="right" length="3" min="0" size="3" maxlength="3" value="1">
-                        </div>
-                        <div class="col l12 ">
-                            <button class="right waves-effect waves-light orange lighten-2 btn-floating "><i class="fa fa-star fa-2x center"></i></button>
-                            <button class="right btn-floating waves-effect waves-light pink"><i class="fa fa-heart fa-2x center"></i></button>
-                        </div>
-                    </div>
-
-
-                </div>
+                <p style="font-size:120%"><b>{{vm.product_details.name}}</b></p>
+                <p></p>SKU: <b>{{vm.product_details.sku}}</b></p>
+                <p>Price: <b>{{vm.product_details.price}}</b></p>
+                <p>Description: <b>{{vm.product_details.description}}</b></p>
+            </div>
+        </div>
+        <div class="col s12 m12 l12">
+            <ul class="tabs">
+                <li class="tab col s6 m6 l6"><a class="active" href="#rev">Product Reviews</a></li>
+                <li class="tab col s6 m6 l6"><a href="#ship">Shipping & Return</a></li>
+            </ul>
+            <div id="rev" class="col s12 m12 l12">
                 <div class="row">
-                    <button class="btn waves-effect waves-light green lighten-1 right"><i class="fa fa-cart-plus left"></i>Add to Cart</button>        
+                    <div class="col s2 m2 l2">
+                        <img ng-src="iwjdiwje.jpg" class="responsive-img left" style="padding-right:2%;width:1em;height:1em">
+                    </div>
+                    <div class="col s10 m10 l10">
+                        Good product good service, all good, everything good, whole thing good.
+                    </div>
                 </div>
+                <a class="btn modal-trigger right" href="#review">More Review</a>
+            </div>
+            <div id="ship" class="col s12 m12 l12">
+                <table>
+                    <tbody>
+                    <tr>
+                        <th scope="row">Ship-From Address</th>
+                        <td>Supreme Kinetic Sdn Bhd, 67, Lorong Kinta,Georgetown, 10400, Penang</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Return/Exchange Address</th>
+                        <td>Supreme Kinetic Sdn Bhd, 67, Lorong Kinta,Georgetown, 10400, Penan</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Notice on Return/Exchange</th>
+                        <td>All furniture delivered must be checked by customer.<br>Any defects must be informed immediately. <br>Furniture replacement can only be done depend on condition.</td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
