@@ -1,7 +1,8 @@
 var mongoose = require('mongoose'),
     db = mongoose.createConnection('mongodb://127.0.0.1/supreme_kinetic'),
     User_Role = require('../models/user_role.js')(db),
-    User = require('../models/user.js')(db);
+    User = require('../models/user.js')(db),
+    bcrypt = require('bcrypt-nodejs');
 
 var error_return = [{response:'User Existed'},{response:'Invalid Username or Password'},{response:'Server Error'}];
 
@@ -114,6 +115,23 @@ exports.discount = function (req, res) {
         })
     }
 };
+
+exports.update = function (req, res){
+    var data = req.body;
+    User.findOne({_id:  req.body.id}, function (err, user_pass) {
+        if (user_pass.validPassword(req.body.password.old)) {
+            User.update({_id: req.body.id}, { $set: {password:bcrypt.hashSync(req.body.password.new, bcrypt.genSaltSync(8), null)}}).exec(function(err,user){
+                User.findOne({_id: req.body.id}).exec(function(err,user_details){
+                    res.json({response:{updated:user,user:user_details}});
+                });
+            });
+        }else{
+            res.json({response:'Old password mismatch'}); 
+        }
+       
+    });
+    
+}
 
 // module.exports = function(app) {
 

@@ -16,6 +16,7 @@ app.use('/libs', express.static(__dirname + '/public/libs'));
 app.post('/api/user', user.post);
 app.get('/api/user/:discount', user.discount);
 app.get('/api/user/:page/:size/:type', user.get);
+app.put('/api/user', user.update);
 
 app.get('/api/product/:page/:size/:type/:location', product.get);
 app.get('/api/product_recommended', product.get_recommended);

@@ -8,6 +8,8 @@ function config($urlRouterProvider,$stateProvider,$locationProvider,cfpLoadingBa
     $urlRouterProvider.otherwise('/404');
     $urlRouterProvider.when('/admin', '/admin/dashboard');
     $urlRouterProvider.when('/admin/', '/admin/dashboard');
+    $urlRouterProvider.when('/profile', '/profile/information');
+    $urlRouterProvider.when('/profile/', '/profile/information');
 
     $stateProvider
     .state('home', {
@@ -68,7 +70,9 @@ function config($urlRouterProvider,$stateProvider,$locationProvider,cfpLoadingBa
         templateUrl: 'app/user/information.html'
     }).state('profile.password', {
         url: '/password',
-        templateUrl: 'app/user/password.html'
+        templateUrl: 'app/user/password.html',
+        controller: 'PasswordController',
+        controllerAs: 'vm'
     }).state('profile.address', {
         url: '/address',
         templateUrl: 'app/user/address.html'
