@@ -1,1 +1,60 @@
-order_history.html
+<div id="ordhistory" class="col s12 m12 l12" style="padding-left:1%">
+    <h5>Order History</h5><hr/>
+    <div class="row">
+        <table>
+            <thead>
+            <tr>
+                <th data-field="sku">SKU</th>
+                <th data-field="image">Image</th>
+                <th data-field="name">Product Name</th>
+                <th data-field="quantity">Quantity</th>
+                <th data-field="detail">Date</th>
+                <th data-field="price">Price</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>DB006</td>
+                <td><img src="images/outdoor/decor/lv/lv001.jpg" style="height:150px; width:auto; margin:0 auto" class="responsive-img"></td>
+                <td><p>Product 1</p></td>
+                <td>10</td>
+                <td>05/12/2015</td>
+                <td>$5360.00</td>
+            </tr>
+            <tr>
+                <td>DB012</td>
+                <td><img src="images/outdoor/decor/sf/sf001.jpg" style="height:150px; width:auto; margin:0 auto" class="responsive-img"></td>
+                <td><p style="text-weight:bold">Product 2</p></td>
+                <td>3</td>
+                <td>15/11/2015</td>
+                <td>$3540.00</td>
+            </tr>
+            <tr>
+                <td>DB011</td>
+                <td><img src="images/outdoor/decor/db/db001.jpg" style="height:150px; width:auto; margin:0 auto" class="responsive-img"></td>
+                <td><p>Product 3</p></td>
+                <td>6</td>
+                <td>01/11/2015</td>
+                <td>$6000.00</td>
+            </tr>
+            </tbody>
+        </table>
+        <ul class="pagination center" ng-if="vm.number">
+            <li ng-class="{'disabled': vm.current_page == 1,'waves-effect': vm.current_page != 1}" ng-click="vm.static_user_page(0)">
+                <a>First</a>
+            </li>
+            <li ng-class="{'disabled': vm.current_page == 1,'waves-effect': vm.current_page != 1}" ng-click="vm.previous_user_page()">
+                <a><i class="material-icons">chevron_left</i></a>
+            </li>
+            <li ng-if="$index <= vm.current_page +2 && $index >= vm.current_page-4" ng-repeat="i in vm.pagination_number(vm.number) track by $index" class="waves-effect" ng-class="{active: $index+1 == vm.current_page}" ng-click="vm.display_product($index+1)">
+                <a>{{$index+1}}</a>
+            </li>
+            <li ng-class="{disabled: vm.current_page == vm.number,'waves-effect': vm.current_page != vm.number}" ng-click="vm.next_user_page()">
+                <a><i class="material-icons">chevron_right</i></a>
+            </li>
+            <li ng-class="{disabled: vm.current_page == vm.number,'waves-effect': vm.current_page != vm.number}" ng-click="vm.static_user_page(1)">
+                <a>Last</a>
+            </li>
+        </ul>
+    </div>
+</div>
