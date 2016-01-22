@@ -6,10 +6,19 @@
                 <img ng-src="{{product.image[0]}}" style="height:250px;width:auto;margin:0 auto" class="responsive-img responsive-img z-depth-1">
                 <div class="col s12 m12 l12">
                     <p><b style="font-size:120%">{{product.name}}</b><br/>
-                        Item code: <b>{{product.sku}}</b><br/>
-                        Price: <b>RM{{product.price}}</b><br/></p>
+                        Price: <b>RM{{product.price}}</b><br/>
+                        <a>Click to view Details</a></p>
                 </div>
             </div>
+        </div>
+        <div class="input-field col s12 m12 l12">
+            Choose your color:
+            <p type="radio" style="color:red">Red</p>
+            <p type="radio" style="color:blue">Blue</p>
+            <p type="radio" style="color:green">Green</p>
+        </div>
+        <div class="col s12 m12 l12">
+            Choose your size:<br/>
         </div>
         <div class="col s8 m8 l8">
             <p style="font-weight:bold; font-family:Roboto">Quantity:&nbsp;<input  length="3" min="0" size="3" maxlength="3" class="quantity" name="updates[]" value=""></p>

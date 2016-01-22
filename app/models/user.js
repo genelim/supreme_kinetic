@@ -1,4 +1,4 @@
-module.exports = function (connection) {
+    module.exports = function (connection) {
   	var mongoose = require('mongoose');
       	Schema = mongoose.Schema,
         User_Role = mongoose.model('User_Role').schema,
