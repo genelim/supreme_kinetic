@@ -67,7 +67,9 @@ function config($urlRouterProvider,$stateProvider,$locationProvider,cfpLoadingBa
         controllerAs: 'vm'
     }).state('profile.information', {
         url: '/information',
-        templateUrl: 'app/user/information.html'
+        templateUrl: 'app/user/information.html',
+        controller: 'InformationController',
+        controllerAs: 'vm'
     }).state('profile.password', {
         url: '/password',
         templateUrl: 'app/user/password.html',

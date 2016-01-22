@@ -2,6 +2,7 @@ module.exports = function (connection) {
   	var mongoose = require('mongoose');
       	Schema = mongoose.Schema,
         User_Role = mongoose.model('User_Role').schema,
+        Address = mongoose.model('Address').schema,
         bcrypt = require('bcrypt-nodejs');
     
   	var user = new mongoose.Schema({
@@ -15,7 +16,9 @@ module.exports = function (connection) {
         email_validate: { type : Boolean, default: false },
 		created_at: { type : Date, default: Date.now },
         created_by: { type: Schema.Types.ObjectId, ref: 'User' },
-        role: [User_Role]
+        role: [User_Role],
+        address:  [Address],
+        phone: Number
 	});
 
     user.methods.generateHash = function(password) {
