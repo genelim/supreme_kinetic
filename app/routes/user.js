@@ -144,7 +144,7 @@ exports.update = function (req, res){
         });
     }else if(data.types === 'address'){
         // console.log('d')
-        User.update({_id: req.body._id}, { $set: {'billing_address.address_1':req.body.billing_address[0].address_1,'billing_address.state':req.body.billing_address[0].state,'billing_address.address_2':req.body.billing_address[0].address_2,'billing_address.city':req.body.billing_address[0].city,'billing_address.postcode':req.body.billing_address[0].postcode,'shipping_address.address_1':req.body.shipping_address[0].address_1,'shipping_address.state':req.body.shipping_address[0].state,'shipping_address.address_2':req.body.shipping_address[0].address_2,'shipping_address.city':req.body.shipping_address[0].city,'shipping_address.postcode':req.body.shipping_address[0].postcode}}).exec(function(err,user){
+        User.update({_id: req.body._id}, { $set: {'billing_address.0.address_1':req.body.billing_address[0].address_1,'billing_address.0.state':req.body.billing_address[0].state,'billing_address.0.address_2':req.body.billing_address[0].address_2,'billing_address.0.city':req.body.billing_address[0].city,'billing_address.0.postcode':req.body.billing_address[0].postcode,'shipping_address.0.address_1':req.body.shipping_address[0].address_1,'shipping_address.0.state':req.body.shipping_address[0].state,'shipping_address.0.address_2':req.body.shipping_address[0].address_2,'shipping_address.0.city':req.body.shipping_address[0].city,'shipping_address.0.postcode':req.body.shipping_address[0].postcode}}).exec(function(err,user){
             console.log(user,err)
             if(err){
                 res.json({response:'Server Error'});
