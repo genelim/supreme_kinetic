@@ -3,42 +3,25 @@
     <div class="col s12 m12 l6" style="padding-bottom:2%">
         <p><b style="font-size:120%">Billing Address</b></p>
         <div class="input-field col s12 m12 l12">
-            <input id="address1" type="text" class="validate">
-            <label for="address1">* Address 1</label>
+            <input id="address1" type="text" ng-model="vm.user.billing_address[0].address_1">
+            <label for="address1" class="active">* Address 1</label>
         </div>
-        <div class="input-field col s12 m21 l6">
-            <input id="address2" type="text" class="validate">
-            <label for="address2">Address 2 (Optional)</label>
-        </div>
-
-        <div class="input-field col s12 m12 l6">
-            <input id="company" type="text" class="validate">
-            <label for="company">* Company</label>
+        <div class="input-field col s12 m12 l12">
+            <input id="address2" type="text"ng-model="vm.user.billing_address[0].address_2">
+            <label for="address2" class="active">Address 2 (Optional)</label>
         </div>
         <div class="input-field col s12 m12 l4">
-            <input id="postcode" type="text" class="validate">
-            <label for="postcode">* Postcode</label>
+            <input id="postcode" type="text" ng-model="vm.user.billing_address[0].postcode">
+            <label for="postcode" class="active">* Postcode</label>
         </div>
         <div class="input-field col s12 m12 l4">
-            <input id="suburb" type="text" class="validate">
-            <label for="suburb">* Suburb</label>
+            <input id="city" type="text" ng-model="vm.user.billing_address[0].city">
+            <label for="city" class="active">* City</label>
         </div>
         <div class=" col s12 m12 l4">
-            <select class="browser-default">
-                <option value="" disabled selected>* State</option>
-                <option value="" data-icon="images/flag/perlis.jpg" class="left circle responsive-img">Perlis</option>
-                <option value="" data-icon="images/flag/kedah.jpg" class="left circle responsive-img">Kedah</option>
-                <option value="" data-icon="images/flag/penang.jpg" class="left circle responsive-img">Pulau Pinang</option>
-                <option value="" data-icon="images/flag/perak.jpg" class="left circle responsive-img">Perak</option>
-                <option value="" data-icon="images/flag/terrenganu.jpg" class="left circle responsive-img">Terenggan    u</option>
-                <option value="" data-icon="images/flag/kelantan.jpg" class="left circle responsive-img">Kelantan</option>
-                <option value="" data-icon="images/flag/pahang.jpg" class="left circle responsive-img">Pahang</option>
-                <option value="" data-icon="images/flag/selangor.jpg" class="left circle responsive-img">Selangor</option>
-                <option value="" data-icon="images/flag/sembilan.jpg" class="left circle responsive-img">Sembilan</option>
-                <option value="" data-icon="images/flag/malacca.jpg" class="left circle responsive-img">Malaka</option>
-                <option value="" data-icon="images/flag/johor.jpg" class="left circle responsive-img">Johor</option>
-                <option value="" data-icon="images/flag/sarawak.jpg" class="left circle responsive-img">Sarawak</option>
-                <option value="" data-icon="images/flag/sabah.jpg" class="left circle responsive-img">Sabah</option>
+            <label>State</label>
+            <select class="browser-default" ng-model="vm.user.billing_address[0].state">
+                <option ng-selected="vm.user.billing_address[0].state === state" ng-repeat="state in vm.state" ng-value="state">{{state}}</option>
             </select>
         </div>
     </div>
@@ -46,42 +29,29 @@
     <div class="col s12 m12 l6" style="border-left:black 1px solid">
         <p><b style="font-size:120%">Shipping Address</b></p>
         <div class="input-field col s12 m12 l12">
-            <input id="shipadd1" type="text" class="validate">
-            <label for="shipadd1">* Address 1</label>
+            <input id="shipadd1" type="text" ng-model="vm.user.shipping_address[0].address_1">
+            <label for="shipadd1" class="active">* Address 1</label>
         </div>
         <div class="input-field col s12 m21 l12">
-            <input id="shipadd2" type="text" class="validate">
-            <label for="shipadd2">Address 2 (Optional)</label>
+            <input id="shipadd2" type="text" ng-model="vm.user.shipping_address[0].address_2">
+            <label for="shipadd2" class="active">Address 2 (Optional)</label>
         </div>
         <div class="input-field col s12 m12 l4">
-            <input id="shippost" type="text" class="validate">
-            <label for="shippost">* Postcode</label>
+            <input id="shippost" type="text" ng-model="vm.user.shipping_address[0].postcode">
+            <label for="shippost" class="active">* Postcode</label>
         </div>
         <div class="input-field col s12 m12 l4">
-            <input id="shipcity" type="text" class="validate">
-            <label for="shipcity">* Suburb</label>
+            <input id="shipcity" type="text" ng-model="vm.user.shipping_address[0].city">
+            <label for="shipcity" class="active">* City</label>
         </div>
         <div class=" col s12 m12 l4">
-            <select class="browser-default">
-                <option value="" disabled selected>* State</option>
-                <option value="" data-icon="images/flag/perlis.jpg" class="left circle responsive-img">Perlis</option>
-                <option value="" data-icon="images/flag/kedah.jpg" class="left circle responsive-img">Kedah</option>
-                <option value="" data-icon="images/flag/penang.jpg" class="left circle responsive-img">Pulau Pinang</option>
-                <option value="" data-icon="images/flag/perak.jpg" class="left circle responsive-img">Perak</option>
-                <option value="" data-icon="images/flag/terrenganu.jpg" class="left circle responsive-img">Terenggan    u</option>
-                <option value="" data-icon="images/flag/kelantan.jpg" class="left circle responsive-img">Kelantan</option>
-                <option value="" data-icon="images/flag/pahang.jpg" class="left circle responsive-img">Pahang</option>
-                <option value="" data-icon="images/flag/selangor.jpg" class="left circle responsive-img">Selangor</option>
-                <option value="" data-icon="images/flag/sembilan.jpg" class="left circle responsive-img">Sembilan</option>
-                <option value="" data-icon="images/flag/malacca.jpg" class="left circle responsive-img">Malaka</option>
-                <option value="" data-icon="images/flag/johor.jpg" class="left circle responsive-img">Johor</option>
-                <option value="" data-icon="images/flag/sarawak.jpg" class="left circle responsive-img">Sarawak</option>
-                <option value="" data-icon="images/flag/sabah.jpg" class="left circle responsive-img">Sabah</option>
+            <label>State</label>
+            <select class="browser-default" ng-model="vm.user.shipping_address[0].state">
+                <option ng-selected="vm.user.shipping_address[0].state === state" ng-repeat="state in vm.state" ng-value="state">{{state}}</option>
             </select>
         </div>
     </div>
     <div class="col offset-l5">
-        <button class="btn" ng-click="vm.change_password(vm.password)">Save</button>
-        <button class="btn">Clear</button>
+        <button class="btn right" ng-click="vm.address_update(vm.user)">Save</button>
     </div>
 </div>

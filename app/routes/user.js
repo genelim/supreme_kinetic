@@ -119,7 +119,8 @@ exports.discount = function (req, res) {
 
 exports.update = function (req, res){
     var data = req.body;
-    if(data.type === 'password'){
+    console.log(req.body)
+    if(data.types === 'password'){
         User.findOne({_id:  req.body.id}, function (err, user_pass) {
             if (user_pass.validPassword(req.body.password.old)) {
                 User.update({_id: req.body.id}, { $set: {password:bcrypt.hashSync(req.body.password.new, bcrypt.genSaltSync(8), null)}}).exec(function(err,user){
@@ -131,7 +132,27 @@ exports.update = function (req, res){
                 res.json({response:'Old password mismatch'}); 
             }
         });
-    }else if(data.type === 'profile'){
-
+    }else if(data.types === 'information'){
+        User.update({_id: req.body._id}, { $set: {first_name:req.body.first_name,last_name:req.body.last_name,email:req.body.email,phone:req.body.phone}}).exec(function(err,user){
+            if(err){
+                res.json({response:'Server Error'});
+            }else{
+                User.findOne({_id: req.body._id}).exec(function(err,user_details){
+                    res.json({response:{updated:user,user:user_details}});
+                });
+            }
+        });
+    }else if(data.types === 'address'){
+        // console.log('d')
+        User.update({_id: req.body._id}, { $set: {'billing_address.address_1':req.body.billing_address[0].address_1,'billing_address.state':req.body.billing_address[0].state,'billing_address.address_2':req.body.billing_address[0].address_2,'billing_address.city':req.body.billing_address[0].city,'billing_address.postcode':req.body.billing_address[0].postcode,'shipping_address.address_1':req.body.shipping_address[0].address_1,'shipping_address.state':req.body.shipping_address[0].state,'shipping_address.address_2':req.body.shipping_address[0].address_2,'shipping_address.city':req.body.shipping_address[0].city,'shipping_address.postcode':req.body.shipping_address[0].postcode}}).exec(function(err,user){
+            console.log(user,err)
+            if(err){
+                res.json({response:'Server Error'});
+            }else{
+                User.findOne({_id: req.body._id}).exec(function(err,user_details){
+                    res.json({response:{updated:user,user:user_details}});
+                });
+            }
+        });
     }
 }

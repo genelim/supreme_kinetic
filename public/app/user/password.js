@@ -22,7 +22,7 @@ function PasswordController(User,Logger) {
             Materialize.toast('Old password cannot match new passwors', 2000);
             return;
         }
-        var data = {id : Logger.user_details._id, password: password, type:"password"}
+        var data = {id : Logger.user_details._id, password: password, types:"password"}
         User.update({_id:data.id},data, function(res) {
             if(res.response === 'Old password mismatch'){
                 Materialize.toast('Old password mismatch', 2000);

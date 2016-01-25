@@ -77,7 +77,9 @@ function config($urlRouterProvider,$stateProvider,$locationProvider,cfpLoadingBa
         controllerAs: 'vm'
     }).state('profile.address', {
         url: '/address',
-        templateUrl: 'app/user/address.html'
+        templateUrl: 'app/user/address.html',
+        controller: 'AddressController',
+        controllerAs: 'vm'
     }).state('profile.wishlist', {
         url: '/wishlist',
         templateUrl: 'app/user/wishlist.html'

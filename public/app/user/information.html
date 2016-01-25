@@ -19,11 +19,10 @@
             </div>
             <div class="input-field col s6 m6 l5">
                 <input id="phone" type="text" ng-model="vm.user.phone">
-                <label for="phone" class="active">* Phone</label>
+                <label for="phone" class="active">Phone</label>
             </div>
-            <div class="col offset-l8">
-                <button class="btn">Save</button>
-                <button class="btn">Cancel</button>
+            <div class="col offset-l8 right">
+                <button class="btn" ng-click="vm.information_update(vm.user)">Update</button>
             </div>
         </form>
     </div>

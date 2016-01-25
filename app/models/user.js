@@ -17,7 +17,8 @@
 		created_at: { type : Date, default: Date.now },
         created_by: { type: Schema.Types.ObjectId, ref: 'User' },
         role: [User_Role],
-        address:  [Address],
+        billing_address:  [Address],
+        shipping_address:  [Address],
         phone: Number
 	});
 

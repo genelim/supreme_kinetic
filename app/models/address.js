@@ -7,8 +7,7 @@ module.exports = function (connection) {
 		address_2: String,
 		postcode: String,
 		city: String,
-		state: String,
-        
+		state: String        
 	});
 
   	return connection.model('Address', address);
