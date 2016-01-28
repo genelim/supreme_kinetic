@@ -6,6 +6,7 @@ var	express = require('express'),
 	product = require('./app/routes/product'),
 	product_category = require('./app/routes/product_category'),
 	upload = require('./app/routes/upload');
+	transaction = require('./app/routes/transaction');
 	port = process.env.PORT || 8080; 
 	
 app.use(bodyParser.json()); 
@@ -35,6 +36,8 @@ app.get('/api/product_category/:type', product_category.get);
 app.post('/api/product_category', product_category.post);
 app.delete('/api/product_category/:id', product_category.delete);
 
+app.post('/api/transaction', transaction.add_to_cart);
+app.get('/api/transaction/:id', transaction.get);
 
 app.all('/*', function(req, res, next) {
     res.sendFile('/public/index.html', { root: __dirname });

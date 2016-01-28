@@ -45,7 +45,7 @@
                             </div>
                         </li>
                         <li>
-                            <a href="/cart"><i class="fa fa-shopping-cart left"></i>Cart</a>
+                            <a href="/cart"><i class="fa fa-shopping-cart left"></i>Cart - {{cart_quantity}}</a>
                         </li>
                         <li  ng-show=(!vm.username)>
                             <a ng-click="vm.user_modal('register')">Sign Up</a>
@@ -131,6 +131,7 @@
         <script src="app/common/product_category.js"></script>
         <script src="app/common/product_brand.js"></script>
         <script src="app/common/product.js"></script>
+        <script src="app/common/transaction.js"></script>
         <script src="app/admin/dashboard.js"></script>
         <script src="app/admin/product.js"></script>
         <script src="app/admin/user.js"></script>

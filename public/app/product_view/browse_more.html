@@ -52,7 +52,7 @@
 					You can travel back to the previous page by pressing on the back button on your browser<br/>
 						Or travel back to our <a href="app/home/home.html">Homepage</a>, <a href="outdoorproduct.html">Outdoor product page</a> or <a href="indoorproduct.html">Indoor product page</a>.</p>
 			</div>
-			<div class="card col s6 m6 l3 z-depth-0" ng-repeat="product in vm.products" ng-click="vm.view_details(product)">
+			<div class="card col s6 m6 l3 z-depth-0" ng-repeat="product in vm.products">
 				<div class="modal-trigger" href="#browse_more_view">
 					<div class="card-image waves-effect waves-block waves-light">
 						<img ng-src="{{product.image[0]}}" style="height:250px;width:auto;margin:0 auto" class="responsive-img responsive-img z-depth-1">
@@ -60,14 +60,15 @@
 							<p><b style="font-size:120%">{{product.name}}</b><br/>
 								Item code: <b>{{product.sku}}</b><br/>
 								Price: <b>RM{{product.price}}</b><br/></p>
+								<a ng-click="vm.view_details(product)">Click to view Details</a>
 						</div>
 					</div>
 				</div>
 				<div class="col s8 m8 l8">
-					<p style="font-weight:bold; font-family:Roboto">Quantity:&nbsp;<input  length="3" min="0" size="3" maxlength="3" class="quantity" name="updates[]" value=""></p>
+					<p style="font-weight:bold; font-family:Roboto">Quantity:&nbsp;<input  length="3" min="0" size="3" maxlength="3" class="quantity" name="updates[]" ng-model="product.select_quantity"></p>
 				</div>
 				<div class="col s4 m4 l4">
-					<button class="btn waves-effect waves-light green lighten-1"><i class="fa fa-cart-plus"></i></button>
+					<button class="btn waves-effect waves-light green lighten-1"  ng-click="vm.add_to_cart(product,product.select_quantity)"><i class="fa fa-cart-plus"></i></button>
 				</div>
 			</div>
 		</div>

@@ -2,9 +2,9 @@ angular
     .module('app')
     .controller('LoginController', LoginController);
 
-LoginController.$inject = ['User','Logger','$localStorage','$scope','$rootScope','$location','Facebook'];
+LoginController.$inject = ['Transaction','User','Logger','$localStorage','$scope','$rootScope','$location','Facebook'];
 
-function LoginController(User,Logger,$localStorage,$scope,$rootScope,$location,Facebook) { 
+function LoginController(Transaction,User,Logger,$localStorage,$scope,$rootScope,$location,Facebook) { 
     var vm = this;
     vm.fb_login = fb_login;
     vm.user_modal = user_modal;
@@ -57,7 +57,6 @@ function LoginController(User,Logger,$localStorage,$scope,$rootScope,$location,F
         value.type = type;
         value.role = {type:"member",level:0};
         User.save(value, function(res){
-            console.log(res);
             if(res.response !== 'User Existed' && res.response !== 'Invalid Username or Password' && res.response !== 'Server Error'){
                 Logger.is_logged = true;
                 Logger.user_details = res.response;
@@ -82,6 +81,15 @@ function LoginController(User,Logger,$localStorage,$scope,$rootScope,$location,F
                     vm.registering.confirm_password = null;
                     vm.registering.type = null;
                 }
+                Transaction.get({id:res.response._id},function(res){
+                    if(res.response === 'Server Error'){
+                        Materialize.toast('Please refresh the page and try again', 2000);
+                    }else if(res.response == 0){
+                        $rootScope.cart_quantity = 0;
+                    }else{
+                        $rootScope.cart_quantity = res.response.product.length;
+                    }
+                })
                 $('#user_open').closeModal();
             }else{
                 Materialize.toast(res.response, 2000);
@@ -96,6 +104,7 @@ function LoginController(User,Logger,$localStorage,$scope,$rootScope,$location,F
         $localStorage.$reset();
         vm.username = null;
         vm.profile_image = null;
+        $rootScope.cart_quantity = 0;
         $location.url('/');
     }
 
@@ -113,6 +122,15 @@ function LoginController(User,Logger,$localStorage,$scope,$rootScope,$location,F
                         vm.profile_image = res.response.profile_image;
                         check_admin();
                         details = [];
+                        Transaction.get({id:res.response._id},function(res){
+                            if(res.response === 'Server Error'){
+                                Materialize.toast('Please refresh the page and try again', 2000);
+                            }else if(res.response == 0){
+                                $rootScope.cart_quantity = 0;
+                            }else{
+                                $rootScope.cart_quantity = res.response.product.length;
+                            }
+                        })
                     }else{
                         Materialize.toast(res.response, 2000);
                     }

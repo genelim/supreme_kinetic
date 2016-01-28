@@ -4,9 +4,9 @@ angular
     .module('app')
     .controller('HomeController', HomeController);
 
-HomeController.$inject = ['$rootScope','$scope','Product','cfpLoadingBar','$http'];
+HomeController.$inject = ['$rootScope','$scope','Product','cfpLoadingBar','$http','Transaction','Logger'];
 
-function HomeController($rootScope,$scope,Product,cfpLoadingBar,$http) { 
+function HomeController($rootScope,$scope,Product,cfpLoadingBar,$http,Transaction,Logger) { 
 	var vm = this;
     vm.category_type='outdoor';
     vm.products = [];
@@ -18,6 +18,7 @@ function HomeController($rootScope,$scope,Product,cfpLoadingBar,$http) {
     vm.product_get_recommended = product_get_recommended;
     vm.product_recommended = [];
     vm.product_details = []
+    vm.add_to_cart = add_to_cart;
 
     $rootScope.home_default = true;
     vm.tab_menu = 	[
@@ -56,6 +57,35 @@ function HomeController($rootScope,$scope,Product,cfpLoadingBar,$http) {
     function view_details(details){
         vm.product_details = details;
         $('#view_details').openModal();
+    }
+
+    function add_to_cart(product,quantity){
+        if(angular.isUndefined(quantity) || quantity === null || quantity === ''){
+            Materialize.toast('Please fill in quantity to add', 2000);
+            return;
+        }
+        if(isNaN(quantity)){
+            Materialize.toast('Quantity must be integer', 2000);
+            return;
+        }
+        if(Logger.is_logged){
+            var data = {user:Logger.user_details,product:product,quantity:quantity};
+            Transaction.save(data, function(result){
+                Materialize.toast('Added to Cart', 2000);
+                Transaction.get({id:Logger.user_details._id},function(res){
+                    if(res.response === 'Server Error'){
+                        Materialize.toast('Please refresh the page and try again', 2000);
+                    }else if(res.response == 0){
+                        $rootScope.cart_quantity = 0;
+                    }else{
+                        $rootScope.cart_quantity = res.response.product.length;
+                    }
+                })
+            })
+        }else{
+            Materialize.toast('You are not logged in', 2000);
+        }
+        
     }
 
     

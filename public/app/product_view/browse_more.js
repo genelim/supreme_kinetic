@@ -18,9 +18,9 @@ angular
        };
     });
 
-BrowseMoreController.$inject = ['$stateParams','Product','cfpLoadingBar','$http','Product_Brand','Product_Category'];
+BrowseMoreController.$inject = ['Transaction','Logger','$rootScope','$stateParams','Product','cfpLoadingBar','$http','Product_Brand','Product_Category'];
 
-function BrowseMoreController($stateParams, Product, cfpLoadingBar, $http,Product_Brand,Product_Category) {
+function BrowseMoreController(Transaction, Logger, $rootScope, $stateParams, Product, cfpLoadingBar, $http,Product_Brand,Product_Category) {
 	var vm = this;
 	vm.get_products = get_products;
     vm.view_details = view_details;
@@ -40,7 +40,8 @@ function BrowseMoreController($stateParams, Product, cfpLoadingBar, $http,Produc
     vm.pagination_number = pagination_number;
     vm.next_user_page = next_user_page;
     vm.previous_user_page = previous_user_page;
-	vm.display_product = display_product;
+    vm.display_product = display_product;
+	vm.add_to_cart = add_to_cart;
     vm.category_check = 'main';
     vm.price_low = 0;
     vm.price_high = 0;
@@ -279,5 +280,34 @@ function BrowseMoreController($stateParams, Product, cfpLoadingBar, $http,Produc
                 cfpLoadingBar.complete();
             });
         } 
+    }
+
+    function add_to_cart(product,quantity){
+        if(angular.isUndefined(quantity) || quantity === null || quantity === ''){
+            Materialize.toast('Please fill in quantity to add', 2000);
+            return;
+        }
+        if(isNaN(quantity)){
+            Materialize.toast('Quantity must be integer', 2000);
+            return;
+        }
+        if(Logger.is_logged){
+            var data = {user:Logger.user_details,product:product,quantity:quantity};
+            Transaction.save(data, function(result){
+                Materialize.toast('Added to Cart', 2000);
+                Transaction.get({id:Logger.user_details._id},function(res){
+                    if(res.response === 'Server Error'){
+                        Materialize.toast('Please refresh the page and try again', 2000);
+                    }else if(res.response == 0){
+                        $rootScope.cart_quantity = 0;
+                    }else{
+                        $rootScope.cart_quantity = res.response.product.length;
+                    }
+                })
+            })
+        }else{
+            Materialize.toast('You are not logged in', 2000);
+        }
+        
     }
 }
