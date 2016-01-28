@@ -6,12 +6,15 @@ module.exports = function (connection) {
 
     var select_product = new mongoose.Schema({
 		product_id: [{ type: Schema.Types.ObjectId, ref: 'Product' }],
-		quantity: Number    
+		quantity: Number,
+		size: String,
+		color: String    
 	});
 	
   	var cart = new mongoose.Schema({
 		product: [select_product],
-		user: { type: Schema.Types.ObjectId, ref: 'User' }    
+		user: { type: Schema.Types.ObjectId, ref: 'User' },
+		remarks: String    
 	});
 
   	return connection.model('Cart', cart);

@@ -11,7 +11,6 @@ function AddressController(User,Logger) {
 
 	vm.state = ['Perlis','Kedah','Pulau Pinang','Perak','Terengganu','Kelantan','Pahang','Selangor','Negeri Sembilan','Melaka','Johor','Sabah','Sarawak'];
 	function address_update(user){
-		console.log(user)
 		user.types = 'address';
 		User.update({_id:user._id},user, function(res) {
 			console.log(res)
