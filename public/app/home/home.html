@@ -16,7 +16,7 @@
     <li class="tab col s3 {{tab.disabled}}" ng-repeat="tab in vm.tab_menu track by $index" ><a class="{{tab.active}}" href="#{{tab.id}}"><i class="material-icons tab_icon">{{tab.icon}}</i><div class="tab_text" ng-click="vm.select_category(tab.name)">{{tab.name}}</div></a></li>
 </ul>
 <div ng-repeat="tab in vm.tab_menu track by $index" id="{{tab.id}}" class="row">
-	<div class="container" style="width:80%;height:auto">
+	<div class="" style="">
 	    <div ng-include src="'app/home/product.html'"></div>
 	    <div class="right" ng-if="vm.done && vm.products[0]._id">
 	        <a class="btn" href="browse_more/{{tab.name  | lowercase}}"><i class="fa fa-plus-square left"></i>Browse More</a>
@@ -26,3 +26,46 @@
 
 <div ng-include src="'app/home/view_product.html'"></div>
 <div ng-include src="'app/home/recommended_product.html'"></div>
+
+<footer class="page-footer" style="background-color:#B6DFFF">
+    <div class="container">
+        <div class="row" style="margin-bottom:0px">
+            <div class="col l3">
+                <p style="font-size:140%;color:#003266">Contact Detail:</p>
+                <p style="font-size:120%;color:#003266"><i class="fa fa-phone-square"></i>&nbsp;&nbsp;+604-227 4850</p>
+                <p style="font-size:120%;color:#003266"><i class="fa fa-envelope"></i>&nbsp;&nbsp;sales@supremekinetic.com</p><br/>
+                <p style="font-size:140%;color:#003266">Join our newsletter</p>
+                <form>
+                    <input id="newsemail" type="email" class="validate">
+                    <a class="btn">Subscribe</a>
+                </form>
+            </div>
+            <div class="col l2">
+                <p style="font-size:140%;color:#003266">Address:</p>
+                <p style="font-size:120%;color:#003266"><i class="fa fa-building"></i>&nbsp;&nbsp;Head Quarter</p>
+                <p style="color:#003266">67,lorong kinta,<br/>10400 Georgetown,<br/>Pulau Pinang</p>
+                <p style="font-size:120%;color:#003266"><i class="fa fa-building"></i>&nbsp;&nbsp;Langkawi branch</p>
+                <p style="color:#003266"></p>
+            </div>
+            <div class="col l2">
+                <p style="font-size:140%;color:#003266">Join us on</p>
+                <a href="https://www.facebook.com" style="color:#003266"><i style="font-size:160%;color:#003266" class="fa fa-facebook-square"></i>&nbsp;&nbsp;Facebook</a><br/>
+                <a href="https://www.twitter.com"  style="color:#003266"><i style="font-size:160%;color:#003266" class="fa fa-twitter-square"></i>&nbsp;&nbsp;Twitter</a><br/>
+                <a href="https://www.instagram.com"  style="color:#003266"><i style="font-size:160%;color:#003266" class="fa fa-instagram"></i>&nbsp;&nbsp;Instagram</a><br/>
+            </div>
+            <div class="col l5">
+                <p style="font-size:140%;color:#003266">Our office:</p>
+                <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+                <div style="overflow:hidden;height:380px;width:500px;">
+                    <div id="gmap_canvas" style="height:350px;width:500px"></div>
+                    <style>#gmap_canvas
+                    img{max-width:none!important;background:none!important}
+                    </style>
+                </div>
+                <script type="text/javascript">
+                    function init_map(){var myOptions = {zoom:18,center:new google.maps.LatLng(5.4166107584338725,100.32765334774626),mapTypeId: google.maps.MapTypeId.ROADMAP};map = new google.maps.Map(document.getElementById("gmap_canvas"), myOptions);marker = new google.maps.Marker({map: map,position: new google.maps.LatLng(5.4166107584338725, 100.32765334774626)});infowindow = new google.maps.InfoWindow({content:"<b>Supreme Kinetic Sdn Bhd</b><br/>67, lorong kinta<br/>10400 Penang" });google.maps.event.addListener(marker, "click", function(){infowindow.open(map,marker);});infowindow.open(map,marker);}google.maps.event.addDomListener(window, 'load', init_map);
+                </script>
+            </div>
+        </div>
+    </div>
+</footer>

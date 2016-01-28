@@ -1,1 +1,61 @@
-Checkout page design
+<div class="row">
+    <div class="col s12 m6 l5">
+        <div class="col s12 m12 l12">
+            <p><b style="font-size:120%">Checkout</b></p>
+            <div class="col s12 m12 l12" style="padding-bottom:2%">
+                <p><b style="font-size:110%">Credit Card Information</b></p>
+                <div class="input-field col s12 m12 l12">
+                    <input id="creditcard" type="number" class="validate">
+                    <label for="creditcard">Credit Card Number:</label>
+                </div>
+                <div class="input-field col s12 m12 l6">
+                    <input id="cardowner" type="text" class="validate">
+                    <label for="cardowner">Card Owner Name:</label>
+                </div>
+                <div class="input-field col s12 m12 l3">
+                    <input id="expired" type="text">
+                    <label for="expired">Expired Date</label>
+                </div>
+                <div class="input-field col s12 m12 l3">
+                    <input id="cvc" type="text">
+                    <label for="cvc">CVC:</label>
+                </div>
+            </div>
+            <button class="btn col s12 m12 l12">Proceed Payment using Credit Card</button>
+            <span>OR</span>
+            <button class="btn col s12 m12 l12 light-blue">Proceed Payment using PayPal</button>
+        </div>
+    </div>
+
+    <div class="col s12 m6 l5">
+        <div class="col s12 m12 l12">
+            <p><b style="font-size:120%">Shopping Cart Items</b></p>
+            <div>
+                <div class="col s12 m12 l12">
+                    <div class="col s   7 m7 l7"><p>Name: <b>Silver Set</b><br/>Size: <b>60cm x 35cm x 45cm</b><br/>Color: <b>White</b><br/>Quantity: <b>1</b></p></div>
+                    <div class="col s5 m5 l5"><p class="right">Price: <b>RM 1399.99</b></p></div>
+                </div>
+                <div class="col s12 m12 l12">
+                    <div class="col s7 m7 l7"><p>Name: <b>White Set</b><br/>Size: <b>75cm x 50cm x 60cm</b><br/>Color: <b>Orange</b><br/>Quantity: <b>2</b></p></div>
+                    <div class="col s5 m5 l5"><p class="right">Price: <b>RM 1348.99</b></p></div>
+                </div>
+                <div class="col s12 m12 l12">
+                    <div class="col s7 m7 l7"><p>Name: <b>White Set</b><br/>Size: <b>75cm x 50cm x 60cm</b><br/>Color: <b>Orange</b><br/>Quantity: <b>2</b></p></div>
+                    <div class="col s5 m5 l5"><p class="right">Price: <b>RM 1348.99</b></p></div>
+                </div>
+                <div class="col s12 m12 l12">
+                    <div class="col s7 m7 l7">
+                        <p><b style="font-size:120%">Your Remarks</b></p>
+                        <textarea style="height:160px;resize:none" disabled></textarea> <!--If cant get the remark form shopping cart then just let them enter from this page-->
+                    </div>
+                    <div class="col s5 m5 l5">
+                        <p>Sub Total: <b class="right" style="font-size:110%">RM 4097.97</b></p>
+                        <p>Shipping: <b class="right">RM 100.00</b></p>
+                        <p>Tax(6%): <b class="right">RM 246.00</b></p>
+                        <p>Total Amount: <b class="right" style="font-size:110%">RM 4443.97</b></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
