@@ -44,6 +44,9 @@
                                 <i class="material-icons">close</i>
                             </div>
                         </li>
+                        <li>
+                            <a href="/cart"><i class="fa fa-shopping-cart left"></i>Cart</a>
+                        </li>
                         <li  ng-show=(!vm.username)>
                             <a ng-click="vm.user_modal('register')">Sign Up</a>
                         </li>
@@ -67,6 +70,9 @@
                                 <label for="search"><i class="material-icons responsive-search">search</i></label>
                                 <i class="material-icons responsive-search">close</i>
                             </div>
+                        </li>
+                        <li>
+                            <a href="/cart"><i class="fa fa-shopping-cart left"></i>Cart</a>
                         </li>
                         <li class="hover_none" ng-show=(!vm.username)>
                             <button class="btn blue" ng-click="vm.user_modal('login')">Login</button>
@@ -181,6 +187,8 @@
         <script src="app/directives/file_model.js"></script>
         <script src="assets/js/script.js"></script>
     	<script src="assets/js/search.js"></script>
-
+        <script src="app/cart/cart.js"></script>
+        <script src="app/cart/billing.js"></script>
+        <script src="app/cart/checkout.js"></script>
     </body>
 </html>

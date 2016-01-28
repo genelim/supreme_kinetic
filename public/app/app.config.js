@@ -86,6 +86,21 @@ function config($urlRouterProvider,$stateProvider,$locationProvider,cfpLoadingBa
     }).state('profile.order_history', {
         url: '/order_history',
         templateUrl: 'app/user/order_history.html'
+    }).state('cart', {
+        url: '/cart',
+        templateUrl: 'app/cart/cart.html',
+        controller: 'CartController',
+        controllerAs: 'vm'
+    }).state('billing', {
+        url: '/billing',
+        templateUrl: 'app/cart/billing.html',
+        controller: 'BillingController',
+        controllerAs: 'vm'
+    }).state('checkout', {
+        url: '/checkout',
+        templateUrl: 'app/cart/checkout.html',
+        controller: 'CheckoutController',
+        controllerAs: 'vm'
     });
 
     $locationProvider.html5Mode({

@@ -127,7 +127,8 @@ function AdminProductController($http, $rootScope,users,$scope,File_Upload,$q,cf
         cfpLoadingBar.start();
         Product.get({page : page, size:vm.size, type:vm.category_type, location:'admin'},function(res){
             vm.products = (res.response.product);
-            vm.current_page = page
+            vm.number = ( Math.ceil(res.response.count/vm.size));
+            vm.current_page = page;
             cfpLoadingBar.complete();
         });
     }
@@ -190,7 +191,7 @@ function AdminProductController($http, $rootScope,users,$scope,File_Upload,$q,cf
         }
         var new_product = [{product_main:product_main,product_image:product_image,product_discount:product_discount,product_color:product_color,product_size:product_size,user:Logger.user_details,category_type:vm.category_type}];
         Product.save(new_product,function(res){
-            product_load(vm.category_type);
+            static_user_page(1)
             vm.images_selected = [];
             vm.images_selected_uploaded = [];
             vm.colors = [{name: 'Color', children: []}];
