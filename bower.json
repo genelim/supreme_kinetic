@@ -20,6 +20,10 @@
     "angular-bootstrap-colorpicker": "~3.0.22",
     "angular-file-upload": "~2.2.0",
     "angular-loading-bar": "~0.8.0",
-    "angular-ui-sortable": "~0.13.4"
+    "angular-ui-sortable": "~0.13.4",
+    "angular-sanitize": "~1.4.9"
+  },
+  "resolutions": {
+    "angular": "1.4.9"
   }
 }

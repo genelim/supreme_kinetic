@@ -19,6 +19,7 @@ function HomeController($rootScope,$scope,Product,cfpLoadingBar,$http,Transactio
     vm.product_recommended = [];
     vm.product_details = []
     vm.add_to_cart = add_to_cart;
+    $scope.dd = 'ddd';
 
     $rootScope.home_default = true;
     vm.tab_menu = 	[

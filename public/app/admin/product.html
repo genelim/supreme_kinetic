@@ -36,8 +36,7 @@
                                 <th>{{product.sku}}</th>
                                 <td><img ng-src="{{product.image[0]}}" style="height:50px; width:auto;" class="responsive-img"></td>
                                 <td><strong class="grey-text text-darken-2">{{product.name}}</strong><br/>
-                                    <label class="grey-text">
-                                        {{product.description}}
+                                    <label class="grey-text" ng-bind-html="product.description">
                                     </label>
                                 </td>
                                 <td>{{product.quantity}}</td>
