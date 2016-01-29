@@ -20,6 +20,8 @@ function HomeController($rootScope,$scope,Product,cfpLoadingBar,$http,Transactio
     vm.product_details = []
     vm.add_to_cart = add_to_cart;
     $scope.dd = 'ddd';
+    vm.selected_image = null;
+    vm.select_image = select_image;
 
     $rootScope.home_default = true;
     vm.tab_menu = 	[
@@ -57,6 +59,7 @@ function HomeController($rootScope,$scope,Product,cfpLoadingBar,$http,Transactio
 
     function view_details(details){
         vm.product_details = details;
+        vm.selected_image = vm.product_details.image[0];
         $('#view_details').openModal();
     }
 
@@ -89,5 +92,7 @@ function HomeController($rootScope,$scope,Product,cfpLoadingBar,$http,Transactio
         
     }
 
-    
+    function select_image(image){
+        vm.selected_image = image;
+    }
 }

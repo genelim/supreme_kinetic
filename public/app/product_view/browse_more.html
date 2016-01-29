@@ -148,11 +148,11 @@
 	<div class="modal-content">
 		<div class="row" style="margin-bottom:0">
 			<div class="col s12 m8 l7">
-				<img src="{{vm.product_details.image[0]}}" class="responsive-img center" style="height:auto;width:100%;margin:0 auto">
+				<img src="{{vm.selected_image}}" class="responsive-img center" style="height:auto;width:100%;margin:0 auto">
 			</div>
 			<div class="col s12 m4 l2">
 				<ul class="center">
-					<li class="col s12 m12 l12" ng-repeat="image in vm.product_details.image track by $index"><img ng-src="{{image}}" class=" responsive-img" style="height:auto;width:100%"></li>
+					<li class="col s12 m12 l12" ng-repeat="image in vm.product_details.image track by $index"><img ng-src="{{image}}" class=" responsive-img" style="height:auto;width:100%" ng-click="vm.select_image(image)"></li>
 				</ul>
 			</div>
 			<div class="col s12 m12 l3">
@@ -160,7 +160,8 @@
 					SKU: <b>{{vm.product_details.sku}}</b><br/>
 					Price: <b>{{vm.product_details.price}}</b><br/>
 					Rating: <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i></p>
-				<p>Description: <b>{{vm.product_details.description}}</b></p>
+				<label>Description</label>
+                <div ng-bind-html="vm.product_details.description"></div>
 			</div>
 		</div>
 	</div>

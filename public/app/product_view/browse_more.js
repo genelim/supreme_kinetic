@@ -45,6 +45,8 @@ function BrowseMoreController(Transaction, Logger, $rootScope, $stateParams, Pro
     vm.category_check = 'main';
     vm.price_low = 0;
     vm.price_high = 0;
+    vm.selected_image = null;
+    vm.select_image = select_image;
 
 	angular.element(document).ready(function () {
         $('.collapsible').collapsible({
@@ -70,6 +72,7 @@ function BrowseMoreController(Transaction, Logger, $rootScope, $stateParams, Pro
     function view_details(product){
     	vm.product_details = product;
     	$('#browse_more_view').openModal();
+        vm.selected_image = vm.product_details.image[0];
     }
 
     function category_load(type){
@@ -309,5 +312,8 @@ function BrowseMoreController(Transaction, Logger, $rootScope, $stateParams, Pro
             Materialize.toast('You are not logged in', 2000);
         }
         
+    }
+    function select_image(image){
+        vm.selected_image = image;
     }
 }
