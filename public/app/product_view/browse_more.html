@@ -52,17 +52,26 @@
 					You can travel back to the previous page by pressing on the back button on your browser<br/>
 						Or travel back to our <a href="app/home/home.html">Homepage</a>, <a href="outdoorproduct.html">Outdoor product page</a> or <a href="indoorproduct.html">Indoor product page</a>.</p>
 			</div>
-			<div class="card col s6 m6 l3 z-depth-0" ng-repeat="product in vm.products">
+			<div class="card col s6 m6 l4 z-depth-0" ng-repeat="product in vm.products">
 				<div class="modal-trigger" href="#browse_more_view">
-					<div class="card-image waves-effect waves-block waves-light">
-						<img ng-src="{{product.image[0]}}" style="height:250px;width:auto;margin:0 auto" class="responsive-img responsive-img z-depth-1">
+					<div class="card-image">
+						<img ng-src="{{product.image[0]}}" style="height:18em;width:auto;margin:0 auto" class="responsive-img responsive-img z-depth-1">
 						<div class="col s12 m12 l12">
 							<p><b style="font-size:120%">{{product.name}}</b><br/>
 								Item code: <b>{{product.sku}}</b><br/>
 								Price: <b>RM{{product.price}}</b><br/></p>
-								<a ng-click="vm.view_details(product)">Click to view Details</a>
+								<a style="cursor:pointer" ng-click="vm.view_details(product)">Click to view Details</a>
 						</div>
 					</div>
+				</div>
+				<div class="input-field col s12 m12 l12">
+					Choose your color:
+					<p type="radio" style="color:red">Red</p>
+					<p type="radio" style="color:blue">Blue</p>
+					<p type="radio" style="color:green">Green</p>
+				</div>
+				<div class="col s12 m12 l12">
+					Choose your size:<br/>
 				</div>
 				<div class="col s8 m8 l8">
 					<p style="font-weight:bold; font-family:Roboto">Quantity:&nbsp;<input  length="3" min="0" size="3" maxlength="3" class="quantity" name="updates[]" ng-model="product.select_quantity"></p>
@@ -135,57 +144,25 @@
 	</div>
 </footer>
 
-<div id="browse_more_view" class="modal" style="height:auto;width:60%">
-    <div class="modal-content">
-        <div class="row" style="margin-bottom:0">
-            <div class="col s12 m8 l5">
-                <img src="{{vm.product_details.image[0]}}" class="responsive-img center" style="height:auto;width:100%;margin:0 auto">
-            </div>
-            <div class="col s12 m4 l2">
-                <ul class="center">
-                    <li class="col s12 m12 l12" ng-repeat="image in vm.product_details.image track by $index"><img ng-src="{{image}}" class="responsive-img" style="height:100px; width:auto;margin:0 auto"></li>
-                </ul>
-            </div>
-            <div class="col s12 m12 l5">
-                <p style="font-size:115%">Name: <b>{{vm.product_details.name}}</b><br/>
-                    SKU: <b>{{vm.product_details.sku}}</b><br/>
-                    Price: <b>RM{{vm.product_details.price}}</b><br/>
-                    Description: {{vm.product_details.description}}<br/>
-                    Size:</p><ul>
-                    <li>Chair size (Small) : W 95 x L 105 x H 92 CM</li>
-                    <li>Chair size (Big) : W 130 x L 130 x H 92 CM</li>
-                    <li>Table size : W 65 x L 50 x H 30 CM</li>
-                </ul>
-                <div class="col s12 m12 l12">
-                    <div class="col s6 m6 l6">
-                        <select>
-                            <option value="" disabled selected>Choose your color</option>
-                            <option value="1">Red</option>
-                            <option value="2">Orange</option>
-                            <option value="3">White</option>
-                        </select>
-                    </div>
-                    <div class="col s6 m6 l6">
-                        <select>
-                            <option value="" disabled selected>Choose your size</option>
-                            <option value="1">Large</option>
-                            <option value="2">Medium</option>
-                            <option value="3">120cm x 40cm x 60cm</option>
-                        </select>
-                    </div>
-                    <div class="col l6">
-                        <p style="font-weight:bold; font-family:Roboto">Quantity:&nbsp;<input length="3" min="0" size="3" maxlength="3" class="quantity" value=""></p>
-                    </div>
-                    <div class="col l6">
-                        <button class="btn-floating waves-effect waves-light pink"><i class="fa fa-heart fa-5x"></i></button>
-                        <button class="btn-floating waves-effect waves-light orange lighten-2"><i class="fa fa-star fa-5x"></i></button>
-                    </div>
-                </div>
-                <div class="col s12 m6 l8 right">
-                    <button class="btn waves-effect waves-light green lighten-1" ><i class="fa fa-cart-plus"></i>&nbsp;&nbsp;Add to Cart</button>
-                </div>
-            </div>
-        </div>
-    </div>
+<div id="browse_more_view" class="modal" style="height:auto;width:80%;padding-bottom:1%">
+	<div class="modal-content">
+		<div class="row" style="margin-bottom:0">
+			<div class="col s12 m8 l7">
+				<img src="{{vm.product_details.image[0]}}" class="responsive-img center" style="height:auto;width:100%;margin:0 auto">
+			</div>
+			<div class="col s12 m4 l2">
+				<ul class="center">
+					<li class="col s12 m12 l12" ng-repeat="image in vm.product_details.image track by $index"><img ng-src="{{image}}" class=" responsive-img" style="height:auto;width:100%"></li>
+				</ul>
+			</div>
+			<div class="col s12 m12 l3">
+				<p style="font-size:120%"><b style="font-size:160%">{{vm.product_details.name}}</b><br/>
+					SKU: <b>{{vm.product_details.sku}}</b><br/>
+					Price: <b>{{vm.product_details.price}}</b><br/>
+					Rating: <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i></p>
+				<p>Description: <b>{{vm.product_details.description}}</b></p>
+			</div>
+		</div>
+	</div>
 </div>
 

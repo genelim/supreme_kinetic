@@ -1,7 +1,7 @@
-<div id="view_details" class="modal">
+<div id="view_details" class="modal" style="height:auto;width:80%;padding-bottom:1%">
     <div class="modal-content">
         <div class="row" style="margin-bottom:0">
-            <div class="col s12 m8 l5">
+            <div class="col s12 m8 l7">
                 <img src="{{vm.product_details.image[0]}}" class="responsive-img center" style="height:auto;width:100%;margin:0 auto">
             </div>
             <div class="col s12 m4 l2">
@@ -9,46 +9,12 @@
                     <li class="col s12 m12 l12" ng-repeat="image in vm.product_details.image track by $index"><img ng-src="{{image}}" class=" responsive-img" style="height:auto;width:100%"></li>
                 </ul>
             </div>
-            <div class="col s12 m12 l5">
-                <p style="font-size:120%"><b>{{vm.product_details.name}}</b></p>
-                <p></p>SKU: <b>{{vm.product_details.sku}}</b></p>
-                <p>Price: <b>{{vm.product_details.price}}</b></p>
+            <div class="col s12 m12 l3">
+                <p style="font-size:120%"><b style="font-size:160%">{{vm.product_details.name}}</b><br/>
+                SKU: <b>{{vm.product_details.sku}}</b><br/>
+                Price: <b>{{vm.product_details.price}}</b><br/>
+                Rating: <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i></p>
                 <p>Description: <b>{{vm.product_details.description}}</b></p>
-            </div>
-        </div>
-        <div class="col s12 m12 l12">
-            <ul class="tabs">
-                <li class="tab col s6 m6 l6"><a class="active" href="#rev">Product Reviews</a></li>
-                <li class="tab col s6 m6 l6"><a href="#ship">Shipping & Return</a></li>
-            </ul>
-            <div id="rev" class="col s12 m12 l12">
-                <div class="row">
-                    <div class="col s2 m2 l2">
-                        <img ng-src="iwjdiwje.jpg" class="responsive-img left" style="padding-right:2%;width:1em;height:1em">
-                    </div>
-                    <div class="col s10 m10 l10">
-                        Good product good service, all good, everything good, whole thing good.
-                    </div>
-                </div>
-                <a class="btn modal-trigger right" href="#review">More Review</a>
-            </div>
-            <div id="ship" class="col s12 m12 l12">
-                <table>
-                    <tbody>
-                    <tr>
-                        <th scope="row">Ship-From Address</th>
-                        <td>Supreme Kinetic Sdn Bhd, 67, Lorong Kinta,Georgetown, 10400, Penang</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Return/Exchange Address</th>
-                        <td>Supreme Kinetic Sdn Bhd, 67, Lorong Kinta,Georgetown, 10400, Penan</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Notice on Return/Exchange</th>
-                        <td>All furniture delivered must be checked by customer.<br>Any defects must be informed immediately. <br>Furniture replacement can only be done depend on condition.</td>
-                    </tr>
-                    </tbody>
-                </table>
             </div>
         </div>
     </div>

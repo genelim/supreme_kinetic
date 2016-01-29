@@ -18,7 +18,7 @@
 <div ng-repeat="tab in vm.tab_menu track by $index" id="{{tab.id}}" class="row">
 	<div class="" style="">
 	    <div ng-include src="'app/home/product.html'"></div>
-	    <div class="right" ng-if="vm.done && vm.products[0]._id">
+	    <div class="right" ng-if="vm.done && vm.products[0]._id" style="padding-right:1%">
 	        <a class="btn" href="browse_more/{{tab.name  | lowercase}}"><i class="fa fa-plus-square left"></i>Browse More</a>
 	    </div>
     </div>
