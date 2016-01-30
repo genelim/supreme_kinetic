@@ -44,13 +44,13 @@
 		</ul>
 	</div>
 
-	<div class="col s12 l10" >
+	<div class="col s12 l10" ng-if="vm.done === 1">
 		<div class="row">
 			<div ng-if="!vm.products.length" src="'app/error/404.html'">
 				<p style="font-size:140%" class="centerS"><b>Sorry</b></p>
 				<p style="font-size:120%">The item that you are looking for is not available in our store.<br/>
 					You can travel back to the previous page by pressing on the back button on your browser<br/>
-						Or travel back to our <a href="app/home/home.html">Homepage</a>, <a href="outdoorproduct.html">Outdoor product page</a> or <a href="indoorproduct.html">Indoor product page</a>.</p>
+						Or travel back to our <a href="/">Homepage</a>, <a href="browse_more/outdoor">Outdoor product page</a> or <a href="browse_more/indoor">Indoor product page</a>.</p>
 			</div>
 			<div class="card col s6 m6 l4 z-depth-0" ng-repeat="product in vm.products">
 				<div class="modal-trigger" href="#browse_more_view">

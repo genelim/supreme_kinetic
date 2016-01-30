@@ -47,6 +47,7 @@ function BrowseMoreController(Transaction, Logger, $rootScope, $stateParams, Pro
     vm.price_high = 0;
     vm.selected_image = null;
     vm.select_image = select_image;
+    vm.done = 0;
 
 	angular.element(document).ready(function () {
         $('.collapsible').collapsible({
@@ -65,6 +66,7 @@ function BrowseMoreController(Transaction, Logger, $rootScope, $stateParams, Pro
                 vm.number = ( Math.ceil(res.response.count/vm.size));
                 vm.products = (res.response.product);
                 cfpLoadingBar.complete();
+                vm.done = 1;
             });
         }
     }
