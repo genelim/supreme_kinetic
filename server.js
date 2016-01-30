@@ -1,14 +1,16 @@
 var	express = require('express'),
-	app = express(),
 	mongoose = require('mongoose'),
 	bodyParser = require('body-parser'),
 	user = require('./app/routes/user'),
 	product = require('./app/routes/product'),
 	product_category = require('./app/routes/product_category'),
-	upload = require('./app/routes/upload');
-	transaction = require('./app/routes/transaction');
+	upload = require('./app/routes/upload'),
+	transaction = require('./app/routes/transaction'),
+	compression = require('compression'),
+	app = express(),
 	port = process.env.PORT || 8080; 
 	
+app.use(compression());
 app.use(bodyParser.json()); 
 app.use('/app', express.static(__dirname + '/public/app'));
 app.use('/assets', express.static(__dirname + '/public/assets'));
