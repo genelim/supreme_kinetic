@@ -55,29 +55,14 @@
 			<div class="card col s6 m6 l4 z-depth-0" ng-repeat="product in vm.products">
 				<div class="modal-trigger" href="#browse_more_view">
 					<div class="card-image">
-						<img ng-src="{{product.image[0]}}" style="height:18em;width:auto;margin:0 auto" class="responsive-img responsive-img z-depth-1">
-						<div class="col s12 m12 l12">
-							<p><b style="font-size:120%">{{product.name}}</b><br/>
-								Item code: <b>{{product.sku}}</b><br/>
-								Price: <b>RM{{product.price}}</b><br/></p>
-								<a style="cursor:pointer" ng-click="vm.view_details(product)">Click to view Details</a>
+						<img ng-src="{{product.image[0]}}" style="cursor:pointer;height:18em;width:auto;margin:0 auto" class="responsive-img materialboxed z-depth-1">
+						<div class="col s12 m12 l12" style="cursor:pointer" ng-click="vm.view_details(product)">
+							<p class="center"><b style="font-size:160%">{{product.name}}</b><br/>
+								<b style="font-size:140%">RM{{product.price*0.90}}</b>
+                                <b style="color:gray">RM{{product.price}}</b>
+							</p>
 						</div>
 					</div>
-				</div>
-				<div class="input-field col s12 m12 l12">
-					Choose your color:
-					<p type="radio" style="color:red">Red</p>
-					<p type="radio" style="color:blue">Blue</p>
-					<p type="radio" style="color:green">Green</p>
-				</div>
-				<div class="col s12 m12 l12">
-					Choose your size:<br/>
-				</div>
-				<div class="col s8 m8 l8">
-					<p style="font-weight:bold; font-family:Roboto">Quantity:&nbsp;<input  length="3" min="0" size="3" maxlength="3" class="quantity" name="updates[]" ng-model="product.select_quantity"></p>
-				</div>
-				<div class="col s4 m4 l4">
-					<button class="btn waves-effect waves-light green lighten-1"  ng-click="vm.add_to_cart(product,product.select_quantity)"><i class="fa fa-cart-plus"></i></button>
 				</div>
 			</div>
 		</div>
@@ -144,26 +129,60 @@
 	</div>
 </footer>
 
-<div id="browse_more_view" class="modal" style="height:auto;width:80%;padding-bottom:1%">
+<div id="browse_more_view" class="modal" style="height:auto;width:65%">
 	<div class="modal-content">
 		<div class="row" style="margin-bottom:0">
-			<div class="col s12 m8 l7">
-				<img src="{{vm.selected_image}}" class="responsive-img center" style="height:auto;width:100%;margin:0 auto">
+			<div class="col s12 m12 l5 center">
+                <div class="circle_price">10%</div>
+				<img src="{{vm.selected_image}}" class="responsive-img materialboxed center" style="height:23em;width:auto;margin:0 auto">
+				<div class="row">
+					<div class="col s12 m12 l12 multi_image">
+						<ul><li class="col s6 m2 l3" ng-repeat="image in vm.product_details.image track by $index"><img ng-src="{{image}}" class=" responsive-img" style="height:5em;width:auto" ng-click="vm.select_image(image)"></li></ul>
+					</div>
+				</div>
 			</div>
-			<div class="col s12 m4 l2">
-				<ul class="center">
-					<li class="col s12 m12 l12" ng-repeat="image in vm.product_details.image track by $index"><img ng-src="{{image}}" class=" responsive-img" style="height:auto;width:100%" ng-click="vm.select_image(image)"></li>
-				</ul>
-			</div>
-			<div class="col s12 m12 l3">
-				<p style="font-size:120%"><b style="font-size:160%">{{vm.product_details.name}}</b><br/>
-					SKU: <b>{{vm.product_details.sku}}</b><br/>
-					Price: <b>{{vm.product_details.price}}</b><br/>
-					Rating: <i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-o"></i></p>
-				<label>Description</label>
+			<div class="col s12 m12 l5">
+                <p><b style="font-size:250%">{{vm.product_details.name}}</b><br/>
+                    Rating: <i class="fa fa-star rating_star"></i><i class="fa fa-star rating_star"></i><i class="fa fa-star rating_star"></i><i class="fa fa-star rating_star"></i><i class="fa fa-star-o"></i><br/>
                 <div ng-bind-html="vm.product_details.description"></div>
+				<div class="row">
+                    <div class="col s12 m12 l4">
+                        <p>Select a Color:</p>
+                        <ul class="">
+                            <li class="select">
+                                <div class="color_selectee" style="background-color: white;"></div>
+                            </li>
+                            <li class="select">
+                                <div class="color_selectee" style="background-color: orange;"></div>
+                            </li>
+                            <li class="select">
+                                <div class="color_selectee" style="background-color: red;"></div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col s12 m12 l8">
+                        <p>Select A Size:</p>
+                        <a class="btn white col s4 m4 l4 selectsize"><b class="size_selectee" style="color:black">S</b></a>
+                        <a class="btn white col s4 m4 l4 selectsize"><b class="size_selectee" style="color:black">M</b></a>
+                        <a class="btn white col s4 m4 l4 selectsize"><b class="size_selectee" style="color:black">L</b></a>
+                    </div>
+                </div>
+                <div class="col s12 m12 l5">
+                    <b style="font-size:250%">RM{{vm.product_details.price*0.90}}</b>
+                    <b style="font-size:130%;color:gray">Original: RM{{vm.product_details.price}}</b>
+                </div>
+                <div class="col s12 m12 l7">
+                    <div class="col s12 m12 l4"><p style="padding-left: 1%;"></p></div>
+                    <div class="col s8 m8 l4">
+                        <p style="font-weight:bold">
+							<input  length="3" min="1" size="3" maxlength="3" class="quantity" name="updates[]" ng-model="product.select_quantity">
+						</p>
+                    </div>
+                    <div class="col s4 m4 l4"  style="padding-top:2%">
+                        <button class="btn waves-effect waves-light green lighten-1" ng-click="vm.add_to_cart(product,product.select_quantity)"><i class="fa fa-cart-plus"></i></button>
+                    </div>
+                </div>
 			</div>
 		</div>
 	</div>
 </div>
-

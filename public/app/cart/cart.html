@@ -3,8 +3,10 @@
     <div class="col s12 m12 l5">
             <div class="col s12 m12 l12" ng-repeat="product in vm.product.product">
                 <div class="col s4 m4 l4"><img src="{{product.product_id[0].image[0]}}" class="responsive-img" style="height:10em"></div>
-                <div class="col s5 m5 l5"><p>Name: <b>{{product.product_id[0].name}}</b><br/>Size: <b>60cm x 35cm x 45cm</b><br/>Color: <b>White</b><br/>Quantity: <b><input  length="3" min="0" size="3" maxlength="3" class="quantity" name="updates[]" ng-model="product.quantity"></b></p></div>
-                <div class="col s3 m3 l3"><p class="right">Price: <b>{{product.product_id[0].price}}</b></p><button class="btn right"><i class="fa fa-trash"></i></button></div>
+                <div class="col s5 m5 l5"><p>Name: <b>{{product.product_id[0].name}}</b><br/>Size: <b>60cm x 35cm x 45cm</b><br/>Color: <b>White</b><br/>Quantity: <b><p style="font-weight:bold">Quantity:&nbsp;<input  length="3" min="1" size="3" maxlength="3" class="quantity" name="updates[]" ng-model="product.select_quantity"></p></b></p></div>
+                <div class="col s3 m3 l3"><p class="right">Price: <b>{{product.product_id[0].price}}</b></p></div>
+                <div><button class="btn right"><i class="fa fa-trash"></i></button></div>
+
             </div>
     </div>
 

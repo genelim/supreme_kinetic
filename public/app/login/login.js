@@ -55,7 +55,7 @@ function LoginController(Transaction,User,Logger,$localStorage,$scope,$rootScope
             }
         }
         value.type = type;
-        value.role = {type:"member",level:0};
+        value.role = {type:"member",level:0}
         User.save(value, function(res){
             if(res.response !== 'User Existed' && res.response !== 'Invalid Username or Password' && res.response !== 'Server Error'){
                 Logger.is_logged = true;

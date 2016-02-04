@@ -4,5 +4,6 @@ $( document ).ready(function(){
 	$(".dropdown-button").dropdown();
 	$('.tooltipped').tooltip();
 	$('select').material_select();
+	$('.materialboxed').materialbox();
 })
 

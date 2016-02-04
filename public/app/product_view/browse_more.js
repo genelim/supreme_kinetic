@@ -293,7 +293,7 @@ function BrowseMoreController(Transaction, Logger, $rootScope, $stateParams, Pro
             return;
         }
         if(isNaN(quantity)){
-            Materialize.toast('Quantity must be integer', 2000);
+            Materialize.toast('Quantity must only be number', 2000);
             return;
         }
         if(Logger.is_logged){
