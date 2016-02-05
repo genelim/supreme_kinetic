@@ -22,6 +22,10 @@ function HomeController($rootScope,$scope,Product,cfpLoadingBar,$http,Transactio
     $scope.dd = 'ddd';
     vm.selected_image = null;
     vm.select_image = select_image;
+    vm.color = null;
+    vm.product = {select_quantity:1};
+    vm.size_product = null;
+    vm.type_select = type_select;
 
     $rootScope.home_default = true;
     vm.tab_menu = 	[
@@ -72,8 +76,24 @@ function HomeController($rootScope,$scope,Product,cfpLoadingBar,$http,Transactio
             Materialize.toast('Quantity must be integer', 2000);
             return;
         }
+        if(vm.color === null){
+            if(product.color.length > 0){
+                Materialize.toast('Please select color', 2000);
+                return;
+            }else{
+                vm.color = null;
+            }   
+        }
+        if(vm.size_product === null){
+            if(product.size.length > 0){
+                Materialize.toast('Please select size', 2000);
+                return;
+            }else{
+                vm.size = null;
+            } 
+        }
         if(Logger.is_logged){
-            var data = {user:Logger.user_details,product:product,quantity:quantity};
+            var data = {user:Logger.user_details,product:product,quantity:quantity,size:vm.size_product,color:vm.color};
             Transaction.save(data, function(result){
                 Materialize.toast('Added to Cart', 2000);
                 Transaction.get({id:Logger.user_details._id},function(res){
@@ -85,6 +105,9 @@ function HomeController($rootScope,$scope,Product,cfpLoadingBar,$http,Transactio
                         $rootScope.cart_quantity = res.response.product.length;
                     }
                 })
+                vm.product = {select_quantity:1};
+                vm.color =null;
+                vm.size_product =null;
             })
         }else{
             Materialize.toast('You are not logged in', 2000);
@@ -94,5 +117,13 @@ function HomeController($rootScope,$scope,Product,cfpLoadingBar,$http,Transactio
 
     function select_image(image){
         vm.selected_image = image;
+    }
+
+    function type_select(type,data){
+        if(type === 'color'){
+            vm.color = data;
+        }else if(type === 'size'){
+            vm.size_product = data;
+        }
     }
 }

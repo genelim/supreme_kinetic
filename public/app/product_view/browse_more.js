@@ -48,6 +48,7 @@ function BrowseMoreController(Transaction, Logger, $rootScope, $stateParams, Pro
     vm.selected_image = null;
     vm.select_image = select_image;
     vm.done = 0;
+    vm.product = {select_quantity:1};
     vm.color = null;
     vm.size_product = null;
     vm.type_select = type_select;
@@ -301,15 +302,23 @@ function BrowseMoreController(Transaction, Logger, $rootScope, $stateParams, Pro
             return;
         }
         if(vm.color === null){
-            Materialize.toast('Please select color', 2000);
-            return;
+            if(product.color.length > 0){
+                Materialize.toast('Please select color', 2000);
+                return;
+            }else{
+                vm.color = null;
+            }   
         }
         if(vm.size_product === null){
-            Materialize.toast('Please select size', 2000);
-            return;
+            if(product.size.length > 0){
+                Materialize.toast('Please select size', 2000);
+                return;
+            }else{
+                vm.size = null;
+            } 
         }
         if(Logger.is_logged){
-            var data = {user:Logger.user_details,product:product,quantity:quantity,color:vm.color,size:vm.size};
+            var data = {user:Logger.user_details,product:product,quantity:quantity,color:vm.color,size:vm.size_product};
             Transaction.save(data, function(result){
                 Materialize.toast('Added to Cart', 2000);
                 Transaction.get({id:Logger.user_details._id},function(res){
@@ -323,6 +332,7 @@ function BrowseMoreController(Transaction, Logger, $rootScope, $stateParams, Pro
                 })
                 vm.color =null;
                 vm.size_product =null;
+                vm.product = {select_quantity:1};
             })
         }else{
             Materialize.toast('You are not logged in', 2000);
