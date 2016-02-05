@@ -149,39 +149,35 @@
                     <div class="col s12 m12 l4">
                         <p>Select a Color:</p>
                         <ul class="">
-                            <li class="select">
-                                <div class="color_selectee" style="background-color: white;"></div>
-                            </li>
-                            <li class="select">
-                                <div class="color_selectee" style="background-color: orange;"></div>
-                            </li>
-                            <li class="select">
-                                <div class="color_selectee" style="background-color: red;"></div>
+                            <li class="select" ng-repeat="color in vm.product_details.color" ng-class="{type_selected: color==vm.color}">
+                                <div class="color_selectee" style="background-color: {{color}}" ng-click="vm.type_select('color',color)"></div>
                             </li>
                         </ul>
                     </div>
                     <div class="col s12 m12 l8">
                         <p>Select A Size:</p>
-                        <a class="btn white col s4 m4 l4 selectsize"><b class="size_selectee" style="color:black">S</b></a>
-                        <a class="btn white col s4 m4 l4 selectsize"><b class="size_selectee" style="color:black">M</b></a>
-                        <a class="btn white col s4 m4 l4 selectsize"><b class="size_selectee" style="color:black">L</b></a>
-                    </div>
+                        <li class="select text" ng-repeat="size in vm.product_details.size" ng-click="vm.type_select('size',size)" ng-class="{type_selected: size==vm.size_product}">
+							<div class="color_selectee text">{{size}}</div>
+						</li>
                 </div>
-                <div class="col s12 m12 l5">
-                    <b style="font-size:250%">RM{{vm.product_details.price*0.90}}</b>
-                    <b style="font-size:130%;color:gray">Original: RM{{vm.product_details.price}}</b>
+                <div class="row">
+	                <div class="col s12 m12 l5">
+	                    <b style="font-size:250%">RM{{vm.product_details.price*0.90}}</b>
+	                    <b style="font-size:130%;color:gray">Original: RM{{vm.product_details.price}}</b>
+	                </div>
+	                <div class="col s12 m12 l7">
+	                    <div class="col s12 m12 l4"><p style="padding-left: 1%;"></p></div>
+	                    <div class="col s8 m8 l4">
+	                        <p style="font-weight:bold">
+								<input  length="3" min="1" size="3" maxlength="3" class="quantity" name="updates[]" ng-model="product.select_quantity">
+							</p>
+	                    </div>
+	                    <div class="col s4 m4 l4"  style="padding-top:2%">
+	                        <button class="btn waves-effect waves-light green lighten-1" ng-click="vm.add_to_cart(vm.product_details,product.select_quantity)"><i class="fa fa-cart-plus"></i></button>
+	                    </div>
+	                </div>
                 </div>
-                <div class="col s12 m12 l7">
-                    <div class="col s12 m12 l4"><p style="padding-left: 1%;"></p></div>
-                    <div class="col s8 m8 l4">
-                        <p style="font-weight:bold">
-							<input  length="3" min="1" size="3" maxlength="3" class="quantity" name="updates[]" ng-model="product.select_quantity">
-						</p>
-                    </div>
-                    <div class="col s4 m4 l4"  style="padding-top:2%">
-                        <button class="btn waves-effect waves-light green lighten-1" ng-click="vm.add_to_cart(product,product.select_quantity)"><i class="fa fa-cart-plus"></i></button>
-                    </div>
-                </div>
+                
 			</div>
 		</div>
 	</div>

@@ -3,24 +3,29 @@
     <div class="col s12 m12 l5">
             <div class="col s12 m12 l12" ng-repeat="product in vm.product.product">
                 <div class="col s4 m4 l4"><img src="{{product.product_id[0].image[0]}}" class="responsive-img" style="height:10em"></div>
-                <div class="col s5 m5 l5"><p>Name: <b>{{product.product_id[0].name}}</b><br/>Size: <b>60cm x 35cm x 45cm</b><br/>Color: <b>White</b><br/>Quantity: <b><p style="font-weight:bold">Quantity:&nbsp;<input  length="3" min="1" size="3" maxlength="3" class="quantity" name="updates[]" ng-model="product.select_quantity"></p></b></p></div>
-                <div class="col s3 m3 l3"><p class="right">Price: <b>{{product.product_id[0].price}}</b></p></div>
-                <div><button class="btn right"><i class="fa fa-trash"></i></button></div>
-
+                <div class="col s5 m5 l5">
+                    <p>Name: <b class="right">{{product.product_id[0].name}}</b></p>
+                    <p>Price for one: <b class="right">{{product.product_id[0].price}}</b></p>
+                    <p>Size: <b class="right">{{product.size}}</b></p>
+                    <div>Color: <div class="select right"><div class="color_selectee" style="background-color: {{product.color}};"></div></div></div>
+                    <p style="font-weight:bold">Quantity:&nbsp;<input  length="3" min="1" size="3" maxlength="3" class="quantity right" ng-model="product.quantity"></p>
+                </div>
+                <div class="col s3 m3 l3"><p class="right">Price: <b>{{product.product_id[0].price*product.quantity}}</b></p></div>
+                <div><button class="btn right" ng-click="vm.cart_remove(product)"><i class="fa fa-trash"></i></button></div>
             </div>
     </div>
 
     <div class="col s12 m12 l5">
         <div class="col s12 m12 l6 offset-l6">
             <p style="font-size:140%">SUB TOTAL:</p>
-            <p><b style="font-size:120%">RM4097.97</b><br/>
+            <p><b style="font-size:120%">{{vm.total()}}</b><br/>
                 Excluding tax and shipping</p>
-            Please write your remark here:
-            <textarea style="height:160px;resize:none"></textarea>
+            Please write your remark here(optional):
+            <textarea style="height:160px;resize:none" ng-model="vm.product.remarks"></textarea>
             <div class="center">
-                <a href="billing" class="btn col s12 m12 l12">Continue to Billing</a>
+                <a class="btn col s12 m12 l12" ng-click="vm.update_cart('billing')">Continue to Billing</a>
                 <p class="col s12 m12 l12" style="padding-bottom:-10%;padding-top:-10%">OR</p>
-                <a href="/" class="btn col s12 m12 l12">Keep Shopping</a>
+                <a class="btn col s12 m12 l12" ng-click="vm.update_cart('home')">Keep Shopping</a>
             </div>
         </div>
     </div>

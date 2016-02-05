@@ -40,6 +40,8 @@ app.delete('/api/product_category/:id', product_category.delete);
 
 app.post('/api/transaction', transaction.add_to_cart);
 app.get('/api/transaction/:id', transaction.get);
+app.put('/api/transaction/:id', transaction.update);
+app.put('/api/cart_update', transaction.cart_update);
 
 app.all('/*', function(req, res, next) {
     res.sendFile('/public/index.html', { root: __dirname });

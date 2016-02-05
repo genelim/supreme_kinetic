@@ -136,50 +136,53 @@ li.ng-scope.ui-sortable-helper{
 }
 
 .select{
-	border: 1px solid #7D7D7D;
-	margin: 3px;
-	padding: 3px;
-	float: left;
-	text-align: center;
-	list-style-type: none;
-	border-radius: 50%;
+    border: 1px solid #7D7D7D;
+    margin: 3px;
+    padding: 3px;
+    float: left;
+    text-align: center;
+    list-style-type: none;
+    border-radius: 50%;
 }
 
 .select:hover{
-	border: 1px solid #001B50;
+    border: 1px solid #001B50;
 }
 
 .select.text{
-	color: #006699;
-	font-weight: bold;
-	border-radius: 0%;
-	width: 100%;
+    color: #006699;
+    font-weight: bold;
+    border-radius: 0%; 
+    /*width: 100%;   */
 }
+
+.type_selected{
+    border: 2px solid #006688;
+    margin: 3px;
+    padding: 3px;
+    float: left;
+    text-align: center;
+    list-style-type: none;
+    border-radius: 50%;
+}
+.type_selected:hover{
+    border: 2px solid #006688;
+}
+
 
 .color_selectee{
-	padding: 10px;
-	width: 20px;
-	border-radius: 50%;
-	height: 20px;
+    padding: 10px;
+    width: 20px;
+    border-radius: 50%;
+    height: 20px;
+    border: 1px solid #F7F7F7;
 }
 
-.discount_code{
-	color: greenyellow;
-    font-size: 1em;
-    letter-spacing: 4px;
-    font-weight: 800;
-}
-
-.selectsize{
-	border: 1px solid #7D7D7D;
-	float: left;
-	text-align: center;
-	list-style-type: none;
-}
-
-.size_selectee{
-	padding: 10px;
-	border-radius: 50%;
+.color_selectee.text{
+    border-radius: 0%;
+    border: 0px;
+    width: auto;
+    padding: 0 10px;
 }
 
 .circle_price{

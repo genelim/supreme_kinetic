@@ -40,10 +40,10 @@
                 </div>
                 <div>
                     <div class="col s8 m8 l8">
-                        <p style="font-weight:bold">Quantity:&nbsp;<input  length="3" min="0" size="3" maxlength="3" class="quantity" name="updates[]" ng-model="product.select_quantity"></p>
+                        <p style="font-weight:bold">Quantity:&nbsp;<input  length="3" min="0" size="3" maxlength="3" class="quantity"ng-model="product.select_quantity"></p>
                     </div>
                     <div class="col s4 m4 l4"  style="padding-top:2%">
-                        <button class="btn waves-effect waves-light green lighten-1" ng-click="vm.add_to_cart(product,product.select_quantity)"><i class="fa fa-cart-plus"></i></button>
+                        <button class="btn waves-effect waves-light green lighten-1" ng-click="vm.add_to_cart(vm.product_details,product.select_quantity)"><i class="fa fa-cart-plus"></i></button>
                     </div>
                 </div>
             </div>

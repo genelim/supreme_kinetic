@@ -48,6 +48,9 @@ function BrowseMoreController(Transaction, Logger, $rootScope, $stateParams, Pro
     vm.selected_image = null;
     vm.select_image = select_image;
     vm.done = 0;
+    vm.color = null;
+    vm.size_product = null;
+    vm.type_select = type_select;
 
 	angular.element(document).ready(function () {
         $('.collapsible').collapsible({
@@ -75,6 +78,7 @@ function BrowseMoreController(Transaction, Logger, $rootScope, $stateParams, Pro
     	vm.product_details = product;
     	$('#browse_more_view').openModal();
         vm.selected_image = vm.product_details.image[0];
+                console.log(vm.product_details)
     }
 
     function category_load(type){
@@ -296,8 +300,16 @@ function BrowseMoreController(Transaction, Logger, $rootScope, $stateParams, Pro
             Materialize.toast('Quantity must only be number', 2000);
             return;
         }
+        if(vm.color === null){
+            Materialize.toast('Please select color', 2000);
+            return;
+        }
+        if(vm.size_product === null){
+            Materialize.toast('Please select size', 2000);
+            return;
+        }
         if(Logger.is_logged){
-            var data = {user:Logger.user_details,product:product,quantity:quantity};
+            var data = {user:Logger.user_details,product:product,quantity:quantity,color:vm.color,size:vm.size};
             Transaction.save(data, function(result){
                 Materialize.toast('Added to Cart', 2000);
                 Transaction.get({id:Logger.user_details._id},function(res){
@@ -309,13 +321,25 @@ function BrowseMoreController(Transaction, Logger, $rootScope, $stateParams, Pro
                         $rootScope.cart_quantity = res.response.product.length;
                     }
                 })
+                vm.color =null;
+                vm.size_product =null;
             })
         }else{
             Materialize.toast('You are not logged in', 2000);
+            vm.color =null;
+            vm.size_product =null;
         }
         
     }
     function select_image(image){
         vm.selected_image = image;
+    }
+
+    function type_select(type,data){
+        if(type === 'color'){
+            vm.color = data;
+        }else if(type === 'size'){
+            vm.size_product = data;
+        }
     }
 }
