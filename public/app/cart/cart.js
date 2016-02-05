@@ -13,16 +13,19 @@ function CartController(Transaction,Logger,$http,$state) {
     get_cart();
 
     function get_cart(){
-        Transaction.get({id:Logger.user_details._id},function(res){
-            if(res.response === 'Server Error'){
-                Materialize.toast('Please refresh the page and try again', 2000);
-            }else if(res.response == 0){
-                vm.status = 'No Product'
-            }else{
-                vm.product = res.response;
-                console.log(vm.product)
-            }
-        })
+        if(Logger.user_details){
+            Transaction.get({id:Logger.user_details._id},function(res){
+                if(res.response === 'Server Error'){
+                    Materialize.toast('Please refresh the page and try again', 2000);
+                }else if(res.response == 0){
+                    vm.status = 'No Product'
+                }else{
+                    vm.product = res.response;
+                    console.log(vm.product)
+                }
+            })
+        }
+        
     }
 	
     function cart_remove(product){

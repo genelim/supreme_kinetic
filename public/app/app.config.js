@@ -90,7 +90,8 @@ function config($urlRouterProvider,$stateProvider,$locationProvider,cfpLoadingBa
         url: '/cart',
         templateUrl: 'app/cart/cart.html',
         controller: 'CartController',
-        controllerAs: 'vm'
+        controllerAs: 'vm',
+        resolve: {users: get_user}
     }).state('billing', {
         url: '/billing',
         templateUrl: 'app/cart/billing.html',
@@ -131,4 +132,12 @@ var get_discount_user = function(User,$q){
         deferred.reject(); 
     });
     return deferred.promise;
+}
+
+var get_user = function(Logger,$location){
+    if(Logger.user_details){
+        return true;
+    }else{
+        $location.url('/');
+    }
 }
