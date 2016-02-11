@@ -102,6 +102,7 @@ function LoginController(Transaction,User,Logger,$localStorage,$scope,$rootScope
     function logout(){
         Logger.is_logged = false;
         $localStorage.$reset();
+        Logger.user_details = null;
         vm.username = null;
         vm.profile_image = null;
         $rootScope.cart_quantity = 0;
