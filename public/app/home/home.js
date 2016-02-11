@@ -37,7 +37,15 @@ function HomeController($rootScope,$scope,Product,cfpLoadingBar,$http,Transactio
         $('ul.tabs').tabs();
         vm.product_get();
         vm.product_get_recommended();
-        $('.slider').slider({full_width: true,indicators:false});
+        $('.next_new').click(function(){
+            $('.slider').slider('next');
+        });
+        $('.prev_new').click(function(){
+            $('.slider').slider('prev');
+        });
+        setTimeout(function(){
+            $('.slider').slider({full_width: true,indicators:false}); 
+        }, 300);
     });
 
     function product_get(){
@@ -52,7 +60,8 @@ function HomeController($rootScope,$scope,Product,cfpLoadingBar,$http,Transactio
     function product_get_recommended(){
         $http.get('/api/product_recommended').success(function(product){
             vm.product_recommended = product.response;
-            $('.slider').slider({full_width: true,indicators:false});
+            console.log(vm.product_recommended)
+            
         })
     }
 
