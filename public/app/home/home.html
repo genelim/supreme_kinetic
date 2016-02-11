@@ -1,4 +1,17 @@
-
+<div class="slider" ng-show="home_default">
+    <ul class="slides">
+        <li>
+            <img src="/assets/images/2.jpg">
+            <div class="caption left-align">
+                <h3>Supreme Kinetic</h3>
+                <h5 class="light grey-text text-lighten-3">Eye catching home supplies like never before</h5>
+            </div>
+        </li>
+        <li>
+            <img src="/assets/images/1.jpg">
+        </li>
+    </ul>
+</div>
 <ul class="tabs">
     <li class="tab col s3 {{tab.disabled}}" ng-repeat="tab in vm.tab_menu track by $index" ><a class="{{tab.active}}" href="#{{tab.id}}"><i class="material-icons tab_icon">{{tab.icon}}</i><div class="tab_text" ng-click="vm.select_category(tab.name)">{{tab.name}}</div></a></li>
 </ul>
