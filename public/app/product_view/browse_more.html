@@ -129,10 +129,10 @@
 	</div>
 </footer>
 
-<div id="browse_more_view" class="modal" style="height:auto;width:65%">
+<div id="browse_more_view" class="modal" style="height:auto;width:70%">
 	<div class="modal-content">
 		<div class="row" style="margin-bottom:0">
-			<div class="col s12 m12 l5 center">
+			<div class="col s12 m12 l6 center">
                 <div class="circle_price">10%</div>
 				<img src="{{vm.selected_image}}" class="responsive-img materialboxed center" style="height:23em;width:auto;margin:0 auto">
 				<div class="row">
@@ -150,7 +150,7 @@
                         <p>Select a Color:</p>
                         <ul class="">
                             <li class="select" ng-repeat="color in vm.product_details.color" ng-class="{type_selected: color==vm.color}">
-                                <div class="color_selectee" style="background-color: {{color}}" ng-click="vm.type_select('color',color)"></div>
+                                <div class="color_selectee" style="cursor:pointer;background-color: {{color}}" ng-click="vm.type_select('color',color)"></div>
                             </li>
                             <span ng-if="!vm.product_details.color.length">
 	                            No Color Available
@@ -159,12 +159,13 @@
                     </div>
                     <div class="col s12 m12 l8">
                         <p>Select A Size:</p>
-                        <li class="select text" ng-repeat="size in vm.product_details.size" ng-click="vm.type_select('size',size)" ng-class="{type_selected: size==vm.size_product}">
+                        <li class="select text" style="cursor:pointer" ng-repeat="size in vm.product_details.size" ng-click="vm.type_select('size',size)" ng-class="{type_selected: size==vm.size_product}">
 							<div class="color_selectee text">{{size}}</div>
 						</li>
 						<span ng-if="!vm.product_details.size.length">
                             No Size Available
                         </span>
+					</div>
                 </div>
                 <div class="row">
 	                <div class="col s12 m12 l5">
@@ -183,7 +184,6 @@
 	                    </div>
 	                </div>
                 </div>
-                
 			</div>
 		</div>
 	</div>

@@ -1,12 +1,13 @@
 <div class="row">
     <div ng-if="!vm.products.length">No Product Found</div>
     <div class="card col s6 m6 l3 z-depth-0" ng-repeat="product in vm.products">
-        <div class="" href="#browse_more_view" >
+        <div class="modal-trigger" href="#browse_more_view">
             <div class="card-image">
-                <img ng-src="{{product.image[0]}}" style="height:18em;width:auto;margin:0 auto" class="responsive-img responsive-img z-depth-1">
+                <img ng-src="{{product.image[0]}}" style="cursor:pointer;height:18em;width:auto;margin:0 auto" class="responsive-img materialboxed z-depth-1">
                 <div class="col s12 m12 l12" style="cursor:pointer" ng-click="vm.view_details(product)">
                     <p class="center"><b style="font-size:160%">{{product.name}}</b><br/>
-                        <b style="font-size:140%">RM{{product.price}}</b>
+                        <b style="font-size:140%">RM{{product.price*0.90}}</b>
+                        <b style="color:gray">RM{{product.price}}</b>
                     </p>
                 </div>
             </div>

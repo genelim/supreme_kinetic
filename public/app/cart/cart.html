@@ -1,26 +1,27 @@
 <div class="row">
     <h4 class="center"><b>SHOPPING CART</b></h4>
     <div class="col s12 m12 l5">
-            <div class="col s12 m12 l12" ng-repeat="product in vm.product.product">
-                <div class="col s4 m4 l4"><img src="{{product.product_id[0].image[0]}}" class="responsive-img" style="height:10em"></div>
-                <div class="col s5 m5 l5">
-                    <p>Name: <b class="right">{{product.product_id[0].name}}</b></p>
-                    <p>Price for one: <b class="right">{{product.product_id[0].price}}</b></p>
-                    <p>Size: 
-                        <b class="right" ng-if="product.size">{{product.size}}</b>
-                        <b class="right" ng-if="!product.size">No Size</b>
-                    </p>
-                    <p ng-if="!product.color">Color: 
-                        <b class="right">No Color</b>
-                    </p>
-                    <div ng-if="product.color">Color: 
-                        <div class="select right" ><div class="color_selectee" style="background-color: {{product.color}};"></div></div>
-                    </div>
-                    <p style="font-weight:bold">Quantity:&nbsp;<input  length="3" min="1" size="3" maxlength="3" class="quantity right" ng-model="product.quantity"></p>
+        <div class="col s12 m12 l12" style="padding-bottom:3%" ng-repeat="product in vm.product.product">
+            <div class="col s4 m4 l4"><img src="{{product.product_id[0].image[0]}}" class="responsive-img" style="height:12em;width:auto"></div>
+            <div class="col s5 m5 l5">
+                <p>Name: <b class="right">{{product.product_id[0].name}}</b></p>
+                <p>Price for one: <b class="right">{{product.product_id[0].price}}</b></p>
+                <p>Size:
+                    <b class="right" ng-if="product.size">{{product.size}}</b>
+                    <b class="right" ng-if="!product.size">No Size</b>
+                </p>
+                <p ng-if="!product.color">Color:
+                    <b class="right">No Color</b>
+                </p>
+                <div ng-if="product.color">Color:
+                    <div class="select right" ><div class="color_selectee" style="background-color: {{product.color}};"></div></div>
                 </div>
-                <div class="col s3 m3 l3"><p class="right">Price: <b>{{product.product_id[0].price*product.quantity}}</b></p></div>
-                <div><button class="btn right" ng-click="vm.cart_remove(product)"><i class="fa fa-trash"></i></button></div>
+                <p style="font-weight:bold">Quantity: <input  length="3" min="1" size="3" maxlength="3" class="quantity right" ng-model="product.quantity"></p>
             </div>
+            <div class="col s3 m3 l3">
+                <p class="right">Price: <b>{{product.product_id[0].price*product.quantity}}</b></p></div>
+            <div><button class="btn right" ng-click="vm.cart_remove(product)"><i class="fa fa-trash"></i></button></div>
+        </div>
     </div>
 
     <div class="col s12 m12 l5">

@@ -1,6 +1,33 @@
-
 <div class="row">
-	<h5 style="padding-left:1%">Recommended</h5>
+    <section style="background-color:darkgray">
+        <h5 style="color:ghostwhite;padding-left:1%;font-size:400%;text-align:center">Recommended</h5>
+        <div class="slider">
+            <button style="position:absolute; top: 47%; z-index: 999;" class="prev_new btn"><li class="fa fa-arrow-left"></li></button>
+            <button style="position:absolute; top: 47%; z-index: 999; right:0;" class="next_new btn"><li class="fa fa-arrow-right"></li></button>
+            <ul class="slider">
+                <li ng-repeat="recommended in vm.product_recommended"><section style="background-color:lightslategray; padding:2em 0;">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col l7 offset-l2">
+                                <p style="color:antiquewhite; font-size:200%">{{recommended.name}}</p>
+                                <div style="color:antiquewhite; font-size:110%" ng-bind-html="recommended.description"></div>
+                            </div>
+                            <div class="col l4">
+                                <div class="card z-depth-0">
+                                    <div class="card-image z-depth-2">
+                                        <img src="{{recommended.image[0]}}" class="responsive-img materialboxed center" style="height:248px; width:100%; margin: 0 auto;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section></li>
+            </ul>
+        </div>
+    </section>
+</div>
+
+<!--<h5 style="padding-left:1%">Recommended</h5>
 	<div class="col s12 l12">
 		<div class="card col l4 z-depth-0" href="#" ng-repeat="recommended in vm.product_recommended">
 			<div class="card-image waves-effect waves-block waves-light">
@@ -16,5 +43,4 @@
 				</div>
 			</div>
 		</div>
-	</div>
-</div>
+	</div>-->

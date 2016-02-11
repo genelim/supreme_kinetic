@@ -52,6 +52,7 @@ function HomeController($rootScope,$scope,Product,cfpLoadingBar,$http,Transactio
     function product_get_recommended(){
         $http.get('/api/product_recommended').success(function(product){
             vm.product_recommended = product.response;
+            $('.slider').slider({full_width: true,indicators:false});
         })
     }
 
