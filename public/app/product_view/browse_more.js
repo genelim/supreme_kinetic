@@ -327,7 +327,13 @@ function BrowseMoreController(Transaction, Logger, $rootScope, $stateParams, Pro
                     }else if(res.response == 0){
                         $rootScope.cart_quantity = 0;
                     }else{
-                        $rootScope.cart_quantity = res.response.product.length;
+                        var count = 0;
+                        angular.forEach(res.response.product, function(item) {
+                            if(item.product_id.length){
+                                count += 1;
+                            }
+                        })
+                        $rootScope.cart_quantity = count;
                     }
                 })
                 vm.color =null;

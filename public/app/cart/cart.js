@@ -21,7 +21,6 @@ function CartController(Transaction,Logger,$http,$state) {
                     vm.status = 'No Product'
                 }else{
                     vm.product = res.response;
-                    console.log(vm.product)
                 }
             })
         }
@@ -42,9 +41,10 @@ function CartController(Transaction,Logger,$http,$state) {
     function total() {
         var total = 0;
         angular.forEach(vm.product.product, function(item) {
-            total += item.quantity * item.product_id[0].price;
+            if(item.product_id.length){
+                total += item.quantity * item.product_id[0].price;
+            }
         })
-
         return total;
     }
 
