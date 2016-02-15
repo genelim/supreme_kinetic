@@ -2,9 +2,9 @@ angular
 	.module('app')
 	.controller('CartController', CartController);
 
-CartController.$inject = ['Transaction','Logger','$http','$state'];
+CartController.$inject = ['Transaction','Logger','$http','$state','$rootScope'];
 
-function CartController(Transaction,Logger,$http,$state) {
+function CartController(Transaction,Logger,$http,$state,$rootScope) {
 	var vm = this;
     vm.cart_remove = cart_remove;
     vm.product = [];
@@ -21,6 +21,13 @@ function CartController(Transaction,Logger,$http,$state) {
                     vm.status = 'No Product'
                 }else{
                     vm.product = res.response;
+                    var count = 0;
+                    angular.forEach(res.response.product, function(item) {
+                        if(item.product_id.length){
+                            count += 1;
+                        }
+                    })
+                    $rootScope.cart_quantity = count;
                 }
             })
         }
