@@ -2,7 +2,7 @@
     <div class="modal-content">
         <div class="row" style="margin-bottom:0">
             <div class="col s12 m12 l6 center">
-                <div class="circle_price">10%</div>
+                <div class="circle_price" ng-if="vm.product_details.discount[0]">{{vm.product_details.discount[0].percentage}}%</div>
                 <img src="{{vm.selected_image}}" class="responsive-img materialboxed center" style="height:23em;width:auto;margin:0 auto">
                 <div class="row">
                     <div class="col s12 m12 l12 multi_image">
@@ -31,10 +31,13 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col s12 m12 l5">
-                        <b style="font-size:250%">RM{{vm.product_details.price*0.90}}</b>
-                        <b style="font-size:130%;color:gray">Original: RM{{vm.product_details.price}}</b>
-                    </div>
+                    <div class="col s12 m12 l5" ng-if="vm.product_details.discount[0]">
+	                    <b style="font-size:250%">RM{{vm.product_details.price-vm.product_details.price*vm.product_details.discount[0].percentage/100 | number:2}}</b>
+	                    <b style="font-size:130%;color:gray">Original: RM{{vm.product_details.price}}</b>
+	                </div>
+                    <div class="col s12 m12 l5" ng-if="!vm.product_details.discount[0]">
+	                    <b style="font-size:250%">RM{{vm.product_details.price}}</b>
+	                </div>
                     <div class="col s12 m12 l7">
                         <div class="col s12 m12 l4"><p style="padding-left: 1%;"></p></div>
                         <div class="col s8 m8 l4">
