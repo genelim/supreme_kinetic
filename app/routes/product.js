@@ -72,7 +72,12 @@ exports.put = function (req, res) {
     var id = req.body._id;
     delete req.body._id;
     var data = req.body;
-    Product.update({_id: id}, { $set: data}).exec(function(err,product){
+    for(var j = 0; j < data.discount.length; j++){
+        if(!data.discount[j].selected_user){
+            data.discount[j].selected_user = null;
+        }
+    }
+    Product.update({'_id':id},  {$set:data}).exec(function(err,product){
         Product.count({recommended:true},function( err, count){
             res.json({response:{count:count,product:product}});
         })

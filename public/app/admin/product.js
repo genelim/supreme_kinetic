@@ -237,17 +237,13 @@ function AdminProductController($http, $rootScope,users,$scope,File_Upload,$q,cf
     }
 
     function view_product(product){
-        console.log(angular.copy(product));
-
         vm.product_details = angular.copy(product);
         vm.product_details_image_copy = angular.copy(product.image);
-        console.log(vm.product_details);
         $('#edit_product').openModal();
         
     }
 
     function edit_product_confirm(product){
-        console.log(vm.count);
         var uploadUrl = "/api/upload";
         var promises = [];
         angular.forEach(vm.edit_images_selected, function(value){
@@ -289,7 +285,6 @@ function AdminProductController($http, $rootScope,users,$scope,File_Upload,$q,cf
                     $('#edit_product').closeModal();
                 }
                 vm.count = res.response.count;
-                console.log(vm.count)
             });
         });
     }

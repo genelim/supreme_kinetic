@@ -51,7 +51,7 @@ function HomeController($rootScope,$scope,Product,cfpLoadingBar,$http,Transactio
     function product_get(type){
         cfpLoadingBar.start();
         Product.get({page : 1, size:vm.size, type:type, location:'admin'},function(res){
-        console.log(res)
+            console.log(res)
             if(type === 'outdoor')
                 vm.products_outdoor = (res.response.product);
             else if(type === 'indoor')
