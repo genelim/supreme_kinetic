@@ -1,16 +1,44 @@
 <div class="row">
-    <div ng-if="!vm.products.length">No Product Found</div>
-    <div class="card col s6 m6 l3 z-depth-0" ng-repeat="product in vm.products" ng-click="vm.view_details(product)">
-        <div class="modal-trigger" href="#browse_more_view">
-            <div class="card-image">
-                <img ng-src="{{product.image[0]}}" style="cursor:pointer;height:18em;width:auto;margin:0 auto" class="responsive-img materialboxed z-depth-1">
-                <div class="col s12 m12 l12" style="cursor:pointer">
-                    <p class="center"><b style="font-size:160%">{{product.name}}</b><br/>
-                        <b style="font-size:140%">RM{{product.price*0.90}}</b>
-                        <b style="color:gray">RM{{product.price}}</b>
-                    </p>
+    <h1>Outdoor</h1>
+    <div ng-if="!vm.products_outdoor.length">No Product Found</div>
+    <div class="row">
+        <div class="card col s6 m6 l3 z-depth-0" ng-repeat="product in vm.products_outdoor" ng-click="vm.view_details(product)">
+            <div class="modal-trigger" href="#browse_more_view">
+                <div class="card-image">
+                    <img ng-src="{{product.image[0]}}" style="cursor:pointer;height:18em;width:auto;margin:0 auto" class="responsive-img materialboxed z-depth-1">
+                    <div class="col s12 m12 l12" style="cursor:pointer">
+                        <p class="center"><b style="font-size:160%">{{product.name}}</b><br/>
+                            <b style="font-size:140%">RM{{product.price*0.90}}</b>
+                            <b style="color:gray">RM{{product.price}}</b>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
+    <div class="right" ng-if="vm.done && vm.products_outdoor[0]._id" style="padding-right:1%">
+        <a class="btn" href="browse_more/outdoor"><i class="fa fa-plus-square left"></i>Browse More</a>
+    </div>
+</div>
+<div class="row">
+    <h1>Indoor</h1>
+    <div ng-if="!vm.products_indoor.length">No Product Found</div>
+    <div class="row">
+        <div class="card col s6 m6 l3 z-depth-0" ng-repeat="product in vm.products_indoor" ng-click="vm.view_details(product)">
+            <div class="modal-trigger" href="#browse_more_view">
+                <div class="card-image">
+                    <img ng-src="{{product.image[0]}}" style="cursor:pointer;height:18em;width:auto;margin:0 auto" class="responsive-img materialboxed z-depth-1">
+                    <div class="col s12 m12 l12" style="cursor:pointer">
+                        <p class="center"><b style="font-size:160%">{{product.name}}</b><br/>
+                            <b style="font-size:140%">RM{{product.price*0.90}}</b>
+                            <b style="color:gray">RM{{product.price}}</b>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+       </div>
+    <div class="right" ng-if="vm.done && vm.products_indoor[0]._id" style="padding-right:1%">
+        <a class="btn" href="browse_more/indoor"><i class="fa fa-plus-square left"></i>Browse More</a>
     </div>
 </div>

@@ -9,12 +9,11 @@ HomeController.$inject = ['$rootScope','$scope','Product','cfpLoadingBar','$http
 function HomeController($rootScope,$scope,Product,cfpLoadingBar,$http,Transaction,Logger) { 
 	var vm = this;
     vm.category_type='outdoor';
-    vm.products = [];
+    vm.products_outdoor = [];
+    vm.products_indoor = [];
     vm.size = 4;
     vm.view_details = view_details;
-    vm.product_get = product_get;
     vm.select_category = select_category;
-    vm.product_get_recommended = product_get_recommended;
     vm.product_get_recommended = product_get_recommended;
     vm.product_recommended = [];
     vm.product_details = []
@@ -35,7 +34,8 @@ function HomeController($rootScope,$scope,Product,cfpLoadingBar,$http,Transactio
                     
     angular.element(document).ready(function () {
         $('ul.tabs').tabs();
-        vm.product_get();
+        product_get('outdoor');
+        product_get('indoor');
         vm.product_get_recommended();
         $('.next_new').click(function(){
             $('.slider').slider('next');
@@ -48,10 +48,15 @@ function HomeController($rootScope,$scope,Product,cfpLoadingBar,$http,Transactio
         }, 300);
     });
 
-    function product_get(){
+    function product_get(type){
         cfpLoadingBar.start();
-        Product.get({page : 1, size:vm.size, type:vm.category_type, location:'admin'},function(res){
-            vm.products = (res.response.product);
+        Product.get({page : 1, size:vm.size, type:type, location:'admin'},function(res){
+        console.log(res)
+            if(type === 'outdoor')
+                vm.products_outdoor = (res.response.product);
+            else if(type === 'indoor')
+                vm.products_indoor = (res.response.product);
+            
             vm.done = true;
             cfpLoadingBar.complete();
         });

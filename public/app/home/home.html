@@ -12,18 +12,8 @@
         </li>
     </ul>
 </div>
-<ul class="tabs">
-    <li class="tab col s3 {{tab.disabled}}" ng-repeat="tab in vm.tab_menu track by $index" ><a class="{{tab.active}}" href="#{{tab.id}}"><i class="material-icons tab_icon">{{tab.icon}}</i><div class="tab_text" ng-click="vm.select_category(tab.name)">{{tab.name}}</div></a></li>
-</ul>
-<div ng-repeat="tab in vm.tab_menu track by $index" id="{{tab.id}}" class="row">
-	<div class="" style="">
-	    <div ng-include src="'app/home/product.html'"></div>
-	    <div class="right" ng-if="vm.done && vm.products[0]._id" style="padding-right:1%">
-	        <a class="btn" href="browse_more/{{tab.name  | lowercase}}"><i class="fa fa-plus-square left"></i>Browse More</a>
-	    </div>
-    </div>
-</div>
 
+<div ng-include src="'app/home/product.html'"></div>
 <div ng-include src="'app/home/view_product.html'"></div>
 <div ng-include src="'app/home/recommended_product.html'"></div>
 
