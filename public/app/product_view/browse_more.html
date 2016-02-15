@@ -52,11 +52,11 @@
 					You can travel back to the previous page by pressing on the back button on your browser<br/>
 						Or travel back to our <a href="/">Homepage</a>, <a href="browse_more/outdoor">Outdoor product page</a> or <a href="browse_more/indoor">Indoor product page</a>.</p>
 			</div>
-			<div class="card col s6 m6 l4 z-depth-0" ng-repeat="product in vm.products">
+			<div class="card col s6 m6 l4 z-depth-0" ng-repeat="product in vm.products" ng-click="vm.view_details(product)">
 				<div class="modal-trigger" href="#browse_more_view">
 					<div class="card-image">
 						<img ng-src="{{product.image[0]}}" style="cursor:pointer;height:18em;width:auto;margin:0 auto" class="responsive-img materialboxed z-depth-1">
-						<div class="col s12 m12 l12" style="cursor:pointer" ng-click="vm.view_details(product)">
+						<div class="col s12 m12 l12" style="cursor:pointer">
 							<p class="center"><b style="font-size:160%">{{product.name}}</b><br/>
 								<b style="font-size:140%">RM{{product.price*0.90}}</b>
                                 <b style="color:gray">RM{{product.price}}</b>
@@ -141,30 +141,24 @@
 					</div>
 				</div>
 			</div>
-			<div class="col s12 m12 l5">
+			<div class="col s12 m12 l5" >
                 <p><b style="font-size:250%">{{vm.product_details.name}}</b><br/>
                     Rating: <i class="fa fa-star rating_star"></i><i class="fa fa-star rating_star"></i><i class="fa fa-star rating_star"></i><i class="fa fa-star rating_star"></i><i class="fa fa-star-o"></i><br/>
                 <div ng-bind-html="vm.product_details.description"></div>
 				<div class="row">
-                    <div class="col s12 m12 l4">
+                    <div class="col s12 m12 l4" ng-if="vm.product_details.color.length">
                         <p>Select a Color:</p>
                         <ul class="">
                             <li class="select" ng-repeat="color in vm.product_details.color" ng-class="{type_selected: color==vm.color}">
                                 <div class="color_selectee" style="cursor:pointer;background-color: {{color}}" ng-click="vm.type_select('color',color)"></div>
                             </li>
-                            <span ng-if="!vm.product_details.color.length">
-	                            No Color Available
-	                        </span>
                         </ul>
                     </div>
-                    <div class="col s12 m12 l8">
+                    <div class="col s12 m12 l8" ng-if="vm.product_details.size.length">
                         <p>Select A Size:</p>
                         <li class="select text" style="cursor:pointer" ng-repeat="size in vm.product_details.size" ng-click="vm.type_select('size',size)" ng-class="{type_selected: size==vm.size_product}">
 							<div class="color_selectee text">{{size}}</div>
 						</li>
-						<span ng-if="!vm.product_details.size.length">
-                            No Size Available
-                        </span>
 					</div>
                 </div>
                 <div class="row">
