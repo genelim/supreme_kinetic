@@ -37,8 +37,8 @@ function HomeController($rootScope,$scope,Product,cfpLoadingBar,$http,Transactio
             Logger.is_logged = false;
             $localStorage.$reset();
             Logger.user_details = null;
-            vm.username = null;
-            vm.profile_image = null;
+            $rootScope.username = null;
+            $rootScope.profile_image = null;
             $rootScope.cart_quantity = 0;
             $location.url('/');
             Materialize.toast('Account Validated, You now have full access. Do login.', 2000);

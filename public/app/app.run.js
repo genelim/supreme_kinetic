@@ -7,6 +7,8 @@ runBlock.$inject = ['$rootScope','Logger','Transaction'];
 function runBlock($rootScope,Logger,Transaction) {
 	$rootScope.home_default = true;
 	$rootScope.user_menu = [];
+    $rootScope.username = null;
+    $rootScope.profile_image = null;
 	$rootScope.cart_quantity = 0;
 	if(Logger.is_logged){
 		Transaction.get({id:Logger.user_details._id},function(res){

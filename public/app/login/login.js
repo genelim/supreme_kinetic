@@ -13,20 +13,16 @@ function LoginController(Transaction,User,Logger,$localStorage,$scope,$rootScope
 
     $scope.$on('$stateChangeStart', function(){
         if(Logger.is_logged){
-            vm.username = Logger.user_details.first_name + ' ' + Logger.user_details.last_name;
+            $rootScope.username = Logger.user_details.first_name + ' ' + Logger.user_details.last_name;
             if(Logger.user_details.profile_image){
-                vm.profile_image = Logger.user_details.profile_image;
+                $rootScope.profile_image = Logger.user_details.profile_image;
             }else{
-                vm.profile_image = '/assets/images/default_user.png';
+                $rootScope.profile_image = '/assets/images/default_user.png';
             }
             check_admin();
         }
-        $scope.$watch(Logger.is_logged, function (value) {
-            if(angular.isUndefined(value)){
-                vm.username = null;
-            }
-        }, true);
     });
+    
 
     function check_admin(){
         if(Logger.user_details.role[0].type === "admin" && typeof Logger.user_details.role[0].type !== 'undefined'){
@@ -74,11 +70,11 @@ function LoginController(Transaction,User,Logger,$localStorage,$scope,$rootScope
                 Logger.is_logged = true;
                 Logger.user_details = res.response;
                 $localStorage.user_details = res.response;
-                vm.username = res.response.first_name + ' ' + res.response.last_name;
+                $rootScope.username = res.response.first_name + ' ' + res.response.last_name;
                 if(res.response.profile_image){
-                    vm.profile_image = res.response.profile_image;
+                    $rootScope.profile_image = res.response.profile_image;
                 }else{
-                    vm.profile_image = '/assets/images/default_user.png';
+                    $rootScope.profile_image = '/assets/images/default_user.png';
                 }
                 check_admin();
                 if(type === "login"){
@@ -93,6 +89,7 @@ function LoginController(Transaction,User,Logger,$localStorage,$scope,$rootScope
                     vm.registering.password = null;
                     vm.registering.confirm_password = null;
                     vm.registering.type = null;
+                    Materialize.toast('Account Created, check your email to validate.', 2000);
                 }
                 Transaction.get({id:res.response._id},function(res){
                     if(res.response === 'Server Error'){
@@ -103,7 +100,6 @@ function LoginController(Transaction,User,Logger,$localStorage,$scope,$rootScope
                         $rootScope.cart_quantity = res.response.product.length;
                     }
                 })
-                Materialize.toast('Account Created, check your email to validate.', 2000);
                 $('#user_open').closeModal();
             }else{
                 Materialize.toast(res.response, 2000);
@@ -117,8 +113,8 @@ function LoginController(Transaction,User,Logger,$localStorage,$scope,$rootScope
         Logger.is_logged = false;
         $localStorage.$reset();
         Logger.user_details = null;
-        vm.username = null;
-        vm.profile_image = null;
+        $rootScope.username = null;
+        $rootScope.profile_image = null;
         $rootScope.cart_quantity = 0;
         $location.url('/');
     }
@@ -133,8 +129,8 @@ function LoginController(Transaction,User,Logger,$localStorage,$scope,$rootScope
                         Logger.is_logged = true;
                         Logger.user_details = res.response;
                         $localStorage.user_details = res.response;
-                        vm.username = res.response.first_name + ' ' + res.response.last_name;
-                        vm.profile_image = res.response.profile_image;
+                        $rootScope.username = res.response.first_name + ' ' + res.response.last_name;
+                        $rootScope.profile_image = res.response.profile_image;
                         check_admin();
                         details = [];
                         Transaction.get({id:res.response._id},function(res){
