@@ -43,7 +43,12 @@ function LoginController(Transaction,User,Logger,$localStorage,$scope,$rootScope
             }
         });
     }   
-
+    
+    function validateEmail(email) {
+        var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    }
+    
     function user_modal_press(value,type){
         if(type === 'local'){
             if( angular.isUndefined(value) || !value.first_name || !value.last_name || !value.email || !value.password || !value.confirm_password){
@@ -51,6 +56,9 @@ function LoginController(Transaction,User,Logger,$localStorage,$scope,$rootScope
                 return;
             }else if(value.password !== value.confirm_password){
                 Materialize.toast('Confirm password is not matched with password', 2000);
+                return;
+            }else if(!validateEmail(value.email)){
+                Materialize.toast('Invalid Email address', 2000);
                 return;
             }
         }else if(type === "login"){
@@ -95,6 +103,7 @@ function LoginController(Transaction,User,Logger,$localStorage,$scope,$rootScope
                         $rootScope.cart_quantity = res.response.product.length;
                     }
                 })
+                Materialize.toast('Account Created, check your email to validate.', 2000);
                 $('#user_open').closeModal();
             }else{
                 Materialize.toast(res.response, 2000);
