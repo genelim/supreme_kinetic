@@ -6,6 +6,19 @@ var mongoose = require('mongoose'),
     bcrypt = require('bcrypt-nodejs');
 
 var error_return = [{response:'User Existed'},{response:'Invalid Username or Password'},{response:'Server Error'}];
+var nodemailer = require('nodemailer');
+
+var smtpTransport = nodemailer.createTransport("SMTP", {
+  	service: "Gmail",
+  	auth: {
+    	XOAuth2: {
+      		user: 'genelim@msialink.com', 
+      		clientId: "440866644409-82sn8qdn2kb1mg9hr32iu53qtlv01977.apps.googleusercontent.com",
+      		clientSecret: 'WPMmS8NZoWCDeCC3c9_9n1Vp',
+      		refreshToken: "1/gEf7zI4r8laqiGarEagUVht6Iuy30zC3QRwXWJ0fQ_zBactUREZofsF9C7PrpE-j"
+    	}
+  	}
+});
 
 exports.post = function (req, res) {
     if(req.body.type === "local"){
@@ -24,9 +37,26 @@ exports.post = function (req, res) {
             }
             if (!user){
                 newUser.save(function(error, result){
-                    if(error)
+                    if(error){
                         res.json(error_return[2]);
-                    res.json({response:result});
+                    }else{
+                        res.json({response:result});
+                        var mailOptions = {
+                            from: 'genelim@msialink.com', 
+                            to: req.body.email,
+                            subject: 'Account Validation', 
+                            generateTextFromHTML: true,
+                            html: 'Click : http://localhost:8080/account_validation/'+result._id
+                        }
+                        smtpTransport.sendMail(mailOptions, function(error, res){
+                            if(error){
+                                console.log(error);
+                            }else{
+                                console.log("Message sent: " + res.message);
+                            }
+                            smtpTransport.close();
+                        });
+                    }
                 });
                 return;
             }
@@ -156,3 +186,15 @@ exports.update = function (req, res){
         });
     }
 }
+
+
+exports.validate = function (req, res) {
+    req.params.id
+    User.update({_id: req.params.id}, { $set: {email_validate:true}}).exec(function(err,user){
+        if(err){
+            res.json({response:'Server Error'});
+        }else{
+            res.redirect('/validated');
+        }
+    });
+};

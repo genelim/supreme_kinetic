@@ -13,7 +13,7 @@ function config($urlRouterProvider,$stateProvider,$locationProvider,cfpLoadingBa
 
     $stateProvider
     .state('home', {
-        url:'/',
+        url:'/:id',
         templateUrl: 'app/home/home.html',
         controller: 'HomeController',
         controllerAs: 'vm'

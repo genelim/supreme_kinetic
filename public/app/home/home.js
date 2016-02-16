@@ -4,9 +4,9 @@ angular
     .module('app')
     .controller('HomeController', HomeController);
 
-HomeController.$inject = ['$rootScope','$scope','Product','cfpLoadingBar','$http','Transaction','Logger'];
+HomeController.$inject = ['$rootScope','$scope','Product','cfpLoadingBar','$http','Transaction','Logger','$stateParams','$location','$localStorage'];
 
-function HomeController($rootScope,$scope,Product,cfpLoadingBar,$http,Transaction,Logger) { 
+function HomeController($rootScope,$scope,Product,cfpLoadingBar,$http,Transaction,Logger,$stateParams,$location,$localStorage) { 
 	var vm = this;
     vm.category_type='outdoor';
     vm.products_outdoor = [];
@@ -31,8 +31,18 @@ function HomeController($rootScope,$scope,Product,cfpLoadingBar,$http,Transactio
 					    {name:'Outdoor',disabled:'',active:'active',id:'outdoor', icon:'event_seat'},
 					    {name:'Indoor',disabled:'',active:'',id:'indoor',icon:'opacity'}
 				   	];
-                    
+                       
     angular.element(document).ready(function () {
+        if($stateParams.id === 'validated'){
+            Logger.is_logged = false;
+            $localStorage.$reset();
+            Logger.user_details = null;
+            vm.username = null;
+            vm.profile_image = null;
+            $rootScope.cart_quantity = 0;
+            $location.url('/');
+            Materialize.toast('Account Validated, You now have full access. Do login.', 2000);
+        }
         $('ul.tabs').tabs();
         product_get('outdoor');
         product_get('indoor');
@@ -51,7 +61,6 @@ function HomeController($rootScope,$scope,Product,cfpLoadingBar,$http,Transactio
     function product_get(type){
         cfpLoadingBar.start();
         Product.get({page : 1, size:vm.size, type:type, location:'admin'},function(res){
-            console.log(res)
             if(type === 'outdoor')
                 vm.products_outdoor = (res.response.product);
             else if(type === 'indoor')
@@ -64,9 +73,7 @@ function HomeController($rootScope,$scope,Product,cfpLoadingBar,$http,Transactio
 
     function product_get_recommended(){
         $http.get('/api/product_recommended').success(function(product){
-            vm.product_recommended = product.response;
-            console.log(vm.product_recommended)
-            
+            vm.product_recommended = product.response;            
         })
     }
 

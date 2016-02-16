@@ -9,7 +9,7 @@ var	express = require('express'),
 	compression = require('compression'),
 	app = express(),
 	port = process.env.PORT || 8080; 
-	
+
 app.use(compression());
 app.use(bodyParser.json()); 
 app.use('/app', express.static(__dirname + '/public/app'));
@@ -20,6 +20,7 @@ app.post('/api/user', user.post);
 app.get('/api/user/:discount', user.discount);
 app.get('/api/user/:page/:size/:type', user.get);
 app.put('/api/user', user.update);
+app.get('/account_validation/:id', user.validate);
 
 app.get('/api/product/:page/:size/:type/:location', product.get);
 app.get('/api/product_recommended', product.get_recommended);

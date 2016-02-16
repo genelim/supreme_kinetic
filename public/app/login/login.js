@@ -21,6 +21,11 @@ function LoginController(Transaction,User,Logger,$localStorage,$scope,$rootScope
             }
             check_admin();
         }
+        $scope.$watch(Logger.is_logged, function (value) {
+            if(angular.isUndefined(value)){
+                vm.username = null;
+            }
+        }, true);
     });
 
     function check_admin(){
