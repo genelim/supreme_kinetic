@@ -57,10 +57,16 @@
 					<div class="card-image">
 						<img ng-src="{{product.image[0]}}" style="cursor:pointer;height:18em;width:auto;margin:0 auto" class="responsive-img materialboxed z-depth-1">
 						<div class="col s12 m12 l12" style="cursor:pointer">
-							<p class="center"><b style="font-size:160%">{{product.name}}</b><br/>
-								<b style="font-size:140%">RM{{product.price*0.90}}</b>
-                                <b style="color:gray">RM{{product.price}}</b>
-							</p>
+							<p class="center"><b style="font-size:160%">{{product.name}}</b></p>
+                            <div class="center">
+                                <span ng-if="product.discount[0]">
+                                    <b style="font-size:140%">RM{{product.price-product.price*product.discount[0].percentage/100 | number:2}}</b>
+                                    <b style="color:grey">Original: RM{{product.price}}</b>
+                                </span>
+                                <span ng-if="!product.discount[0]">
+                                    <b style="font-size:140%">RM{{product.price}}</b>
+                                </span>
+                            </div>
 						</div>
 					</div>
 				</div>
